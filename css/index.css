@@ -1203,6 +1203,31 @@ kbd {
   margin: 0.5rem 0 0;
   font-weight: 600;
 }
+.sidebar-ov-social {
+  padding: 0.5rem 0;
+  text-align: center;
+}
+.sidebar-ov-social-item {
+  display: inline-block;
+  margin: 0.2rem;
+  text-align: center;
+  color: var(--color-gray-100);
+  background-color: #a0daff;
+  border-radius: 0.75rem;
+  padding: 0 0.25rem;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  -webkit-transition: background-color 0.2s ease;
+  -moz-transition: background-color 0.2s ease;
+  -o-transition: background-color 0.2s ease;
+  -ms-transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+.sidebar-ov-social-item:hover {
+  color: var(--color-gray-100);
+  background-color: #4dbaff;
+}
 .sidebar-ov-state {
   padding: 0.5rem 0;
   text-align: center;
@@ -1764,7 +1789,6 @@ kbd {
   color: var(--color-gray-850);
   background-color: var(--color-gray-200);
   zoom: 1;
-  padding: 0.1rem 0;
 }
 .highlight figcaption:before,
 .highlight figcaption:after {
@@ -1785,19 +1809,22 @@ kbd {
 }
 .highlight figcaption.custom {
   min-height: 1.5rem;
-  border-radius: 0.25rem;
 }
 .highlight figcaption.custom .custom-lang {
   float: left;
   margin: 0 0.6rem;
   color: var(--color-gray-550);
 }
+.highlight figcaption:not(.custom) + .table-container td.gutter,
+.highlight figcaption:not(.custom) + table td.gutter {
+  display: table-cell;
+}
 .highlight td.gutter {
   border-right: 1px solid var(--color-gray-300);
   padding: 0.4rem 0.6rem;
   width: 2rem;
   background-color: var(--color-gray-200);
-  border-radius: 0.25rem;
+  display: none;
 }
 .highlight td.gutter pre {
   text-align: right;
@@ -1806,7 +1833,7 @@ kbd {
   background-color: inherit;
 }
 .highlight td.code {
-  padding: 0.5rem 0.6rem;
+  padding: 0.5rem 0.75rem;
 }
 .highlight .marked {
   background-color: var(--color-gray-260);
@@ -2479,6 +2506,18 @@ kbd {
 .friends-plugin__item-info__intro {
   font-size: 0.9em;
   color: #999;
+}
+.busuanzi-siteuv__icon,
+.busuanzi-sitepv__icon,
+.busuanzi-siteuv__info,
+.busuanzi-sitepv__info,
+.busuanzi-siteuv__value,
+.busuanzi-sitepv__value {
+  margin: 0 2px;
+}
+.busuanzi > span:nth-child(2)::before {
+  content: '|';
+  margin: 0 10px;
 }
 @media (min-width: 1138px) {
   .header-nav-inner {
