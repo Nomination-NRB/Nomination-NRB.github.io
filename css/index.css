@@ -1789,6 +1789,7 @@ kbd {
   color: var(--color-gray-850);
   background-color: var(--color-gray-200);
   zoom: 1;
+  padding: 0.1rem 0;
 }
 .highlight figcaption:before,
 .highlight figcaption:after {
@@ -1809,22 +1810,19 @@ kbd {
 }
 .highlight figcaption.custom {
   min-height: 1.5rem;
+  border-radius: 0.25rem;
 }
 .highlight figcaption.custom .custom-lang {
   float: left;
   margin: 0 0.6rem;
   color: var(--color-gray-550);
 }
-.highlight figcaption:not(.custom) + .table-container td.gutter,
-.highlight figcaption:not(.custom) + table td.gutter {
-  display: table-cell;
-}
 .highlight td.gutter {
   border-right: 1px solid var(--color-gray-300);
   padding: 0.4rem 0.6rem;
   width: 2rem;
   background-color: var(--color-gray-200);
-  display: none;
+  border-radius: 0.25rem;
 }
 .highlight td.gutter pre {
   text-align: right;
@@ -1833,7 +1831,7 @@ kbd {
   background-color: inherit;
 }
 .highlight td.code {
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.6rem;
 }
 .highlight .marked {
   background-color: var(--color-gray-260);
@@ -2057,6 +2055,47 @@ kbd {
   cursor: zoom-out;
   will-change: transform;
 }
+.loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.4s linear;
+  -moz-transition: opacity 0.4s linear;
+  -o-transition: opacity 0.4s linear;
+  -ms-transition: opacity 0.4s linear;
+  transition: opacity 0.4s linear;
+}
+.loading-bar__progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #77b6ff;
+  -webkit-box-shadow: 0 0 10px rgba(119,182,255,0.7);
+  box-shadow: 0 0 10px rgba(119,182,255,0.7);
+}
+.loading-bar.loading {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+}
+.loading-bar.loading .loading-bar__progress {
+  -webkit-transition: width 0.4s ease;
+  -moz-transition: width 0.4s ease;
+  -o-transition: width 0.4s ease;
+  -ms-transition: width 0.4s ease;
+  transition: width 0.4s ease;
+}
 .mode {
   position: relative;
   border: 0;
@@ -2239,6 +2278,69 @@ kbd {
   padding: 1rem 2rem;
   background-color: var(--color-card);
   float: left;
+}
+:root {
+  --color-gradient-begin: rgba(255,255,255,0);
+  --color-gradient-end: #fff;
+}
+html.nightmode {
+  --color-gradient-begin: rgba(43,49,59,0);
+  --color-gradient-end: #2b313b;
+}
+#valine-container code,
+#valine-container pre {
+  background-color: var(--color-gray-200);
+}
+#valine-container .markdown {
+  fill: var(--color-gray-700);
+}
+#valine-container .vnum,
+#valine-container .vbtn,
+#valine-container .vctrl,
+#valine-container .vinput,
+#valine-container .vcount,
+#valine-container .vemoji-btn,
+#valine-container .vpreview-btn,
+#valine-container .vcontent *,
+#valine-container .vpreview *,
+#valine-container a {
+  color: var(--color-gray-700);
+}
+#valine-container .vinput {
+  border-bottom: 1px dashed var(--color-gray-300);
+}
+#valine-container .vcontent.expand::before {
+  color: var(--color-gray-600);
+  background: -webkit-linear-gradient(270deg, var(--color-gradient-begin), var(--color-gradient-end));
+  background: -moz-linear-gradient(270deg, var(--color-gradient-begin), var(--color-gradient-end));
+  background: -o-linear-gradient(270deg, var(--color-gradient-begin), var(--color-gradient-end));
+  background: -ms-linear-gradient(270deg, var(--color-gradient-begin), var(--color-gradient-end));
+  background: linear-gradient(180deg, var(--color-gradient-begin), var(--color-gradient-end));
+}
+#valine-container .vcontent.expand::after {
+  color: var(--color-gray-600);
+  background: var(--color-gradient-end);
+}
+#valine-container .vsys,
+#valine-container .vbtn {
+  background-color: var(--color-gray-250);
+}
+#valine-container .vbtn {
+  border-color: var(--color-gray-250);
+}
+#valine-container .vbtn:hover {
+  border-color: #3090e4;
+  color: #3090e4;
+}
+#valine-container .vwrap {
+  border-color: var(--color-gray-250);
+}
+#valine-container .vlist .vcard .vh {
+  border-bottom: 1px dashed var(--color-gray-250);
+}
+#valine-container .vcode {
+  color: var(--color-gray-900);
+  background-color: var(--color-gray-250);
 }
 .copy-button {
   position: absolute;
