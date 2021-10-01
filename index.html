@@ -32,10 +32,9 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></he
         <h1 id="字符串"   >
           <a href="#字符串" class="heading-link"><i class="fas fa-link"></i></a><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1>
       
-        <h2 id="BF算法"   >
-          <a href="#BF算法" class="heading-link"><i class="fas fa-link"></i></a><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h2>
-      <p>BF算法即字符串的模式匹配算法，又称为<strong>暴力匹配</strong><br>我们将字符串分为<strong>主串</strong>与<strong>子串</strong>，从第一位开始校对，若比对失败，则<strong>子串回溯</strong>，<strong>主串移动到下一位</strong><br>如下图：<br>​    1.发现A与C不匹配，主串匹配的初始位置移动到下一位，即B<br><img   src="https://img-blog.csdn.net/20161213111841223?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTUxODgwMTc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" style="width: /font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMApx;"  alt="è¿éåå¾çæè¿°" style="zoom:50%;" /><br>​    2.发现B与A不匹配，主串匹配的初始位置移动到下一位，即A<br><img   src="https://img-blog.csdn.net/20161213112349425?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTUxODgwMTc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" style="width: /font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMApx;"  alt="è¿éåå¾çæè¿°" style="zoom:50%;" /><br>​    3.发现，子串全部匹配成功，BF算法结束<br><img   src="https://img-blog.csdn.net/20161213113004700?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTUxODgwMTc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" style="width: /font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMApx;"  alt="è¿éåå¾çæè¿°" style="zoom:50%;" /></p>
-<p><strong>方法：</strong><br>​    我们利用结构体来储存主串与子串，主要分为以下步骤<br>​    1.串的初始化<br>​    2.把字符数组赋给主串与子串<br>​    3.打印串<br>​    4.BF算法</p>
+        <h1 id="BF算法"   >
+          <a href="#BF算法" class="heading-link"><i class="fas fa-link"></i></a><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h1>
+      <p>BF算法即字符串的模式匹配算法，又称为<strong>暴力匹配</strong><br>我们将字符串分为<strong>主串</strong>与<strong>子串</strong>，从第一位开始校对，若比对失败，则<strong>子串回溯</strong>，<strong>主串移动到下一位</strong><br>如下图：<br>​    1.发现a与a匹配，主串与子串同时移动<br>​    2.发现c与a不匹配，主串匹配的初始位置移动到下一位，即c，然后又不匹配，主串再移动一位<br>​    3.发现，子串全部匹配成功，BF算法结束<br><img src="https://z3.ax1x.com/2021/10/01/4HEjyj.png"/><br><strong>方法：</strong><br>​    我们利用结构体来储存主串与子串，主要分为以下步骤<br>​    1.串的初始化<br>​    2.把字符数组赋给主串与子串<br>​    3.打印串<br>​    4.BF算法</p>
 
         <h2 id="节点结构"   >
           <a href="#节点结构" class="heading-link"><i class="fas fa-link"></i></a><a href="#节点结构" class="headerlink" title="节点结构"></a>节点结构</h2>
