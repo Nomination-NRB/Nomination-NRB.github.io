@@ -1,0 +1,518 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="二叉树创建与遍历        前序遍历 中序遍历 后序遍历 层序遍历                      节点结构       代码解释：  Type（char）类型的数据，也就是节点的数据域 指向下一个树节点（左&#x2F;右）  1234567typedef char Type;typedef struct TreeNode&amp;#123;	Type Tdat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树的创建与遍历">
+<meta property="og:url" content="http://nomination-nrb.github.io/2021/10/16/CreateBinaryTree/index.html">
+<meta property="og:site_name" content="Nomination-NRB">
+<meta property="og:description" content="二叉树创建与遍历        前序遍历 中序遍历 后序遍历 层序遍历                      节点结构       代码解释：  Type（char）类型的数据，也就是节点的数据域 指向下一个树节点（左&#x2F;右）  1234567typedef char Type;typedef struct TreeNode&amp;#123;	Type Tdat">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/16/5JIoNj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/16/5JIb3q.png">
+<meta property="og:image" content="http://nomination-nrb.github.io/2021/10/16/CreateBinaryTree/x.com/2021/10/16/5JIoNj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/16/5JIb3q.png">
+<meta property="og:image" content="http://nomination-nrb.github.io/2021/10/16/CreateBinaryTree/x.com/2021/10/16/5JIoNj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/16/5JIb3q.png">
+<meta property="og:image" content="http://nomination-nrb.github.io/2021/10/16/CreateBinaryTree/x.com/2021/10/16/5JIoNj.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/16/5JIb3q.png">
+<meta property="og:image" content="https://z3.ax1x.com/2021/10/16/5Jo0x0.png">
+<meta property="article:published_time" content="2021-10-16T13:26:54.000Z">
+<meta property="article:modified_time" content="2021-10-16T13:38:26.355Z">
+<meta property="article:author" content="Nomination-NRB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/10/16/5JIoNj.png"><title>二叉树的创建与遍历 | Nomination-NRB</title><link ref="canonical" href="http://nomination-nrb.github.io/2021/10/16/CreateBinaryTree/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"simple","highlight":"light","wordWrap":true},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: {"avoidBanner":false},
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__text">Archives</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__text">Categories</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/about/"><span class="header-nav-menu-item__text">About</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">Search</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Nomination-NRB</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">二叉树的创建与遍历</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2021-10-16</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2021-10-16</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">Visited</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h1 id="二叉树创建与遍历"   >
+          <a href="#二叉树创建与遍历" class="heading-link"><i class="fas fa-link"></i></a><a href="#二叉树创建与遍历" class="headerlink" title="二叉树创建与遍历"></a>二叉树创建与遍历</h1>
+      <ol>
+<li>前序遍历</li>
+<li>中序遍历</li>
+<li>后序遍历</li>
+<li>层序遍历</li>
+</ol>
+
+        <h2 id="节点结构"   >
+          <a href="#节点结构" class="heading-link"><i class="fas fa-link"></i></a><a href="#节点结构" class="headerlink" title="节点结构"></a>节点结构</h2>
+      <p><strong>代码解释：</strong></p>
+<ol>
+<li>Type（char）类型的数据，也就是节点的数据域</li>
+<li>指向下一个树节点（左/右）</li>
+</ol>
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> Type;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	Type Tdata;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Lchild</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Rchild</span>;</span></span><br><span class="line">&#125;TreeNode;</span><br></pre></td></tr></table></div></figure>
+
+
+
+
+        <h2 id="创建一棵树"   >
+          <a href="#创建一棵树" class="heading-link"><i class="fas fa-link"></i></a><a href="#创建一棵树" class="headerlink" title="创建一棵树"></a>创建一棵树</h2>
+      <p>树的创建是需要递归来实现的，因为<strong>每个节点可以看成是一棵树</strong>，而它的<strong>左孩子右孩子也可以看成是另外一颗树</strong>，所以我们通过递归来创建每一个节点<br><strong>变量说明：</strong></p>
+<ol>
+<li>TreeNode** T，我们使用指针，因为我们要改变<strong>函数外面这个指针指向的值</strong>，我们使用<strong>二级指针</strong>是因为要<strong>递归</strong>执行，为了在递归中改变外部变量的值，我们需要使用二级指针</li>
+<li>Type* x，是Type类型的一个数组，这里我们使用char类型的数组，有数组就一定有数组的长度index，这里相当于是数组的下标，因为函数要递归，所以为了改变下标的值，不能仅仅index+=1，需要用到<strong>指针来保证每次递归，index的值都会自增</strong></li>
+<li>ch == ‘#’，因为二叉树有叶子节点，为了<strong>辨别叶子节点</strong>，我们将叶子节点的左右孩子<strong>赋值为#</strong><ol>
+<li>比如H节点是叶子节点，则它的左右孩子的数据域都标识为#<img src="https://z3.ax1x.com/2021/10/16/5JIoNj.png" alt="img" style="zoom: 67%;" /></li>
+</ol>
+</li>
+</ol>
+<p><strong>代码解释：</strong></p>
+<ol>
+<li>因为有叶子节点 # 的标识，所以我们需要设置一个<strong>临时变量 ch 来存储 x</strong> 数组的数据</li>
+<li>数组下标自增（因为index是指针，所以需要***index += 1或者( *index ) ++<strong>，都是自增操作，</strong>注意优先级顺序**</li>
+<li>如果字符 ch 为 # ，则设置该结点 *T为NULL<ol>
+<li>如果不是 # ，就给当前节点 *T new一个节点（即开辟一片空间）</li>
+<li>将数组的值赋给当前节点的数据域</li>
+<li>递归遍历当前节点的左孩子（如果左孩子遍历（创建）完成了，才会执行下一句，创建右孩子）</li>
+<li>递归遍历当前节点的右孩子，<strong>注意</strong>递归左右孩子的时候需要使用<strong>二级指针</strong>，因为<em>T和 <em>T-&gt;Lchild， <em>T-&gt;Rchild都是一级指针，所以我们需要对它进行取地址符操作</em></em>&amp;(( <em>T)-&gt;Lchild)</em></em><figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createTree</span><span class="params">(TreeNode** T, Type* x, <span class="keyword">int</span>* index)</span><span class="comment">//因为要递归，所以需要二级指针</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Type ch;<span class="comment">//传入的index=0</span></span><br><span class="line">	ch = x[*index];<span class="comment">//将x数组的元素一个一个的赋给ch</span></span><br><span class="line">	*index += <span class="number">1</span>;<span class="comment">//索引自增</span></span><br><span class="line">	<span class="keyword">if</span> (ch == <span class="string">&#x27;#&#x27;</span>)<span class="comment">//递归出口</span></span><br><span class="line">	&#123;</span><br><span class="line">		*T = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		*T = <span class="keyword">new</span> TreeNode;</span><br><span class="line">		(*T)-&gt;Tdata = ch;<span class="comment">//赋值</span></span><br><span class="line">		<span class="built_in">createTree</span>(&amp;((*T)-&gt;Lchild), x, index);<span class="comment">//递归遍历创建左孩子</span></span><br><span class="line">		<span class="built_in">createTree</span>(&amp;((*T)-&gt;Rchild), x, index);<span class="comment">//递归遍历创建右孩子	</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ol>
+</li>
+</ol>
+
+        <h2 id="前序遍历"   >
+          <a href="#前序遍历" class="heading-link"><i class="fas fa-link"></i></a><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2>
+      <p>树的遍历分为四种：<strong>前序，中序，后序，层序</strong><br>其中，前中后的意思是<strong>根节点遍历的顺序</strong>，因为每一个节点都是一棵树，都要尝试访问它的左右孩子<br>前序遍历：<strong>根-&gt;左-&gt;右</strong><br><img src="https://z3.ax1x.com/2021/10/16/5JIb3q.png" alt="img" style="zoom: 67%;" /><br><strong>代码解释：</strong></p>
+<ol>
+<li>如果访问前序遍历访问到根节点，则返回</li>
+<li>比如上图，前序遍历：A B D H I E J C F G<ol>
+<li>首先访问根节点A，再递归访问其左右子树</li>
+<li>因为我们可以把B也看成是一棵树，所以依然遵循先访问根节点，再递归访问左右子树</li>
+<li><img src="x.com/2021/10/16/5JIoNj.png" alt="img" style="zoom:50%;" />直到访问到H节点（H的左右孩子为NULL）就直接访问H的数据域，D子树的左子树访问完成，接着访问右子树（preOrder(T-&gt;Rchild)）</li>
+<li>I节点访问完成后，B子树的左子树全部访问完成，所以接着访问右子树E，如此递归下去<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preOrder</span><span class="params">(TreeNode* T)</span><span class="comment">//前序遍历</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (T == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">visit</span>(T);</span><br><span class="line">		<span class="built_in">preOrder</span>(T-&gt;Lchild);</span><br><span class="line">		<span class="built_in">preOrder</span>(T-&gt;Rchild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ol>
+</li>
+</ol>
+
+        <h2 id="中序遍历"   >
+          <a href="#中序遍历" class="heading-link"><i class="fas fa-link"></i></a><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2>
+      <p>中序遍历与先序遍历不同之处在于，根节点访问的顺序在第二，即<strong>左-&gt;根-&gt;右</strong><br><img src="https://z3.ax1x.com/2021/10/16/5JIb3q.png" alt="img" style="zoom: 67%;" /></p>
+<p><strong>代码解释：</strong></p>
+<ol>
+<li>中序遍历：H D I B J E A F C G</li>
+<li>首先传入根节点A，进入递归，寻找他的左孩子inOrder(T-&gt;Lchild)</li>
+<li>发现节点B也有左孩子，接着递归</li>
+<li><strong>直到H<img src="x.com/2021/10/16/5JIoNj.png" alt="img" style="zoom:50%;" />，发现H没有左孩子，然后就访问H节点，再递归访问此节点的右孩子</strong></li>
+<li>当D子树遍历完成后，相当于B子树的左子树已经递归完成了，所以访问B节点，再递归进入B节点的右子树E</li>
+<li>当B子树遍历完成后，相当于A子树的左子树已经递归完成了，所以访问A节点，在递归进入A节点的右子树C</li>
+<li>如此递归下去，即可遍历完成<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inOrder</span><span class="params">(TreeNode* T)</span><span class="comment">//中序遍历</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (T == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">inOrder</span>(T-&gt;Lchild);</span><br><span class="line">		<span class="built_in">visit</span>(T);</span><br><span class="line">		<span class="built_in">inOrder</span>(T-&gt;Rchild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ol>
+
+        <h2 id="后序遍历"   >
+          <a href="#后序遍历" class="heading-link"><i class="fas fa-link"></i></a><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2>
+      <p>后序遍历：<strong>左-&gt;右-&gt;根</strong><br><img src="https://z3.ax1x.com/2021/10/16/5JIb3q.png" alt="img" style="zoom: 67%;" /><br><strong>代码解释：</strong></p>
+<ol>
+<li>后序遍历：H I D J E B F G C A </li>
+<li>操作可以类比中序遍历，先递归寻找它的左孩子，直到H节点<img src="x.com/2021/10/16/5JIoNj.png" alt="img" style="zoom:50%;" />它的左右孩子都为NULL，就访问H节点（左右根的顺序）</li>
+<li>然后接着访问I节点，E节点也是如此，递归下去，先访问左孩子，再访问右孩子，最后访问树的根节点<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postOrder</span><span class="params">(TreeNode* T)</span><span class="comment">//后续遍历</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (T == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">postOrder</span>(T-&gt;Lchild);</span><br><span class="line">		<span class="built_in">postOrder</span>(T-&gt;Rchild);</span><br><span class="line">		<span class="built_in">visit</span>(T);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ol>
+
+        <h2 id="层序遍历"   >
+          <a href="#层序遍历" class="heading-link"><i class="fas fa-link"></i></a><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h2>
+      <img src="https://z3.ax1x.com/2021/10/16/5JIb3q.png" alt="img" style="zoom: 67%;" />
+层序遍历：A B C D E F G H I J
+1. 利用队列（循环队列）
+2. 先初始化操作，将根节点入队，再进入循环
+3. 将队首元素出队并访问，若有左右子树，则将其入队（第一次循环结束）
+## 循环队列
+<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//层序遍历队列的结点结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">queueNode</span>//循环双向队列</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	TreeNode* data;<span class="comment">//树的结点为顺序队列的元素</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">queueNode</span>* <span class="title">pre</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">queueNode</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;*Queue;</span><br><span class="line"><span class="function">Queue <span class="title">initQueue</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Queue q = <span class="keyword">new</span> queueNode;</span><br><span class="line">	q-&gt;next = q-&gt;pre = q;</span><br><span class="line">	q-&gt;data = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(Queue q, TreeNode* Tdata)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Queue node = <span class="keyword">new</span> queueNode;</span><br><span class="line">	node-&gt;data = Tdata;<span class="comment">//将数据结点指针赋值给队列的结点数据域</span></span><br><span class="line">	node-&gt;pre = q;<span class="comment">//node结点的前指针指向q头结点</span></span><br><span class="line">	node-&gt;next = q;<span class="comment">//node结点的后指针指向q头结点，构成循环</span></span><br><span class="line">	q-&gt;pre-&gt;next = node;<span class="comment">//q-&gt;pre就是q</span></span><br><span class="line">	q-&gt;pre = node;<span class="comment">//头结点的前一个就是最后一个，形成循环链表队列</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isEmpty</span><span class="params">(Queue q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (q-&gt;next == q)<span class="comment">//尾指针指向头结点为空</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Queue <span class="title">deQueue</span><span class="params">(Queue q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isEmpty</span>(q))</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		Queue node = q-&gt;next;</span><br><span class="line">		q-&gt;next-&gt;next-&gt;pre = q;<span class="comment">//第一个出队，q.next为第一个,q.next.next.pre为第二个的前指针，指回头结点</span></span><br><span class="line">		q-&gt;next = q-&gt;next-&gt;next;<span class="comment">//第一个出队，q.next指向出队后的下一个</span></span><br><span class="line">		<span class="keyword">return</span> node;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="层序核心"   >
+          <a href="#层序核心" class="heading-link"><i class="fas fa-link"></i></a><a href="#层序核心" class="headerlink" title="层序核心"></a>层序核心</h2>
+      <p>A B C D E F G H I J<br><strong>代码解释：</strong></p>
+<ol>
+<li>如果队列分配失败，则提前退出</li>
+<li>队列分配成功，先进行入队操作<ol>
+<li>循环条件：队列不为空</li>
+<li>先设置一个零时变量存储出队的元素，接着访问该元素</li>
+<li>如果此节点有左孩子，则将其入队，如果有右孩子，也将其入队，然后接着循环语句的执行</li>
+<li>如此操作可以访问完每一棵二叉树，从而达到层序遍历<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">levelTraverse</span><span class="params">(Queue q, TreeNode* T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(q == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">	<span class="built_in">enQueue</span>(q, T);</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isEmpty</span>(q))</span><br><span class="line">	&#123;</span><br><span class="line">		Queue node = <span class="built_in">deQueue</span>(q);<span class="comment">//将出队元素接收</span></span><br><span class="line">		cout &lt;&lt; node-&gt;data-&gt;Tdata &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//打印队列的元素，元素是指针，指向的Tdata</span></span><br><span class="line">		<span class="keyword">if</span> (node-&gt;data-&gt;Lchild)<span class="comment">//如果队列元素的左孩子不为NULL，就入队</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">enQueue</span>(q, node-&gt;data-&gt;Lchild);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (node-&gt;data-&gt;Rchild)<span class="comment">//如果队列元素的右孩子不为NULL，就入队</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">enQueue</span>(q, node-&gt;data-&gt;Rchild);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ol>
+</li>
+</ol>
+
+        <h4 id="二叉树创建与遍历样例"   >
+          <a href="#二叉树创建与遍历样例" class="heading-link"><i class="fas fa-link"></i></a><a href="#二叉树创建与遍历样例" class="headerlink" title="二叉树创建与遍历样例"></a>二叉树创建与遍历样例</h4>
+      <figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> Type;</span><br><span class="line"><span class="comment">//二叉链表存储结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	Type Tdata;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Lchild</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Rchild</span>;</span></span><br><span class="line">&#125;TreeNode;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createTree</span><span class="params">(TreeNode** T, Type* x, <span class="keyword">int</span>* index)</span><span class="comment">//因为要递归，所以需要二级指针</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Type ch;</span><br><span class="line">	ch = x[*index];<span class="comment">//将x数组的元素一个一个的赋给ch</span></span><br><span class="line">	*index += <span class="number">1</span>;<span class="comment">//索引自增</span></span><br><span class="line">	<span class="keyword">if</span> (ch == <span class="string">&#x27;#&#x27;</span>)<span class="comment">//递归出口</span></span><br><span class="line">	&#123;</span><br><span class="line">		*T = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		*T = <span class="keyword">new</span> TreeNode;</span><br><span class="line">		(*T)-&gt;Tdata = ch;<span class="comment">//赋值</span></span><br><span class="line">		<span class="built_in">createTree</span>(&amp;((*T)-&gt;Lchild), x, index);<span class="comment">//递归遍历创建左孩子</span></span><br><span class="line">		<span class="built_in">createTree</span>(&amp;((*T)-&gt;Rchild), x, index);<span class="comment">//递归遍历创建右孩子	</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">visit</span><span class="params">(TreeNode* T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; T-&gt;Tdata &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preOrder</span><span class="params">(TreeNode* T)</span><span class="comment">//前序遍历</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (T == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">visit</span>(T);</span><br><span class="line">		<span class="built_in">preOrder</span>(T-&gt;Lchild);</span><br><span class="line">		<span class="built_in">preOrder</span>(T-&gt;Rchild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inOrder</span><span class="params">(TreeNode* T)</span><span class="comment">//中序遍历</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (T == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">inOrder</span>(T-&gt;Lchild);</span><br><span class="line">		<span class="built_in">visit</span>(T);</span><br><span class="line">		<span class="built_in">inOrder</span>(T-&gt;Rchild);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postOrder</span><span class="params">(TreeNode* T)</span><span class="comment">//后续遍历</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (T == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">postOrder</span>(T-&gt;Lchild);</span><br><span class="line">		<span class="built_in">postOrder</span>(T-&gt;Rchild);</span><br><span class="line">		<span class="built_in">visit</span>(T);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//层序遍历队列的结点结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">queueNode</span>//循环双向队列</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	TreeNode* data;<span class="comment">//树的结点为顺序队列的元素</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">queueNode</span>* <span class="title">pre</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">queueNode</span>* <span class="title">next</span>;</span></span><br><span class="line">&#125;*Queue;</span><br><span class="line"><span class="function">Queue <span class="title">initQueue</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Queue q = <span class="keyword">new</span> queueNode;</span><br><span class="line">	q-&gt;next = q-&gt;pre = q;</span><br><span class="line">	q-&gt;data = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(Queue q, TreeNode* Tdata)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Queue node = <span class="keyword">new</span> queueNode;</span><br><span class="line">	node-&gt;data = Tdata;<span class="comment">//将数据结点指针赋值给队列的结点数据域</span></span><br><span class="line">	node-&gt;pre = q;<span class="comment">//node结点的前指针指向q头结点</span></span><br><span class="line">	node-&gt;next = q;<span class="comment">//node结点的后指针指向q头结点，相当于</span></span><br><span class="line">	q-&gt;pre-&gt;next = node;<span class="comment">//q-&gt;pre就是q</span></span><br><span class="line">	q-&gt;pre = node;<span class="comment">//头结点的前一个就是最后一个，形成循环链表队列</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">isEmpty</span><span class="params">(Queue q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (q-&gt;next == q)<span class="comment">//尾指针指向头结点为空</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Queue <span class="title">deQueue</span><span class="params">(Queue q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isEmpty</span>(q))</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		Queue node = q-&gt;next;</span><br><span class="line">		q-&gt;next-&gt;next-&gt;pre = q;<span class="comment">//第一个出队，q.next为第一个,q.next.next.pre为第二个的前指针，指回头结点</span></span><br><span class="line">		q-&gt;next = q-&gt;next-&gt;next;<span class="comment">//第一个出队，q.next指向出队后的下一个</span></span><br><span class="line">		<span class="keyword">return</span> node;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">levelTraverse</span><span class="params">(Queue q, TreeNode* T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(q == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">	<span class="built_in">enQueue</span>(q, T);</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">isEmpty</span>(q))</span><br><span class="line">	&#123;</span><br><span class="line">		Queue node = <span class="built_in">deQueue</span>(q);<span class="comment">//将出队元素接收</span></span><br><span class="line">		cout &lt;&lt; node-&gt;data-&gt;Tdata &lt;&lt; <span class="string">&quot; &quot;</span>;<span class="comment">//打印队列的元素，元素是指针，指向的Tdata</span></span><br><span class="line">		<span class="keyword">if</span> (node-&gt;data-&gt;Lchild)<span class="comment">//如果队列元素的左孩子不为NULL，就入队</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">enQueue</span>(q, node-&gt;data-&gt;Lchild);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (node-&gt;data-&gt;Rchild)<span class="comment">//如果队列元素的右孩子不为NULL，就入队</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">enQueue</span>(q, node-&gt;data-&gt;Rchild);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	TreeNode* T;</span><br><span class="line">	<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">	Type x[<span class="number">16</span>] = &#123; <span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;D&#x27;</span>,<span class="string">&#x27;#&#x27;</span>,<span class="string">&#x27;#&#x27;</span>,<span class="string">&#x27;E&#x27;</span>,<span class="string">&#x27;#&#x27;</span>,<span class="string">&#x27;#&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;F&#x27;</span>,<span class="string">&#x27;#&#x27;</span>,<span class="string">&#x27;#&#x27;</span>,<span class="string">&#x27;G&#x27;</span>,<span class="string">&#x27;#&#x27;</span>,<span class="string">&#x27;#&#x27;</span> &#125;;</span><br><span class="line">	<span class="built_in">createTree</span>(&amp;T, x, &amp;index);</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;前序遍历：&quot;</span>;</span><br><span class="line">	<span class="built_in">preOrder</span>(T);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;中序遍历：&quot;</span>;</span><br><span class="line">	<span class="built_in">inOrder</span>(T);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;后序遍历：&quot;</span>;</span><br><span class="line">	<span class="built_in">postOrder</span>(T);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;层序遍历：&quot;</span>;</span><br><span class="line">	Queue q = <span class="built_in">initQueue</span>();</span><br><span class="line">	<span class="built_in">levelTraverse</span>(q, T);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p><img src="https://z3.ax1x.com/2021/10/16/5Jo0x0.png" alt="image-20210723224600212"></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="http://Nomination-NRB.github.io">Nomination-NRB</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="http://nomination-nrb.github.io/2021/10/16/CreateBinaryTree/">http://nomination-nrb.github.io/2021/10/16/CreateBinaryTree/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2021/10/08/KPM/"><span class="paginator-prev__text">KPM算法</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%81%8D%E5%8E%86"><span class="toc-number">1.</span> <span class="toc-text">
+          二叉树创建与遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">
+          节点结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E6%A3%B5%E6%A0%91"><span class="toc-number">1.2.</span> <span class="toc-text">
+          创建一棵树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.3.</span> <span class="toc-text">
+          前序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.4.</span> <span class="toc-text">
+          中序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.5.</span> <span class="toc-text">
+          后序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">1.6.</span> <span class="toc-text">
+          层序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E5%BA%8F%E6%A0%B8%E5%BF%83"><span class="toc-number">1.7.</span> <span class="toc-text">
+          层序核心</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%81%8D%E5%8E%86%E6%A0%B7%E4%BE%8B"><span class="toc-number">1.7.0.1.</span> <span class="toc-text">
+          二叉树创建与遍历样例</span></a></li></ol></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://z3.ax1x.com/2021/09/17/4KyGaF.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">Nomination-NRB</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="tencent://message?uin=1366213780" target="_blank" rel="noopener" data-popover="social.QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a><a class="sidebar-ov-social-item" href="mailto:1366213780@qq.com" target="_blank" rel="noopener" data-popover="social.QQmain" data-popover-pos="up"><span class="sidebar-ov-social-item__icon">邮</span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">Archives</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">2</div><div class="sidebar-ov-state-item__name">Categories</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Nomination-NRB</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.0</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">Visitors</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">Views</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="Search for Posts (Support multiple keywords)"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js" color="70,105,220" opacity="0.6" count="200" zIndex="-1"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.xml';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ Untitled ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', 'Please enter characters');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/npm/pjax@latest/pjax.min.js"></script><script>window.addEventListener('DOMContentLoaded', function () {
+  var pjax = new Pjax({"selectors":["head title","#main",".pjax-reload"],"history":true,"scrollTo":false,"scrollRestoration":false,"cacheBust":false,"debug":false,"currentUrlFullReload":false,"timeout":0});
+  // 加载进度条的计时器
+  var loadingTimer = null;
+
+  // 重置页面 Y 方向上的滚动偏移量
+  document.addEventListener('pjax:send', function () {
+    $('.header-nav-menu').removeClass('show');
+    if (CONFIG.pjax && CONFIG.pjax.avoidBanner) {
+      $('html').velocity('scroll', {
+        duration: 500,
+        offset: $('#header').height(),
+        easing: 'easeInOutCubic'
+      });
+    }
+
+    var loadingBarWidth = 20;
+    var MAX_LOADING_WIDTH = 95;
+
+    $('.loading-bar').addClass('loading');
+    $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    clearInterval(loadingTimer);
+    loadingTimer = setInterval(function () {
+      loadingBarWidth += 3;
+      if (loadingBarWidth > MAX_LOADING_WIDTH) {
+        loadingBarWidth = MAX_LOADING_WIDTH;
+      }
+      $('.loading-bar__progress').css('width', loadingBarWidth + '%');
+    }, 500);
+  }, false);
+
+  window.addEventListener('pjax:complete', function () {
+    clearInterval(loadingTimer);
+    $('.loading-bar__progress').css('width', '100%');
+    $('.loading-bar').removeClass('loading');
+    setTimeout(function () {
+      $('.loading-bar__progress').css('width', '0');
+    }, 400);
+    $('link[rel=prefetch], script[data-pjax-rm]').each(function () {
+      $(this).remove();
+    });
+    $('script[data-pjax], #pjax-reload script').each(function () {
+      $(this).parent().append($(this).remove());
+    });
+
+    if (Stun.utils.pjaxReloadBoot) {
+      Stun.utils.pjaxReloadBoot();
+    }
+    if (Stun.utils.pjaxReloadScroll) {
+      Stun.utils.pjaxReloadScroll();
+    }
+    if (Stun.utils.pjaxReloadSidebar) {
+      Stun.utils.pjaxReloadSidebar();
+    }
+    if (false) {
+      if (Stun.utils.pjaxReloadHeader) {
+        Stun.utils.pjaxReloadHeader();
+      }
+      if (Stun.utils.pjaxReloadScrollIcon) {
+        Stun.utils.pjaxReloadScrollIcon();
+      }
+      if (Stun.utils.pjaxReloadLocalSearch) {
+        Stun.utils.pjaxReloadLocalSearch();
+      }
+    }
+  }, false);
+}, false);</script><div id="pjax-reload"><script src="https://cdn.jsdelivr.net/npm/quicklink@1.0.1/dist/quicklink.umd.js"></script><script>function initQuicklink() {
+  quicklink({
+    timeout: '10000',
+    priority: true,
+    ignores: [uri => uri.includes('#'), uri => uri === 'http://nomination-nrb.github.io/2021/10/16/CreateBinaryTree/', /\/api\/?/,uri => uri.includes('.xml'),uri => uri.includes('.zip'),(uri, el) => el.hasAttribute('nofollow'),(uri, el) => el.hasAttribute('noprefetch')]
+  });
+}
+
+if (true || false) {
+  initQuicklink();
+} else {
+  window.addEventListener('DOMContentLoaded', initQuicklink, false);
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script></div><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.xml"></script></body></html>
