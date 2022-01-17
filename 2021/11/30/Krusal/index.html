@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Nomination-NRB">
+
+
+
+
+
+<title>Krusal算法 | Nomination-NRB</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Kyobo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Kyobo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Krusal算法</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Nomination-NRB</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 30, 2021&nbsp;&nbsp;19:28:40</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h1><p>适用于<strong>点多边少</strong><br>因为我们需要对边进行排序，所以邻接表与邻接矩阵都不适用，我们使用结构体数组来存储图</p>
+<h2 id="结点结构"><a href="#结点结构" class="headerlink" title="结点结构"></a>结点结构</h2><ol>
+<li>边集：from与to，以及权值</li>
+<li>图里有点集，点数，边数，最短路径<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> from;</span><br><span class="line">	<span class="keyword">int</span> to;</span><br><span class="line">	<span class="keyword">int</span> weight;</span><br><span class="line">&#125;Edge;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Graph</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span>* spot;<span class="comment">//点集</span></span><br><span class="line">	Edge* line;<span class="comment">//边集</span></span><br><span class="line">	<span class="keyword">int</span> spotNum;</span><br><span class="line">	<span class="keyword">int</span> lineNum;</span><br><span class="line">	<span class="keyword">int</span> minLength;</span><br><span class="line">&#125;Graph;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="初始化图"><a href="#初始化图" class="headerlink" title="初始化图"></a>初始化图</h2><ol>
+<li>初始化各个数据，动态分配点集空间</li>
+<li>因为我们要从矩阵中获得边的数量才可以给边进行分配空间，所以在此不进行分配<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Graph* <span class="title">initGraph</span><span class="params">(<span class="keyword">int</span> dianshu)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Graph* G = <span class="keyword">new</span> Graph;</span><br><span class="line">	G-&gt;spotNum = dianshu;</span><br><span class="line">	G-&gt;lineNum = <span class="number">0</span>;</span><br><span class="line">	G-&gt;minLength = <span class="number">0</span>;</span><br><span class="line">	G-&gt;spot = <span class="keyword">new</span> <span class="keyword">int</span>[dianshu];</span><br><span class="line">	<span class="keyword">return</span> G;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="创建图"><a href="#创建图" class="headerlink" title="创建图"></a>创建图</h2><ol>
+<li>通过输入的点集与边集给点集赋值，在矩阵中获得有效边的数目（无向图记得/2）</li>
+<li>有了边的数目，我们动态分配边集空间，再通过输入给边赋值，from，to，weight<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createGraph</span><span class="params">(Graph* G, <span class="keyword">int</span>* dian, <span class="keyword">int</span>* bian)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;spot[i] = dian[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; G-&gt;spotNum * G-&gt;spotNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (bian[j] &gt; <span class="number">0</span> &amp;&amp; bian[j] &lt; mymax)</span><br><span class="line">		&#123;</span><br><span class="line">			G-&gt;lineNum++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	G-&gt;lineNum /= <span class="number">2</span>;</span><br><span class="line">	G-&gt;line = <span class="keyword">new</span> Edge[G-&gt;lineNum];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;lineNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; G-&gt;line[i].from &gt;&gt; G-&gt;line[i].to &gt;&gt; G-&gt;line[i].weight;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="寻找根节点"><a href="#寻找根节点" class="headerlink" title="寻找根节点"></a>寻找根节点</h2><ol>
+<li>我们通过parent数组来存放各个顶点的父亲，<strong>比如parent[0]=0，代表节点0就是根节点（因为他的parent就是他自己），如果parent[0]=1，则节点0的根节点是1</strong></li>
+<li>也就是说，当parent[x]=x时，即x就是父亲<ol>
+<li>比如：parent[0]=1，parent[1]=2，parent[2]=2,</li>
+<li>我们通过递归来寻找，比如想要知道0的父亲是谁：<ol>
+<li>发现0的上一个节点是1,1的上一个节点是2,2 的上一个节点就是自己（即找到了父亲）</li>
+<li>所以0的父亲就是2</li>
+<li>总结：若没有找到父亲，则将parent的值当做下次递归的下标，继续寻找，直到找到为止</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findRoot</span><span class="params">(<span class="keyword">int</span>* parent, <span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x != parent[x])</span><br><span class="line">	&#123;</span><br><span class="line">		parent[x] = <span class="built_in">findRoot</span>(parent, parent[x]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> parent[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Kruskal核心"><a href="#Kruskal核心" class="headerlink" title="Kruskal核心"></a>Kruskal核心</h2><ol>
+<li>首先给parent数组初始化，即每个节点的父亲都是自己</li>
+<li>通过排序算法，将权值从小到大进行排序</li>
+<li>分别寻找一条边的<strong>from的根节点与to的根节点</strong><ol>
+<li>若根节点不相同，则表示两个节点不在同一个集合中，加入当前边之后不会构成环</li>
+<li>我们通过parent[vex2]=vex1来合并两棵树（我们之前把每一个节点都看成一棵树），<strong>vex1是from的根节点（下标）vex2是to的根节点（下标）</strong><ol>
+<li>为什么这样表示合并了两棵树呢？</li>
+<li>比如：<strong>原本parent[0]=0，parent[1]=1，是两棵独立的树，当parent[1]=0，就表示1的上一个节点是0,而parent[0]=0表示0就是父节点，所以1的父亲节点就变成了0</strong>，由此1与0的父亲节点都是0，所以相当于把1加入到了0这棵树之中</li>
+</ol>
+</li>
+<li>其中有if (num == G-&gt;spotNum - 1)，因为<strong>最小生成树的边=点-1</strong>，num就是来记录当前加了多少条边，当边数=点-1，即可退出循环</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Kruskal</span><span class="params">(Graph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* parent = <span class="keyword">new</span> <span class="keyword">int</span>[G-&gt;spotNum];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		parent[i] = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//bubbleSort(G-&gt;line,G-&gt;lineNum);</span></span><br><span class="line">	<span class="built_in">sort</span>(G-&gt;line, G-&gt;line + G-&gt;lineNum, cmp);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;权值升序：&quot;</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;lineNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; G-&gt;line[i].weight &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;路径：&quot;</span> &lt;&lt; endl;;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; G-&gt;spotNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> vex1 = <span class="built_in">findRoot</span>(parent, G-&gt;line[j].from);<span class="comment">//找到生成树的根节点</span></span><br><span class="line">		<span class="keyword">int</span> vex2 = <span class="built_in">findRoot</span>(parent, G-&gt;line[j].to);</span><br><span class="line">		<span class="keyword">if</span> (vex1 != vex2)<span class="comment">//找到的根节点不相同，不会构成环</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">outputMST</span>(G, j);</span><br><span class="line">			G-&gt;minLength += G-&gt;line[j].weight;</span><br><span class="line">			parent[vex2] = vex1;<span class="comment">//合并生成树</span></span><br><span class="line">			num++;</span><br><span class="line">			<span class="keyword">if</span> (num == G-&gt;spotNum - <span class="number">1</span>)<span class="comment">//提前退出</span></span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1 4 12</span></span><br><span class="line"><span class="comment">2 3 17</span></span><br><span class="line"><span class="comment">0 5 19</span></span><br><span class="line"><span class="comment">2 5 25</span></span><br><span class="line"><span class="comment">3 5 25</span></span><br><span class="line"><span class="comment">4 5 26</span></span><br><span class="line"><span class="comment">0 1 34</span></span><br><span class="line"><span class="comment">3 4 38</span></span><br><span class="line"><span class="comment">0 2 46</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mymax 65535</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> from;</span><br><span class="line">	<span class="keyword">int</span> to;</span><br><span class="line">	<span class="keyword">int</span> weight;</span><br><span class="line">&#125;Edge;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Graph</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span>* spot;<span class="comment">//点集</span></span><br><span class="line">	Edge* line;<span class="comment">//边集</span></span><br><span class="line">	<span class="keyword">int</span> spotNum;</span><br><span class="line">	<span class="keyword">int</span> lineNum;</span><br><span class="line">	<span class="keyword">int</span> minLength;</span><br><span class="line">&#125;Graph;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Edge a, Edge b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.weight &lt; b.weight;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(Edge* a, <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (a[j].weight &gt; a[j + <span class="number">1</span>].weight)</span><br><span class="line">			&#123;</span><br><span class="line">				Edge temp;</span><br><span class="line">				temp = a[j + <span class="number">1</span>];</span><br><span class="line">				a[j + <span class="number">1</span>] = a[j];</span><br><span class="line">				a[j] = temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">Graph* <span class="title">initGraph</span><span class="params">(<span class="keyword">int</span> dianshu)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Graph* G = <span class="keyword">new</span> Graph;</span><br><span class="line">	G-&gt;spotNum = dianshu;</span><br><span class="line">	G-&gt;lineNum = <span class="number">0</span>;</span><br><span class="line">	G-&gt;minLength = <span class="number">0</span>;</span><br><span class="line">	G-&gt;spot = <span class="keyword">new</span> <span class="keyword">int</span>[dianshu];</span><br><span class="line">	<span class="keyword">return</span> G;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createGraph</span><span class="params">(Graph* G, <span class="keyword">int</span>* dian, <span class="keyword">int</span>* bian)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;spot[i] = dian[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; G-&gt;spotNum * G-&gt;spotNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (bian[j] &gt; <span class="number">0</span> &amp;&amp; bian[j] &lt; mymax)</span><br><span class="line">		&#123;</span><br><span class="line">			G-&gt;lineNum++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	G-&gt;lineNum /= <span class="number">2</span>;</span><br><span class="line">	G-&gt;line = <span class="keyword">new</span> Edge[G-&gt;lineNum];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;lineNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; G-&gt;line[i].from &gt;&gt; G-&gt;line[i].to &gt;&gt; G-&gt;line[i].weight;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printLine</span><span class="params">(Graph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum * G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; G-&gt;line[i].weight &lt;&lt; <span class="string">&quot;\t&quot;</span>;</span><br><span class="line">		j++;</span><br><span class="line">		<span class="keyword">if</span> (j % G-&gt;spotNum == <span class="number">0</span>)</span><br><span class="line">			cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printSpot</span><span class="params">(Graph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; G-&gt;spot[i] &lt;&lt; <span class="string">&quot;\t&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findRoot</span><span class="params">(<span class="keyword">int</span>* parent, <span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x != parent[x])</span><br><span class="line">	&#123;</span><br><span class="line">		parent[x] = <span class="built_in">findRoot</span>(parent, parent[x]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> parent[x];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">outputMST</span><span class="params">(Graph* G, <span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;(&quot;</span> &lt;&lt; G-&gt;line[i].from &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; G-&gt;line[i].to &lt;&lt; <span class="string">&quot;)&quot;</span> &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; G-&gt;line[i].weight &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Kruskal</span><span class="params">(Graph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* parent = <span class="keyword">new</span> <span class="keyword">int</span>[G-&gt;spotNum];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		parent[i] = i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//bubbleSort(G-&gt;line,G-&gt;lineNum);</span></span><br><span class="line">	<span class="built_in">sort</span>(G-&gt;line, G-&gt;line + G-&gt;lineNum, cmp);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;权值升序：&quot;</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;lineNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; G-&gt;line[i].weight &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;路径：&quot;</span> &lt;&lt; endl;;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; G-&gt;spotNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> vex1 = <span class="built_in">findRoot</span>(parent, G-&gt;line[j].from);<span class="comment">//找到生成树的根节点</span></span><br><span class="line">		<span class="keyword">int</span> vex2 = <span class="built_in">findRoot</span>(parent, G-&gt;line[j].to);</span><br><span class="line">		<span class="keyword">if</span> (vex1 != vex2)<span class="comment">//找到的根节点不相同，不会构成环</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">outputMST</span>(G, j);</span><br><span class="line">			G-&gt;minLength += G-&gt;line[j].weight;</span><br><span class="line">			parent[vex2] = vex1;<span class="comment">//合并生成树</span></span><br><span class="line">			num++;</span><br><span class="line">			<span class="keyword">if</span> (num == G-&gt;spotNum - <span class="number">1</span>)<span class="comment">//提前退出</span></span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> spot[] = &#123; <span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> num = <span class="built_in"><span class="keyword">sizeof</span></span>(spot) / <span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>);</span><br><span class="line">	Graph* G = <span class="built_in">initGraph</span>(num);</span><br><span class="line">	<span class="keyword">int</span> bian[] = &#123; <span class="number">0</span>,<span class="number">34</span>,<span class="number">46</span>,mymax,mymax,<span class="number">19</span>,</span><br><span class="line">			  <span class="number">34</span>,<span class="number">0</span>,mymax,mymax,<span class="number">12</span>,mymax,</span><br><span class="line">			  <span class="number">46</span>,mymax,<span class="number">0</span>,<span class="number">17</span>,mymax,<span class="number">25</span>,</span><br><span class="line">			  mymax,mymax,<span class="number">17</span>,<span class="number">0</span>,<span class="number">38</span>,<span class="number">25</span>,</span><br><span class="line">			  mymax,<span class="number">12</span>,mymax,<span class="number">38</span>,<span class="number">0</span>,<span class="number">26</span>,</span><br><span class="line">			  <span class="number">19</span>,mymax,<span class="number">25</span>,<span class="number">25</span>,<span class="number">26</span>,<span class="number">0</span> &#125;;</span><br><span class="line">	<span class="built_in">createGraph</span>(G, spot, bian);</span><br><span class="line">	<span class="built_in">Kruskal</span>(G);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;最短路径：&quot;</span> &lt;&lt; G-&gt;minLength &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Nomination-NRB</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://nomination-nrb.github.io/2021/11/30/Krusal/">http://nomination-nrb.github.io/2021/11/30/Krusal/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/12/11/Dijkstra/">Dijkstra算法</a>
+            
+            
+            <a class="next" rel="next" href="/2021/11/28/Prim/">Prim算法</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Nomination-NRB | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

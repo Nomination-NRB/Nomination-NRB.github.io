@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Nomination-NRB">
+
+
+
+
+
+<title>循环队列 | Nomination-NRB</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Kyobo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Kyobo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">循环队列</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Nomination-NRB</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 25, 2021&nbsp;&nbsp;23:42:30</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h1><p>关于循环队列需明白以下几点：<br>1、循环队列是队列的<strong>顺序</strong>存储结构<br>2、循环队列用判断是否为空利用 Q.front==Q.rear<br>3、循环队列头指针始终指向<strong>队列头</strong>元素，而尾指针始终指向队列尾元素的<strong>下一个位置</strong><br>4、按照队列的定义，队头删除，队尾插入</p>
+<h2 id="初始化队列"><a href="#初始化队列" class="headerlink" title="初始化队列"></a>初始化队列</h2><p><strong>具体操作：</strong><br>​    1.new一个头节点，方便返回得到值<br>​    2.初始化队头与队尾索引，同时赋值为0，表示队列为空</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化队列</span></span><br><span class="line"><span class="function">Queue* <span class="title">initQueue</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//Queue* q = (Queue*)malloc(sizeof(Queue));</span></span><br><span class="line">    Queue* q = <span class="keyword">new</span> Queue;</span><br><span class="line">	q-&gt;front = q-&gt;rear = <span class="number">0</span>;<span class="comment">//初始化队头，队尾</span></span><br><span class="line">	<span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="队空"><a href="#队空" class="headerlink" title="队空"></a>队空</h2><img src="https://img-blog.csdnimg.cn/20191105144756962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dzand4aG4=,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°" style="zoom: 50%;" />
+**具体操作：**
+​    1.队列空：q->rear==q->front
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断队列空</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (q-&gt;front == q-&gt;rear)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="队满"><a href="#队满" class="headerlink" title="队满"></a>队满</h2><p>我们要牺牲队列里面的一个空间来标识队列满，首先front指向<strong>队头</strong>，rear指向<strong>队尾的下一个</strong><br>如下图：<strong>刚开始front指向索引0，如果我们不牺牲一个空间的话，当队列满了，即填入数据5，rear索引指向5的下一个，即0，会发现front与rear相等，与队空的情况一样，无法区别队空与队满</strong>，所以索引5的位置是不能填入数据的（即牺牲这个空间），填入当填入数据4的时候，rear索引指向5<br><img src="https://z3.ax1x.com/2021/09/25/4yeTTx.png" style="zoom:67%;" /></p>
+<p>​    1.队列满：(q-&gt;rear + 1) % MAXSIZE == q-&gt;front<br>​        (q-&gt;rear + 1) % MAXSIZE == q-&gt;front来实现队列循环的下标—越界问题<br>​        <img src="https://z3.ax1x.com/2021/09/25/4yeqfO.png" style="zoom:50%;" /><br>​        当rear+1==front时就表示队列已满，<strong>但是索引回从5变到0</strong><br>​        为了让索引能够循环，我们利用<strong>取余运算</strong>，即（rear+1）%MAXSIZE，可以达到循环索引的目的<br>​        例如，（5+1）%6=0，即回到front的索引</p>
+<p><strong>ps:遇到索引越界问题，我们大都采用取余的方法</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断队列满</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;<span class="comment">//牺牲队列中的一个位置来做如下判断</span></span><br><span class="line">	<span class="keyword">if</span> ((q-&gt;rear + <span class="number">1</span>) % MAXSIZE == q-&gt;front)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h2><p>每次入队后，<strong>将队尾rear指向下一个位置</strong><br><strong>具体操作：</strong><br>​    1.入队需要判断队列是否<strong>已满</strong><br>​    2.将x入队，因为rear是指向队尾的下一个，所以直接用rear当数组的下标即可<br>​    3.入队后rear索引要往后面移动一位，所以还是要注意越界问题**(q-&gt;rear + 1) % MAXSIZE**</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//入队</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">enQueue</span><span class="params">(Queue* q, <span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isFull</span>(q))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		q-&gt;data[q-&gt;rear] = x;</span><br><span class="line">		q-&gt;rear = (q-&gt;rear + <span class="number">1</span>) % MAXSIZE;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h2><p>出队后，将front指向下一个位置<br><strong>具体操作：</strong><br>​    1.出队需要先判断队列是否<strong>已空</strong><br>​    2.因为front也会指向下一个位置，所以仍然要注意越界问题<strong>q-&gt;front = (q-&gt;front + 1) % MAXSIZE</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//出队</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deQueue</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isEmpty</span>(q))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x = q-&gt;data[q-&gt;front];</span><br><span class="line">		q-&gt;front = (q-&gt;front + <span class="number">1</span>) % MAXSIZE;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="队列的显示"><a href="#队列的显示" class="headerlink" title="队列的显示"></a>队列的显示</h2><p><strong>具体操作：</strong><br>​    1.队列的长度：<strong>队尾 - 队头 + MAXSIZE</strong>（加上MAXSIZE是为了防止出现<strong>负数</strong>的情况），再取余，不超过限制长度（ 队尾 - 队头 + MAXSIZE ) % MAXSIZE<br>​    例如下图：rear-front=1-4=-3，-3+MAXSIZE=3，3%6=3，<strong>所以3才是队列的长度</strong><br>​    <img src="https://z3.ax1x.com/2021/09/25/4ymCAP.png" style="zoom: 67%;" /><br>​    2.因为要遍历队列，所以我们要设置<strong>工作索引</strong>index，工作索引也会遇到越界问题，所以还是要**+1再取余**</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printQueue</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> length = (q-&gt;rear - q-&gt;front + MAXSIZE) % MAXSIZE;</span><br><span class="line">	<span class="keyword">int</span> index = q-&gt;front;<span class="comment">//不能改变front与rear</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; q-&gt;data[index] &lt;&lt; <span class="string">&quot;-&gt;&quot;</span>;</span><br><span class="line">		index = (index + <span class="number">1</span>) % MAXSIZE;<span class="comment">//遍历时一样会遇到边界</span></span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;NULL&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="循环队列实例"><a href="#循环队列实例" class="headerlink" title="循环队列实例"></a>循环队列实例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//C语言实现</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 5</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">queue</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> front;</span><br><span class="line">	<span class="keyword">int</span> rear;</span><br><span class="line">	<span class="keyword">int</span> data[MAXSIZE];</span><br><span class="line">&#125;Queue;</span><br><span class="line"><span class="comment">//初始化队列</span></span><br><span class="line"><span class="function">Queue* <span class="title">initQueue</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Queue* q = (Queue*)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(Queue));</span><br><span class="line">	q-&gt;front = q-&gt;rear = <span class="number">0</span>;<span class="comment">//初始化队头，队尾</span></span><br><span class="line">	<span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断队列满</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;<span class="comment">//牺牲队列中的一个位置来做如下判断</span></span><br><span class="line">	<span class="keyword">if</span> ((q-&gt;rear + <span class="number">1</span>) % MAXSIZE == q-&gt;front)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断队列空</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (q-&gt;front == q-&gt;rear)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//入队</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">enQueue</span><span class="params">(Queue* q, <span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isFull</span>(q))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		q-&gt;data[q-&gt;rear] = x;</span><br><span class="line">		q-&gt;rear = (q-&gt;rear + <span class="number">1</span>) % MAXSIZE;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//出队</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deQueue</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isEmpty</span>(q))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x = q-&gt;data[q-&gt;front];</span><br><span class="line">		q-&gt;front = (q-&gt;front + <span class="number">1</span>) % MAXSIZE;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//遍历队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printQueue</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> length = (q-&gt;rear - q-&gt;front + MAXSIZE) % MAXSIZE;</span><br><span class="line">	<span class="keyword">int</span> index = q-&gt;front;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; q-&gt;data[index] &lt;&lt; <span class="string">&quot;-&gt;&quot;</span>;</span><br><span class="line">		index = (index + <span class="number">1</span>) % MAXSIZE;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;NULL&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Queue* q = <span class="built_in">initQueue</span>();</span><br><span class="line">	<span class="built_in">enQueue</span>(q, <span class="number">0</span>);</span><br><span class="line">	<span class="built_in">enQueue</span>(q, <span class="number">1</span>);</span><br><span class="line">	<span class="built_in">enQueue</span>(q, <span class="number">2</span>);</span><br><span class="line">	<span class="built_in">enQueue</span>(q, <span class="number">3</span>);</span><br><span class="line">	<span class="built_in">printQueue</span>(q);</span><br><span class="line">	<span class="built_in">deQueue</span>(q);</span><br><span class="line">	<span class="built_in">printQueue</span>(q);</span><br><span class="line">	<span class="built_in">deQueue</span>(q);</span><br><span class="line">	<span class="built_in">printQueue</span>(q);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Nomination-NRB</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://nomination-nrb.github.io/2021/09/25/CircularQueue/">http://nomination-nrb.github.io/2021/09/25/CircularQueue/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/10/01/BF/">暴力匹配</a>
+            
+            
+            <a class="next" rel="next" href="/2021/09/25/ListedQueue/">链式队列</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Nomination-NRB | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

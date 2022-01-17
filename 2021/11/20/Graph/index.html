@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Nomination-NRB">
+
+
+
+
+
+<title>图的存储 | Nomination-NRB</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Kyobo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Kyobo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">图的存储</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Nomination-NRB</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 20, 2021&nbsp;&nbsp;17:10:52</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="图的存储"><a href="#图的存储" class="headerlink" title="图的存储"></a>图的存储</h1><h2 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h2><h3 id="节点结构"><a href="#节点结构" class="headerlink" title="节点结构"></a>节点结构</h3><ol>
+<li>点集，边集，点数，边数</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Graph</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span>* vertex;</span><br><span class="line">	<span class="keyword">int</span>** arc;</span><br><span class="line">	<span class="keyword">int</span> vertexNum;</span><br><span class="line">	<span class="keyword">int</span> arcNum;</span><br><span class="line">&#125;Graph;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="初始化图"><a href="#初始化图" class="headerlink" title="初始化图"></a>初始化图</h3><ol>
+<li>因为节点结构中需要动态分配内存，所以我们需要单独初始化（分配空间）</li>
+<li>初始化点数与边数</li>
+<li>给边动态分配空间</li>
+<li>初始化点集与边集（或者直接输入矩阵）<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Graph* <span class="title">initGraph</span><span class="params">(<span class="keyword">int</span>* dian, <span class="keyword">int</span> dianshu, <span class="keyword">int</span> bianshu)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Graph* G = <span class="keyword">new</span> Graph;</span><br><span class="line">	G-&gt;vertexNum = dianshu;</span><br><span class="line">	G-&gt;arcNum = bianshu;</span><br><span class="line">	G-&gt;vertex = <span class="keyword">new</span> <span class="keyword">int</span>[dianshu];</span><br><span class="line">	G-&gt;arc = <span class="keyword">new</span> <span class="keyword">int</span>* [bianshu];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bianshu; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;arc[i] = <span class="keyword">new</span> <span class="keyword">int</span>[bianshu];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dianshu; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;vertex[i] = dian[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dianshu; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; dianshu; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			G-&gt;arc[i][j] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> G;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="创建图"><a href="#创建图" class="headerlink" title="创建图"></a>创建图</h3><ol>
+<li>当我们的输入不是下标的时候，我们需要先得到输入值在点集中的下标</li>
+<li>再对边集进行修改<strong>（如果是无权图，就是可达矩阵，也分有向图与无向图）</strong><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createGraph</span><span class="params">(Graph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;arcNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> from;</span><br><span class="line">		<span class="keyword">int</span> to;</span><br><span class="line">		cin &gt;&gt; from &gt;&gt; to;</span><br><span class="line">		G-&gt;arc[from][to] = <span class="number">1</span>;</span><br><span class="line">		G-&gt;arc[to][from] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Graph</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span>* vertex;</span><br><span class="line">	<span class="keyword">int</span>** arc;</span><br><span class="line">	<span class="keyword">int</span> vertexNum;</span><br><span class="line">	<span class="keyword">int</span> arcNum;</span><br><span class="line">&#125;Graph;</span><br><span class="line"><span class="function">Graph* <span class="title">initGraph</span><span class="params">(<span class="keyword">int</span>* dian, <span class="keyword">int</span> dianshu, <span class="keyword">int</span> bianshu)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Graph* G = <span class="keyword">new</span> Graph;</span><br><span class="line">	G-&gt;vertexNum = dianshu;</span><br><span class="line">	G-&gt;arcNum = bianshu;</span><br><span class="line">	G-&gt;vertex = <span class="keyword">new</span> <span class="keyword">int</span>[dianshu];</span><br><span class="line">	G-&gt;arc = <span class="keyword">new</span> <span class="keyword">int</span>* [bianshu];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bianshu; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;arc[i] = <span class="keyword">new</span> <span class="keyword">int</span>[bianshu];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dianshu; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;vertex[i] = dian[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dianshu; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; dianshu; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			G-&gt;arc[i][j] = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> G;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createGraph</span><span class="params">(Graph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;arcNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> from;</span><br><span class="line">		<span class="keyword">int</span> to;</span><br><span class="line">		cin &gt;&gt; from &gt;&gt; to;</span><br><span class="line">		G-&gt;arc[from][to] = <span class="number">1</span>;</span><br><span class="line">		G-&gt;arc[to][from] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showVertex</span><span class="params">(Graph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;vertexNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; G-&gt;vertex[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showArc</span><span class="params">(Graph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;vertexNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; G-&gt;vertexNum; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; G-&gt;arc[i][j] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> dian[] = &#123; <span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> dianshu;</span><br><span class="line">	<span class="keyword">int</span> bianshu;</span><br><span class="line">	cin &gt;&gt; dianshu &gt;&gt; bianshu;</span><br><span class="line">	Graph* G = <span class="built_in">initGraph</span>(dian, dianshu, bianshu);</span><br><span class="line">	<span class="built_in">createGraph</span>(G);</span><br><span class="line">	<span class="built_in">showVertex</span>(G);</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	<span class="built_in">showArc</span>(G);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h2><p>利用顶点表加上边表构成邻接表</p>
+<h3 id="节点结构-1"><a href="#节点结构-1" class="headerlink" title="节点结构"></a>节点结构</h3><ol>
+<li>我们有边表节点，顶点表节点，结构体数组</li>
+<li>边表节点：<ol>
+<li>两点之间的权重</li>
+<li>连接的点</li>
+<li>指向下一个边表节点</li>
+</ol>
+</li>
+<li>顶点表节点：<ol>
+<li>顶点的数据域</li>
+<li>顶点的出度</li>
+<li>顶点的边表指针</li>
+</ol>
+</li>
+<li>结构体数组：<ol>
+<li>一个顶点表数组</li>
+<li>点数与边数</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">EdgeNode</span>//边表节点</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> weight;<span class="comment">//两点之间的权重</span></span><br><span class="line">	<span class="keyword">int</span> spot;<span class="comment">//连接的点</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">EdgeNode</span>* <span class="title">next</span>;</span><span class="comment">//指向下一个边表节点</span></span><br><span class="line">&#125;EdgeNode;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">VertexNode</span>//顶点表节点</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	type data;<span class="comment">//顶点数据域</span></span><br><span class="line">	<span class="keyword">int</span> out;<span class="comment">//顶点出度</span></span><br><span class="line">	EdgeNode* firstEdge;<span class="comment">//顶点的边节点指针</span></span><br><span class="line">&#125;VertexNdoe;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ALGraph</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	VertexNode* array;</span><br><span class="line">	<span class="keyword">int</span> spotNum;</span><br><span class="line">	<span class="keyword">int</span> edgeNum;</span><br><span class="line">&#125;ALGraph;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="初始化图-1"><a href="#初始化图-1" class="headerlink" title="初始化图"></a>初始化图</h3><ol>
+<li>动态分配空间，并且初始化数据<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ALGraph* <span class="title">initALGraph</span><span class="params">(<span class="keyword">int</span> spot, <span class="keyword">int</span> edge)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ALGraph* G = <span class="keyword">new</span> ALGraph;</span><br><span class="line">	G-&gt;array = <span class="keyword">new</span> VertexNdoe[spot];</span><br><span class="line">	G-&gt;edgeNum = edge;</span><br><span class="line">	G-&gt;spotNum = spot;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;array[i].data = <span class="number">-1</span>;</span><br><span class="line">		G-&gt;array[i].firstEdge = <span class="literal">NULL</span>;</span><br><span class="line">		G-&gt;array[i].out = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> G;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="创建图-1"><a href="#创建图-1" class="headerlink" title="创建图"></a>创建图</h3><ol>
+<li>给数据赋值</li>
+<li>利用头插法加入边表数据</li>
+<li>注意有向图与无向图的区别<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createALGraph</span><span class="params">(ALGraph* G, <span class="keyword">int</span>* item, <span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;array[i].data = item[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">0</span>)<span class="comment">//无向图</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;edgeNum; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> x, y, w;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; y &gt;&gt; w;</span><br><span class="line">			EdgeNode* node1 = <span class="keyword">new</span> EdgeNode;<span class="comment">//创建一个边表节点</span></span><br><span class="line">			node1-&gt;spot = y;<span class="comment">//记录x节点的邻节点</span></span><br><span class="line">			node1-&gt;weight = w;<span class="comment">//记录权重</span></span><br><span class="line">			node1-&gt;next = G-&gt;array[x].firstEdge;<span class="comment">//类似头插法</span></span><br><span class="line">			G-&gt;array[x].firstEdge = node1;</span><br><span class="line">			EdgeNode* node2 = <span class="keyword">new</span> EdgeNode;</span><br><span class="line">			node2-&gt;spot = x;<span class="comment">//记录y节点的邻节点</span></span><br><span class="line">			node2-&gt;weight = w;<span class="comment">//记录权重</span></span><br><span class="line">			node2-&gt;next = G-&gt;array[y].firstEdge;<span class="comment">//类似头插法</span></span><br><span class="line">			G-&gt;array[y].firstEdge = node2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span><span class="comment">//有向图</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;edgeNum; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> x, y, w;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; y &gt;&gt; w;</span><br><span class="line">			EdgeNode* node = <span class="keyword">new</span> EdgeNode;<span class="comment">//创建一个边表节点</span></span><br><span class="line">			node-&gt;spot = y;<span class="comment">//记录x节点的邻节点</span></span><br><span class="line">			node-&gt;weight = w;<span class="comment">//记录权重</span></span><br><span class="line">			node-&gt;next = G-&gt;array[x].firstEdge;<span class="comment">//类似头插法</span></span><br><span class="line">			G-&gt;array[x].firstEdge = node;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="遍历图"><a href="#遍历图" class="headerlink" title="遍历图"></a>遍历图</h3><ol>
+<li>先打印顶点集的数据域，然后再遍历边表，并且打印</li>
+<li>每打印一次边表，该点的出度就自增<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showALGraph</span><span class="params">(ALGraph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; G-&gt;array[i].data &lt;&lt; <span class="string">&quot;  &quot;</span>;</span><br><span class="line">		EdgeNode* temp = G-&gt;array[i].firstEdge;<span class="comment">//设置工作指针遍历顶点表的边指针</span></span><br><span class="line">		<span class="keyword">while</span> (temp)</span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;spot: &quot;</span> &lt;&lt; temp-&gt;spot &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; <span class="string">&quot;weight: &quot;</span> &lt;&lt; temp-&gt;weight &lt;&lt; <span class="string">&quot;   &quot;</span>;</span><br><span class="line">			temp = temp-&gt;next;</span><br><span class="line">			G-&gt;array[i].out++;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;out: &quot;</span> &lt;&lt; G-&gt;array[i].out;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> type int</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">EdgeNode</span>//边表节点</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> weight;<span class="comment">//两点之间的权重</span></span><br><span class="line">	<span class="keyword">int</span> spot;<span class="comment">//连接的点</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">EdgeNode</span>* <span class="title">next</span>;</span><span class="comment">//指向下一个边表节点</span></span><br><span class="line">&#125;EdgeNode;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">VertexNode</span>//顶点表节点</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	type data;<span class="comment">//顶点数据域</span></span><br><span class="line">	<span class="keyword">int</span> out;<span class="comment">//顶点出度</span></span><br><span class="line">	EdgeNode* firstEdge;<span class="comment">//顶点的边节点指针</span></span><br><span class="line">&#125;VertexNdoe;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ALGraph</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	VertexNode* array;</span><br><span class="line">	<span class="keyword">int</span> spotNum;</span><br><span class="line">	<span class="keyword">int</span> edgeNum;</span><br><span class="line">&#125;ALGraph;</span><br><span class="line"><span class="function">ALGraph* <span class="title">initALGraph</span><span class="params">(<span class="keyword">int</span> spot, <span class="keyword">int</span> edge)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ALGraph* G = <span class="keyword">new</span> ALGraph;</span><br><span class="line">	G-&gt;array = <span class="keyword">new</span> VertexNdoe[spot];</span><br><span class="line">	G-&gt;edgeNum = edge;</span><br><span class="line">	G-&gt;spotNum = spot;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;array[i].data = <span class="number">-1</span>;</span><br><span class="line">		G-&gt;array[i].firstEdge = <span class="literal">NULL</span>;</span><br><span class="line">		G-&gt;array[i].out = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> G;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createALGraph</span><span class="params">(ALGraph* G, <span class="keyword">int</span>* item, <span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;array[i].data = item[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x == <span class="number">0</span>)<span class="comment">//无向图</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;edgeNum; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> x, y, w;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; y &gt;&gt; w;</span><br><span class="line">			EdgeNode* node1 = <span class="keyword">new</span> EdgeNode;<span class="comment">//创建一个边表节点</span></span><br><span class="line">			node1-&gt;spot = y;<span class="comment">//记录x节点的邻节点</span></span><br><span class="line">			node1-&gt;weight = w;<span class="comment">//记录权重</span></span><br><span class="line">			node1-&gt;next = G-&gt;array[x].firstEdge;<span class="comment">//类似头插法</span></span><br><span class="line">			G-&gt;array[x].firstEdge = node1;</span><br><span class="line">			EdgeNode* node2 = <span class="keyword">new</span> EdgeNode;</span><br><span class="line">			node2-&gt;spot = x;<span class="comment">//记录y节点的邻节点</span></span><br><span class="line">			node2-&gt;weight = w;<span class="comment">//记录权重</span></span><br><span class="line">			node2-&gt;next = G-&gt;array[y].firstEdge;<span class="comment">//类似头插法</span></span><br><span class="line">			G-&gt;array[y].firstEdge = node2;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span><span class="comment">//有向图</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;edgeNum; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> x, y, w;</span><br><span class="line">			cin &gt;&gt; x &gt;&gt; y &gt;&gt; w;</span><br><span class="line">			EdgeNode* node = <span class="keyword">new</span> EdgeNode;<span class="comment">//创建一个边表节点</span></span><br><span class="line">			node-&gt;spot = y;<span class="comment">//记录x节点的邻节点</span></span><br><span class="line">			node-&gt;weight = w;<span class="comment">//记录权重</span></span><br><span class="line">			node-&gt;next = G-&gt;array[x].firstEdge;<span class="comment">//类似头插法</span></span><br><span class="line">			G-&gt;array[x].firstEdge = node;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*尾插法</span></span><br><span class="line"><span class="comment">if (index != -1)//获得点集的下标，若没有该点，返回-1</span></span><br><span class="line"><span class="comment">		&#123;</span></span><br><span class="line"><span class="comment">			EdgeNode* temp = G-&gt;array[index].firstEdge;</span></span><br><span class="line"><span class="comment">			if (temp == NULL)</span></span><br><span class="line"><span class="comment">			&#123;</span></span><br><span class="line"><span class="comment">				G-&gt;array[index].firstEdge = node;</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">			else</span></span><br><span class="line"><span class="comment">			&#123;</span></span><br><span class="line"><span class="comment">				while (temp-&gt;next)</span></span><br><span class="line"><span class="comment">				&#123;</span></span><br><span class="line"><span class="comment">					temp = temp-&gt;next;</span></span><br><span class="line"><span class="comment">				&#125;</span></span><br><span class="line"><span class="comment">				temp-&gt;next = node;</span></span><br><span class="line"><span class="comment">			&#125;</span></span><br><span class="line"><span class="comment">		&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showALGraph</span><span class="params">(ALGraph* G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; G-&gt;array[i].data &lt;&lt; <span class="string">&quot;  &quot;</span>;</span><br><span class="line">		EdgeNode* temp = G-&gt;array[i].firstEdge;<span class="comment">//设置工作指针遍历顶点表的边指针</span></span><br><span class="line">		<span class="keyword">while</span> (temp)</span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;spot: &quot;</span> &lt;&lt; temp-&gt;spot &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; <span class="string">&quot;weight: &quot;</span> &lt;&lt; temp-&gt;weight &lt;&lt; <span class="string">&quot;   &quot;</span>;</span><br><span class="line">			temp = temp-&gt;next;</span><br><span class="line">			G-&gt;array[i].out++;</span><br><span class="line">		&#125;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;out: &quot;</span> &lt;&lt; G-&gt;array[i].out;</span><br><span class="line">		cout &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> dianshu, bianshu;</span><br><span class="line">	cin &gt;&gt; dianshu &gt;&gt; bianshu;</span><br><span class="line">	<span class="keyword">int</span>* array = <span class="keyword">new</span> <span class="keyword">int</span>[dianshu];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dianshu; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; array[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> x;<span class="comment">//无向图输入0，有向图输入1</span></span><br><span class="line">	cin &gt;&gt; x;</span><br><span class="line">	ALGraph* G = <span class="built_in">initALGraph</span>(dianshu, bianshu);</span><br><span class="line">	<span class="built_in">createALGraph</span>(G, array, x);</span><br><span class="line">	<span class="built_in">showALGraph</span>(G);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Nomination-NRB</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://nomination-nrb.github.io/2021/11/20/Graph/">http://nomination-nrb.github.io/2021/11/20/Graph/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/11/28/Prim/">Prim算法</a>
+            
+            
+            <a class="next" rel="next" href="/2021/11/20/HFTree/">哈夫曼树</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Nomination-NRB | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

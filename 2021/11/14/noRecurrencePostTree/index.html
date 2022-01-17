@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Nomination-NRB">
+
+
+
+
+
+<title>非递归后序遍历 | Nomination-NRB</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Kyobo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Kyobo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">非递归后序遍历</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Nomination-NRB</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 14, 2021&nbsp;&nbsp;21:15:42</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="非递归后序"><a href="#非递归后序" class="headerlink" title="非递归后序"></a>非递归后序</h1><p><strong>后序遍历：左右根，先访问当前这棵树的左节点</strong><br><strong>后序遍历：左右根，先访问当前这棵树的左节点</strong><br><strong>后序遍历：左右根，先访问当前这棵树的左节点</strong></p>
+<p><em><strong>特殊：</strong></em><br>树的节点<strong>多了一个数据域</strong> flag，flag用来标识节点是否被访问过</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> data;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Lchild</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Rchild</span>;</span></span><br><span class="line">	<span class="keyword">bool</span> flag;<span class="comment">//0表示没有被访问过</span></span><br><span class="line">&#125;TreeNode;</span><br></pre></td></tr></table></figure>
+<p>创建树多了<strong>flag的初始化</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createTree</span><span class="params">(TreeNode** T, <span class="keyword">char</span>* array, <span class="keyword">int</span>&amp; index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch = array[index];</span><br><span class="line">	index++;</span><br><span class="line">	<span class="keyword">if</span> (ch == <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">		*T = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		(*T) = <span class="keyword">new</span> TreeNode;</span><br><span class="line">		(*T)-&gt;data = ch;</span><br><span class="line">		(*T)-&gt;flag = <span class="number">0</span>;</span><br><span class="line">		<span class="built_in">createTree</span>(&amp;((*T)-&gt;Lchild), array, index);</span><br><span class="line">		<span class="built_in">createTree</span>(&amp;((*T)-&gt;Rchild), array, index);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>例如有一棵二叉树：<br><img src="https://z3.ax1x.com/2021/11/14/Ic2ZHP.png" alt="image-20211101212254853" style="zoom:50%;" /><br><strong>代码解释：</strong></p>
+<ol>
+<li>外层 if 条件语句依然是入栈，寻找它的左孩子，直到找到最左边的那个节点（说明当前节点的左子树已经访问完成，<strong>根据左右根的顺序</strong>，接下来访问当前节点的右子树，然后再访问根节点）</li>
+<li>第一次进入外层 else 语句时，栈的情况：<ol>
+<li><img src="https://z3.ax1x.com/2021/11/14/Ic2u4S.png" alt="image-20211101213240814" style="zoom:50%;" /></li>
+<li>此时栈顶元素temp为D，且D有右孩子F，所以进入<strong>内层 if</strong> 语句，将右孩子F入栈后，再次寻找它的左子树，和外层 if 一样，直到左子树为NULL</li>
+<li>当前栈顶元素为F，且左子树为NULL，右子树也为NULL<img src="https://z3.ax1x.com/2021/11/14/Ic28un.png" alt="image-20211102231623661" style="zoom:50%;" />
+那么就**出栈并访问，且设置出栈节点的flag为1**（表示已经访问过）
+<img src="https://z3.ax1x.com/2021/11/14/Ic2GBq.png" alt="image-20211102231809623" style="zoom:50%;" /></li>
+</ol>
+</li>
+<li>此时node依然为NULL（因为node=temp-&gt;Lchild，且此时的temp为F节点）</li>
+<li>再次进入外层 else，获取栈顶元素D，<strong>D有右孩子F，但是F已经标识访问过</strong>，所以继续出栈并访问，且设置出栈节点的flag为1（<strong>对于D子树来说，左右根的访问顺序已经完成</strong>）<img src="https://z3.ax1x.com/2021/11/14/Ic2U4U.png" alt="image-20211102232458921" style="zoom:50%;" /></li>
+<li>此时node依然为NULL（<strong>只有当前节点有左孩子且没有被访问过的时候才不会为NULL</strong>），再次进入外层 else，获得当前栈顶元素B，B有右孩子E，且E没有被访问过，则将E入栈后再次寻找它的左子树，与外层if一样<img src="https://z3.ax1x.com/2021/11/14/Ic20gJ.png" alt="image-20211102233051053" style="zoom:50%;" /></li>
+<li>E的操作和F一致，因为E没有左子树与右子树，所以<strong>内层if</strong>对node的赋值为NULL，则获取栈顶元素E，<strong>出栈并访问，并设置访问标识</strong><ol>
+<li><img src="https://z3.ax1x.com/2021/11/14/Ic2sD1.png" alt="image-20211102233452210" style="zoom:50%;" /></li>
+</ol>
+</li>
+<li>此时栈顶元素为B，由于node为NULL，进入外层else，获取栈顶元素B，且B的左子树已经访问完成，右子树E<strong>已经访问过</strong>，则<strong>出栈并访问，设置访问标识</strong><ol>
+<li><img src="https://z3.ax1x.com/2021/11/14/Ic2cE6.png" alt="image-20211102233916713" style="zoom:50%;" /></li>
+</ol>
+</li>
+<li>A节点的操作与B一致，就不详细展开了<ol>
+<li><img src="https://z3.ax1x.com/2021/11/14/Ic2gUK.png" alt="image-20211102234053414" style="zoom:50%;" /></li>
+<li><img src="https://z3.ax1x.com/2021/11/14/Ic2f8e.png" alt="image-20211102234130361" style="zoom:50%;" /></li>
+<li><img src="https://z3.ax1x.com/2021/11/14/Ic2HVP.png" alt="image-20211102234216158" style="zoom:50%;" />
+此时栈为空，节点已经访问完成，非递归后序遍历完成</li>
+</ol>
+</li>
+</ol>
+<p><strong>后续遍历：F D E B C A</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postOrder</span><span class="params">(TreeNode* T)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//设置工作指针</span></span><br><span class="line">	TreeNode* node = T;</span><br><span class="line">	stack&lt;TreeNode*&gt; myStack;</span><br><span class="line">	<span class="keyword">while</span> (node || !myStack.<span class="built_in">empty</span>())<span class="comment">//只要结点不为NULL，栈不为NULL</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (node)<span class="comment">//如果结点不为NULL</span></span><br><span class="line">		&#123;</span><br><span class="line">			myStack.<span class="built_in">push</span>(node);</span><br><span class="line">			node = node-&gt;Lchild;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			TreeNode* temp = myStack.<span class="built_in">top</span>();<span class="comment">//获得当前栈顶元素</span></span><br><span class="line">			<span class="keyword">if</span> (temp-&gt;Rchild &amp;&amp; temp-&gt;Rchild-&gt;flag == <span class="number">0</span>)<span class="comment">//右孩子不为NULL且没有被访问过</span></span><br><span class="line">			&#123;</span><br><span class="line">				temp = temp-&gt;Rchild;</span><br><span class="line">				myStack.<span class="built_in">push</span>(temp);</span><br><span class="line">				node = temp-&gt;Lchild;<span class="comment">//再寻找左孩子</span></span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//已经被访问过，不用再入栈，直接出栈</span></span><br><span class="line">				myStack.<span class="built_in">pop</span>();</span><br><span class="line">				<span class="built_in">visit</span>(temp);</span><br><span class="line">				temp-&gt;flag = <span class="number">1</span>;<span class="comment">//访问后标识</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Nomination-NRB</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://nomination-nrb.github.io/2021/11/14/noRecurrencePostTree/">http://nomination-nrb.github.io/2021/11/14/noRecurrencePostTree/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/11/20/inThreadTree/">中序线索二叉树</a>
+            
+            
+            <a class="next" rel="next" href="/2021/11/04/noRecurrenceInTree/">非递归中序遍历</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Nomination-NRB | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
