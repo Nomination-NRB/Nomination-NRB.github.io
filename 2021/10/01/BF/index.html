@@ -78,8 +78,6 @@
                 
                     <a class="menu-item" href="/tag">Tags</a>
                 
-                    <a class="menu-item" href="/about">About</a>
-                
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
@@ -102,8 +100,6 @@
                     <a class="menu-item" href="/category">Categories</a>
                 
                     <a class="menu-item" href="/tag">Tags</a>
-                
-                    <a class="menu-item" href="/about">About</a>
                 
             </div>
         </div>
@@ -229,7 +225,7 @@
 
 
 
-<h2 id="字符串的赋值"><a href="#字符串的赋值" class="headerlink" title="字符串的赋值"></a>字符串的赋值</h2><p>我们传入字符串x，来为s赋值<br><strong>具体操作：</strong><br>​    1.我们要遍历字符数组来获得长度，所以需要设置工作指针temp<br>​    2.如果len为0，则不对s进行操作<br>​    3.如果len不为0，则将temp字符数组的数据拷贝给s<br>​        ///1.<strong>因为求长度len的时候，temp已经移动到字符数组的尾部了，所以需要先复位temp=x</strong><br>​        ///2.更新s的数据域的len（s-&gt;len=len）<br>​        ///3.更新s的数据域的data，<strong>给它new一片空间，长度为len+1</strong>，因为字符数组的最后一位要保存**’\0’**<br>​        ///4.进行赋值</p>
+<h2 id="字符串的赋值"><a href="#字符串的赋值" class="headerlink" title="字符串的赋值"></a>字符串的赋值</h2><p>我们传入字符串x，来为s赋值<br><strong>具体操作：</strong><br>​    1.我们要遍历字符数组来获得长度，所以需要设置工作指针temp<br>​    2.如果len为0，则不对s进行操作<br>​    3.如果len不为0，则将temp字符数组的数据拷贝给s<br>​        1.<strong>因为求长度len的时候，temp已经移动到字符数组的尾部了，所以需要先复位temp=x</strong><br>​        2.更新s的数据域的len（s-&gt;len=len）<br>​        3.更新s的数据域的data，<strong>给它new一片空间，长度为len+1</strong>，因为字符数组的最后一位要保存**’\0’**<br>​        4.进行赋值</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">stringAssign</span><span class="params">(String* s, <span class="keyword">char</span>* x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = <span class="number">0</span>;<span class="comment">//记录字符数组x的长度</span></span><br><span class="line">	<span class="keyword">char</span>* temp = x;<span class="comment">//设置工作指针来遍历数组获得长度</span></span><br><span class="line">	<span class="keyword">while</span> (*temp)<span class="comment">//只要temp不为NULL，就一直遍历下去</span></span><br><span class="line">	&#123;</span><br><span class="line">		len++;</span><br><span class="line">		temp++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (len == <span class="number">0</span>)<span class="comment">//则传入的是空串</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		temp = x;<span class="comment">//复位temp</span></span><br><span class="line">		s-&gt;len = len;</span><br><span class="line">		s-&gt;data = <span class="keyword">new</span> <span class="keyword">char</span>[len];<span class="comment">//给串的数据域new一个len长的字符数组</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)<span class="comment">//将传入的字符数组赋给串</span></span><br><span class="line">		&#123;</span><br><span class="line">			s-&gt;data[i] = *temp;</span><br><span class="line">			temp++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -239,7 +235,7 @@
 
 
 
-<h2 id="BF算法核心"><a href="#BF算法核心" class="headerlink" title="BF算法核心"></a>BF算法核心</h2><p>两个字符串的匹配<br><strong>具体操作：</strong><br>​    1.通过两个下标索引来移动主串与子串<br>​    2.循环条件，只要主串与子串没有匹配完，就不退出循环<br>​       若当前字符匹配成功，则索引 i 与 j 同时后移<br>​       若子串匹配失败，则子串下标 j 回到第一个（j = 0），主串回到初始位置的下一位 （i = i - j + 1）<br>​       例如：A与C不匹配，<strong>i从下标0移动到下标1，j回到下标0</strong><br>​        <img src="https://img-blog.csdn.net/20161213111841223?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTUxODgwMTc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="è¿éåå¾çæè¿°" style="zoom:50%;" /><br>​    3.如果 j == len，代表子串的字符都匹配完成了，匹配成功<br>​       否则匹配失败</p>
+<h2 id="BF算法核心"><a href="#BF算法核心" class="headerlink" title="BF算法核心"></a>BF算法核心</h2><p>两个字符串的匹配<br><strong>具体操作：</strong><br>​    1.通过两个下标索引来移动主串与子串<br>​    2.循环条件，只要主串与子串没有匹配完，就不退出循环<br>​       若当前字符匹配成功，则索引 i 与 j 同时后移<br>​       若子串匹配失败，则子串下标 j 回到第一个（j = 0），主串回到初始位置的下一位 （i = i - j + 1）<br>​    3.如果 j == len，代表子串的字符都匹配完成了，匹配成功<br>​       否则匹配失败</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BF</span><span class="params">(String* master, String* sub)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;<span class="comment">//主串索引下标</span></span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;<span class="comment">//子串索引下标</span></span><br><span class="line">	<span class="keyword">while</span> (i &lt; master-&gt;len &amp;&amp; j &lt; sub-&gt;len)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (master-&gt;data[i] == sub-&gt;data[j])<span class="comment">//若主串与子串都匹配成功，则同时移动一位</span></span><br><span class="line">		&#123;</span><br><span class="line">			i++;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span><span class="comment">//如果匹配失败</span></span><br><span class="line">		&#123;</span><br><span class="line">			i = i - j + <span class="number">1</span>;<span class="comment">//主串回溯到初始位置的下一位</span></span><br><span class="line">			j = <span class="number">0</span>;<span class="comment">//子串回溯到第一个</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (j == sub-&gt;len)<span class="comment">//若j==sub-&gt;len，则代表子串已经成功匹配玩所有的字符</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -259,7 +255,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://nomination-nrb.github.io/2021/10/01/BF/">http://nomination-nrb.github.io/2021/10/01/BF/</a></span>
+                        <span><a href="https://nomination-nrb.github.io/2021/10/01/BF/">https://nomination-nrb.github.io/2021/10/01/BF/</a></span>
                     </p>
                 
                 
@@ -282,6 +278,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"># 数据结构</a>
+                    
+                        
                 </span>
             </div>
             <div>
