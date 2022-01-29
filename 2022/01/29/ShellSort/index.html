@@ -13,7 +13,7 @@
 
 
 
-<title>冒泡排序 | Nomination-NRB</title>
+<title>ShellSort | Nomination-NRB</title>
 
 
 
@@ -189,7 +189,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">冒泡排序</h1>
+            <h1 class="post-title">ShellSort</h1>
             
                 <div class="post-meta">
                     
@@ -198,7 +198,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">January 9, 2022&nbsp;&nbsp;16:42:40</a>
+                        Date: <a href="#">January 29, 2022&nbsp;&nbsp;22:35:48</a>
                         </span>
                     
                     
@@ -214,12 +214,10 @@
         </header>
 
         <div class="post-content">
-            <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p><strong>冒泡排序</strong>就是把小的元素往前调或者把大的元素往后调。比较是相邻的两个元素比较，交换也发生在这两个元素之间。所以，如果两个元素相等，是不会再交换的；如果两个相等的元素没有相邻，那么即使通过前面的两两交换把两个相邻起来，这时候也不会交换，所以相同元素的前后顺序并没有改变。</p>
-<p>冒泡排序总的平均<strong>时间复杂度</strong>为O(n^2)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (len - <span class="number">1</span>); i++)<span class="comment">//外循环为循环的趟数=len-1次，len-1为最后后一个元素</span></span><br><span class="line">	&#123;								   <span class="comment">//如3个元素需要比较3-1次</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; (len - <span class="number">1</span>) - i; j++)<span class="comment">//内循环每次缩短循环范围，将排好的元素放置在最后</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (a[j] &gt; a[j + <span class="number">1</span>])</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> temp = a[j];</span><br><span class="line">				a[j] = a[j + <span class="number">1</span>];</span><br><span class="line">				a[j + <span class="number">1</span>] = temp;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[] = &#123; <span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">18</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> len = <span class="built_in"><span class="keyword">sizeof</span></span>(a) / <span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>);</span><br><span class="line">	<span class="built_in">bubbleSort</span>(a, len);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; a[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="改进版"><a href="#改进版" class="headerlink" title="改进版"></a>改进版</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> exchange = len - <span class="number">1</span>;<span class="comment">//让exchange先指向最后一个元素</span></span><br><span class="line">	<span class="keyword">while</span> (exchange)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> bound = exchange;<span class="comment">//bound为循环的范围</span></span><br><span class="line">		exchange = <span class="number">0</span>;<span class="comment">//循环停止条件，若for循环没有进行交换，则exchange=0</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bound; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (a[i] &gt; a[i + <span class="number">1</span>])</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> temp = a[i];</span><br><span class="line">				a[i] = a[i + <span class="number">1</span>];</span><br><span class="line">				a[i + <span class="number">1</span>] = temp;</span><br><span class="line">				exchange = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+            <h1 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h1><p><strong>希尔排序</strong>属于插入类排序,是将整个有序序列分割成若干小的子序列分别进行<strong>插入排序</strong></p>
+<p>希尔排序的时间的<strong>时间复杂度</strong>为O(n^3/2)</p>
+<p>主函数可沿用插入排序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShellSort</span><span class="params">(<span class="keyword">int</span> r[], <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> d, i, j;</span><br><span class="line">	<span class="keyword">for</span> (d = len / <span class="number">2</span>; d &gt;= <span class="number">1</span>; d = d / <span class="number">2</span>)<span class="comment">//d为增量，分成子数列 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (i = d + <span class="number">1</span>; i &lt; len; i++)<span class="comment">//一次跳d个距离 </span></span><br><span class="line">		&#123;</span><br><span class="line">			r[<span class="number">0</span>] = r[i];</span><br><span class="line">			j = i - d;<span class="comment">//指向前一个(间隔为d) </span></span><br><span class="line">			<span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; r[j] &gt; r[<span class="number">0</span>])<span class="comment">//j&gt;0防止数组越界 </span></span><br><span class="line">			&#123;</span><br><span class="line">				r[j + d] = r[j]; <span class="comment">//如果前一个大于当前的，那么就后移数据 </span></span><br><span class="line">				j = j - d;<span class="comment">//再跳到前一个，进入循环比较 </span></span><br><span class="line">			&#125;</span><br><span class="line">			r[j + d] = r[<span class="number">0</span>];<span class="comment">//直到跳出循环，找到插入点，将r[0]的数据写回移动者的位置 </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -234,7 +232,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://nomination-nrb.github.io/2022/01/09/bobbleSort/">https://nomination-nrb.github.io/2022/01/09/bobbleSort/</a></span>
+                        <span><a href="https://nomination-nrb.github.io/2022/01/29/ShellSort/">https://nomination-nrb.github.io/2022/01/29/ShellSort/</a></span>
                     </p>
                 
                 
@@ -271,10 +269,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/01/17/insertSort/">插入排序</a>
             
-            
-            <a class="next" rel="next" href="/2022/01/01/BSTtree/">平衡二叉树</a>
+            <a class="next" rel="next" href="/2022/01/22/JZ52/">JZ52</a>
             
         </section>
 
