@@ -13,7 +13,7 @@
 
 
 
-<title>快速排序 | Nomination-NRB</title>
+<title>searchData | Nomination-NRB</title>
 
 
 
@@ -189,7 +189,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">快速排序</h1>
+            <h1 class="post-title">searchData</h1>
             
                 <div class="post-meta">
                     
@@ -198,14 +198,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">February 13, 2022&nbsp;&nbsp;21:47:32</a>
+                        Date: <a href="#">February 14, 2022&nbsp;&nbsp;11:04:03</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                                <a href="/categories/%E6%95%B0%E6%A8%A1/">数模</a>
                             
                         </span>
                     
@@ -214,9 +214,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><p>核心：每次排序对数组选出一个轴值，左侧都小于轴值，右侧都大于轴值，然后递归操作前部分与后部分，直到first==end退出递归</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>* array, <span class="keyword">int</span> first, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = first;</span><br><span class="line">	<span class="keyword">int</span> j = end;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; j)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; j &amp;&amp; array[i] &lt;= array[j])</span><br><span class="line">			j--;</span><br><span class="line">		<span class="keyword">if</span> (i &lt; j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> temp = array[j];</span><br><span class="line">			array[j] = array[i];</span><br><span class="line">			array[i] = temp;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">while</span> (i &lt; j &amp;&amp; array[i] &lt;= array[j])</span><br><span class="line">			i++;</span><br><span class="line">		<span class="keyword">if</span> (i &lt; j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> temp = array[j];</span><br><span class="line">			array[j] = array[i];</span><br><span class="line">			array[i] = temp;</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span>* array, <span class="keyword">int</span> first, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (first &lt; end)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> pos = <span class="built_in">partition</span>(array, first, end);</span><br><span class="line">		<span class="built_in">quicksort</span>(array, first, pos - <span class="number">1</span>);</span><br><span class="line">		<span class="built_in">quicksort</span>(array, pos + <span class="number">1</span>, end);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> array[] = &#123; <span class="number">8</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">10</span> &#125;;</span><br><span class="line">	<span class="keyword">int</span> len = <span class="built_in"><span class="keyword">sizeof</span></span>(array) / <span class="built_in"><span class="keyword">sizeof</span></span>(<span class="keyword">int</span>);</span><br><span class="line">	<span class="built_in">quicksort</span>(array, <span class="number">0</span>, len - <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; array[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+            <h1 id="搜索技巧"><a href="#搜索技巧" class="headerlink" title="搜索技巧"></a>搜索技巧</h1><p>完全匹配搜索：“线性规划”，加引号即可<br>标题必含关键字：intitle:线性规划<br>搜索文档：线性规划 filetype:pdf<br>过滤搜索：线性规划 filetype:pdf - 百度文库</p>
 
         </div>
 
@@ -231,7 +229,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://nomination-nrb.github.io/2022/02/13/quciksort/">https://nomination-nrb.github.io/2022/02/13/quciksort/</a></span>
+                        <span><a href="https://nomination-nrb.github.io/2022/02/14/searchData/">https://nomination-nrb.github.io/2022/02/14/searchData/</a></span>
                     </p>
                 
                 
@@ -255,7 +253,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E6%8E%92%E5%BA%8F/"># 排序</a>
+                        <a href="/tags/%E6%9F%A5%E6%89%BE%E6%95%B0%E6%8D%AE/"># 查找数据</a>
                     
                         
                 </span>
@@ -268,10 +266,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/02/13/JZ35/">JZ35</a>
+                <a class="prev" rel="prev" href="/2022/02/14/office/">office</a>
             
             
-            <a class="next" rel="next" href="/2022/02/07/JZ22/">JZ22</a>
+            <a class="next" rel="next" href="/2022/02/13/JZ55/">JZ55</a>
             
         </section>
 

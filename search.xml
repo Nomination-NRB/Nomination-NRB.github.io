@@ -4,7 +4,134 @@
   
     
     <entry>
-      <title>quciksort</title>
+      <title>快速幂</title>
+      <link href="/2022/02/21/quickPow/"/>
+      <url>/2022/02/21/quickPow/</url>
+      
+        <content type="html"><![CDATA[<h1 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h1><p>通过将指数减半，底数平方的方法来实现减少循环的次数</p><p>n&amp;1：将n转为二进制和1进行与运算，若为奇数返回1，偶数返回0</p><p>n&gt;&gt;=1：对二进制右移一位，相当于/2的操作</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">quickPow</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> res=<span class="number">1</span>;</span><br><span class="line">   <span class="keyword">while</span>(n&gt;<span class="number">0</span>)</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">if</span>(n&amp;<span class="number">1</span>)<span class="comment">//利用二进制的与运算判断奇偶</span></span><br><span class="line">      &#123;</span><br><span class="line">         res*=a;</span><br><span class="line">      &#125;</span><br><span class="line">      n&gt;&gt;=<span class="number">1</span>;<span class="comment">//相当于指数/2</span></span><br><span class="line">      a=a*a;<span class="comment">//底数变为平方</span></span><br><span class="line">   &#125; </span><br><span class="line">   <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>office</title>
+      <link href="/2022/02/14/office/"/>
+      <url>/2022/02/14/office/</url>
+      
+        <content type="html"><![CDATA[<p>打印预览功能：顶部菜单栏三角形（即pdf呈现）<br>缩进与行间距都在段落里面<br>F4重复上一步操作<br>crtl+z：撤回，ctrl+Y：恢复，ctrl+Enter：分页符<br>alt：显示快捷键<br>段落行距问题：去掉勾选如果定义了文档网络</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 办公 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> office </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>searchData</title>
+      <link href="/2022/02/14/searchData/"/>
+      <url>/2022/02/14/searchData/</url>
+      
+        <content type="html"><![CDATA[<h1 id="搜索技巧"><a href="#搜索技巧" class="headerlink" title="搜索技巧"></a>搜索技巧</h1><p>完全匹配搜索：“线性规划”，加引号即可<br>标题必含关键字：intitle:线性规划<br>搜索文档：线性规划 filetype:pdf<br>过滤搜索：线性规划 filetype:pdf - 百度文库</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数模 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 查找数据 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JZ55</title>
+      <link href="/2022/02/13/JZ55/"/>
+      <url>/2022/02/13/JZ55/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JZ18</title>
+      <link href="/2022/02/13/JZ18/"/>
+      <url>/2022/02/13/JZ18/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JZ76</title>
+      <link href="/2022/02/13/JZ76/"/>
+      <url>/2022/02/13/JZ76/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JZ35</title>
+      <link href="/2022/02/13/JZ35/"/>
+      <url>/2022/02/13/JZ35/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>快速排序</title>
       <link href="/2022/02/13/quciksort/"/>
       <url>/2022/02/13/quciksort/</url>
       
