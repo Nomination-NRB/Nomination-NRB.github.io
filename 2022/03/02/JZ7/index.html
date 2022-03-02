@@ -13,7 +13,7 @@
 
 
 
-<title>快速幂 | Nomination-NRB</title>
+<title>JZ7 | Nomination-NRB</title>
 
 
 
@@ -189,7 +189,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">快速幂</h1>
+            <h1 class="post-title">JZ7</h1>
             
                 <div class="post-meta">
                     
@@ -198,14 +198,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">February 21, 2022&nbsp;&nbsp;0:58:57</a>
+                        Date: <a href="#">March 2, 2022&nbsp;&nbsp;22:00:00</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                                <a href="/categories/%E5%89%91%E6%8C%87offer/">剑指offer</a>
                             
                         </span>
                     
@@ -214,10 +214,8 @@
         </header>
 
         <div class="post-content">
-            <h1 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h1><p>通过将指数减半，底数平方的方法来实现减少循环的次数</p>
-<p>n&amp;1：将n转为二进制和1进行与运算，若为奇数返回1，偶数返回0</p>
-<p>n&gt;&gt;=1：对二进制右移一位，相当于/2的操作</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">quickPow</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> res=<span class="number">1</span>;</span><br><span class="line">   <span class="keyword">while</span>(n&gt;<span class="number">0</span>)</span><br><span class="line">   &#123;</span><br><span class="line">      <span class="keyword">if</span>(n&amp;<span class="number">1</span>)<span class="comment">//利用二进制的与运算判断奇偶</span></span><br><span class="line">      &#123;</span><br><span class="line">         res*=a;</span><br><span class="line">      &#125;</span><br><span class="line">      n&gt;&gt;=<span class="number">1</span>;<span class="comment">//相当于指数/2</span></span><br><span class="line">      a=a*a;<span class="comment">//底数变为平方</span></span><br><span class="line">   &#125; </span><br><span class="line">   <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h1 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a>重建二叉树</h1><p>思路1：前序遍历第一个节点就是根节点，所以可以从中序遍历中找到根节点的左右子树，然后递归执行被分开的两个数组，先把左子树重构完成，在递归执行右子树。在中序遍历中被划分出来的左子树单独成为一个数组，然后再前序遍历再找到左子树的根节点preLeft.push_back(pre[i+1]),i从0开始，即排除刚刚寻找过的根节点，最后执行到只剩一个节点即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">reConstructBinaryTree</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; pre,vector&lt;<span class="keyword">int</span>&gt; vin)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pre.<span class="built_in">size</span>()==<span class="number">0</span>||vin.<span class="built_in">size</span>()!=pre.<span class="built_in">size</span>())</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">int</span> root=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;pre.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(vin[i]==pre[<span class="number">0</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                root=i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode* head=<span class="keyword">new</span> <span class="built_in">TreeNode</span>(pre[<span class="number">0</span>]);</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; preLeft,vinLeft,preRight,vinRight;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;root;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            vinLeft.<span class="built_in">push_back</span>(vin[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=root+<span class="number">1</span>;i&lt;vin.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            vinRight.<span class="built_in">push_back</span>(vin[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;root;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            preLeft.<span class="built_in">push_back</span>(pre[i+<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=root+<span class="number">1</span>;i&lt;vin.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            preRight.<span class="built_in">push_back</span>(pre[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        head-&gt;left=<span class="built_in">reConstructBinaryTree</span>(preLeft, vinLeft);</span><br><span class="line">        head-&gt;right=<span class="built_in">reConstructBinaryTree</span>(preRight, vinRight);</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 
         </div>
@@ -233,7 +231,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://nomination-nrb.github.io/2022/02/21/quickPow/">https://nomination-nrb.github.io/2022/02/21/quickPow/</a></span>
+                        <span><a href="https://nomination-nrb.github.io/2022/03/02/JZ7/">https://nomination-nrb.github.io/2022/03/02/JZ7/</a></span>
                     </p>
                 
                 
@@ -257,7 +255,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"># 数据结构</a>
+                        <a href="/tags/%E5%89%91%E6%8C%87offer/"># 剑指offer</a>
                     
                         
                 </span>
@@ -270,10 +268,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/02/27/JZ77/">JZ77</a>
             
-            
-            <a class="next" rel="next" href="/2022/02/14/office/">office</a>
+            <a class="next" rel="next" href="/2022/02/27/JZ26/">JZ26</a>
             
         </section>
 
