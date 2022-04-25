@@ -202,12 +202,88 @@
                         </span>
                     
                     
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+                            
+                        </span>
+                    
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h1 id="傅里叶级数与变换"><a href="#傅里叶级数与变换" class="headerlink" title="傅里叶级数与变换"></a>傅里叶级数与变换</h1><h2 id="三角函数的正交性"><a href="#三角函数的正交性" class="headerlink" title="三角函数的正交性"></a>三角函数的正交性</h2>
+            <h1 id="傅里叶级数与变换"><a href="#傅里叶级数与变换" class="headerlink" title="傅里叶级数与变换"></a>傅里叶级数与变换</h1><h2 id="三角函数的正交性"><a href="#三角函数的正交性" class="headerlink" title="三角函数的正交性"></a>三角函数的正交性</h2><p>三角函数系有集合：S={$0, 1, sinx, cosx, sin2x, cos2x, …, sin(nx), cos(nx)$}</p>
+<p>也可以写成这样：S={$sin0x, cos0x, sinx, cosx, sin2x, cos2x, …, sin(nx), cos(nx)$}，也就是$sin(nx), cos(nx)$的组合，其中n=0,1,2…</p>
+<h3 id="正交性证明"><a href="#正交性证明" class="headerlink" title="正交性证明"></a>正交性证明</h3><h4 id="当-n-ne-m-时"><a href="#当-n-ne-m-时" class="headerlink" title="当$n \ne m$时"></a><strong>当$n \ne m$时</strong></h4><p>$$<br>\int_{-\pi}^{\pi}sin(nx)cos(mx)dx=0<br>$$</p>
+<p>$$<br>\int_{-\pi}^{\pi}cos(nx)cos(mx)dx=0<br>$$</p>
+<p>证明：</p>
+<p>对于向量来说，正交意味着$\vec{a}$与$\vec{b}$垂直，即$\vec{a}\cdot\vec{b}=0$；若$\vec{a}=(x_{1},x_{2},x_{3}…x_{n})$，$\vec{b}=(y_{1},y_{2},y_{3}…y_{n})$，则$\vec{a}\cdot\vec{b}=x_{1}y_{1}+x_{2}y_{2}+x_{3}y_{3}…+x_{n}y_{n}=0$，也就是<br>$$<br>\sum_{i=1}^{n}x_{i}y_{i}=0<br>$$</p>
+<p>求和也可以看成积分，所以当$a=f(x), b=g(x)$，让函数对应的每个值相乘求和<br>$$<br>a\cdot b=\int_{x_{0}}^{x_{x1}}f(x)g(x)dx=0<br>$$<br>这就是三角函数的内积，也就三角函数的正交（此处的$x_{0},x_{1}$是举例而取的）</p>
+<p>例如：<br>$$<br>\int_{-\pi}^{\pi}cos(nx)cos(mx)dx<br>$$<br>通过三角函数的积化和差公式，可以写成<br>$$<br>cos(nx)cos(mx)=\frac{1}{2}[cos(n-m)x+cos(n+m)x]<br>$$</p>
+<p>$$<br>\frac{1}{2}[\int_{-\pi}^{\pi}cos(n-m)xdx+\int_{-\pi}^{\pi}cos(n+m)xdx]<br>$$</p>
+<p>$$<br>\frac{1}{2}[\frac{1}{n-m}sin(n-m)x\Big|<em>{-\pi}^{\pi}+\frac{1}{n+m}sin(n+m)x\Big|</em>{-\pi}^{\pi}]<br>$$</p>
+<p>然后由sin函数为奇函数，在对称的区域内定积分的值为0，所以<br>$$<br>\int_{-\pi}^{\pi}cos(nx)cos(mx)dx=0<br>$$<br>即函数$cos(nx)与cos(mx)$有正交性，在上面的集合S内任意两个函数相乘（各种组合），在$-\pi$ ~ $\pi$都具有正交性，当且仅当$n\ne m$，即<br>$$<br>\int_{-\pi}^{\pi}cos(nx)sim(mx)dx=0,n \ne m<br>$$</p>
+<p>$$<br>\int_{-\pi}^{\pi}sin(nx)sim(mx)dx=0,n \ne m<br>$$</p>
+<h4 id="当-n-m-时"><a href="#当-n-m-时" class="headerlink" title="当$n = m$时"></a><strong>当$n = m$时</strong></h4><p>$$<br>\int_{-\pi}^{\pi}cos(nx)cos(mx)dx=\int_{-\pi}^{\pi}cos(nx)^2dx=0<br>$$</p>
+<p>由倍角公式<br>$$<br>cos(2x)=cos^2x-sin^2x=2cos^2x-1=1-2sin^2x<br>$$</p>
+<p>$$<br>sin(2x)=2sinxcosx<br>$$</p>
+<p>可得<br>$$<br>\int_{-\pi}^{\pi}cos(nx)^2dx=\int_{-\pi}^{\pi}\frac{1+cos(2x)}{2}dx=\frac{1}{2}[\int_{-\pi}^{\pi}1 \cdot xdx+\int_{-\pi}^{\pi}cos(2x)dx]<br>$$<br>其中<br>$$<br>\int_{-\pi}^{\pi}cos(2x)dx=\int_{-\pi}^{\pi}cos(0x)cos(2x)dx<br>$$<br>由三角函数的正交性可得<br>$$<br>\int_{-\pi}^{\pi}cos(2x)dx=0<br>$$<br>所以<br>$$<br>\frac{1}{2}[\int_{-\pi}^{\pi}1 \cdot xdx=\frac{1}{2}x\Big|_{-\pi}^{\pi}=\pi<br>$$</p>
+<p>综上所述，从S集合中任意取两个函数，在$-\pi$到$\pi$有如下关系式</p>
+<ol>
+<li><p>当$n \ne m$<br>$$<br>\int_{-\pi}^{\pi}cos(nx)sim(mx)dx=0<br>$$</p>
+</li>
+<li><p>当$n=m$<br>$$<br>\int_{-\pi}^{\pi}cos(nx)sim(mx)dx=\pi<br>$$</p>
+</li>
+</ol>
+<h2 id="周期为2π​的函数展开为傅里叶级数"><a href="#周期为2π​的函数展开为傅里叶级数" class="headerlink" title="周期为2π​的函数展开为傅里叶级数"></a>周期为2π​的函数展开为傅里叶级数</h2><h3 id="傅里叶级数"><a href="#傅里叶级数" class="headerlink" title="傅里叶级数"></a>傅里叶级数</h3><p>有周期$T=2\pi$，则$f(x)=f(x+2\pi)$</p>
+<p>我们可以通过变化，将其展开成傅里叶级数，也就是三角函数的加和<br>$$<br>f(x)=\sum_{n=0}^{\infty}a_{n}cos(nx)+\sum_{n=0}^{\infty}b_{n}sin(nx)<br>$$</p>
+<p>$$<br>f(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}(a_{n}cos(nx)+b_{n}sin(nx))<br>$$</p>
+<p>以上的等式均表达同一个意思，只是表达方式不同，下面的等式只是将$a_{0}$这一项单独提出来了<br>$$<br>f(x)=a_{0}cos(0x)+\sum_{n=1}^{\infty}a_{n}cos(nx)+b_{0}sin(0x)+\sum_{n=1}^{\infty}b_{n}sin(nx)<br>$$</p>
+<p>$$<br>f(x)=a_{0}+\sum_{n=1}^{\infty}a_{n}cos(nx)+\sum_{n=1}^{\infty}b_{n}sin(nx)<br>$$</p>
+<p>但现在的式子是$a_{0}$，和上面的还是有一定的出入，所以接下来求$a_{0}$</p>
+<h3 id="求-a-0"><a href="#求-a-0" class="headerlink" title="求$a_{0}$"></a>求$a_{0}$</h3><ol>
+<li>对等式的左右两边同时在$-\pi$ 到$\pi$取积分</li>
+</ol>
+<p>对等式的左右两边同时在$-\pi$ 到$\pi$取积分<br>$$<br>\int_{-\pi}^{\pi}f(x)dx=\int_{-\pi}^{\pi}a_{0}dx+\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}a_{n}cos(nx)dx+\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}b_{n}sin(nx)dx<br>$$<br>其中，常数与求和可以在积分中提出来（在一致收敛的前提下），得到<br>$$<br>\int_{-\pi}^{\pi}f(x)dx=\int_{-\pi}^{\pi}a_{0}dx+\sum_{n=1}^{\infty}a_{n}\int_{-\pi}^{\pi}cos(nx)dx+\sum_{n=1}^{\infty}b_{n}\int_{-\pi}^{\pi}sin(nx)dx<br>$$<br>积分里面可以看成$cos(0x)$乘$cos(nx)与sin(nx)$，有三角函数的正交性可得，后面两项为0<br>$$<br>\int_{-\pi}^{\pi}f(x)dx=\int_{-\pi}^{\pi}a_{0}dx=a_{0}x\Big|<em>{-\pi}^{\pi}=2\pi a</em>{0}<br>$$</p>
+<p>$$<br>a_{0}=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)dx<br>$$</p>
+<p>为了让它更“好看”一点，如果我们令最开始的$a_{0}=\frac{1}{2}t_{0}$，则<br>$$<br>\int_{-\pi}^{\pi}f(x)dx=\int_{-\pi}^{\pi}a_{0}dx=a_{0}x\Big|<em>{-\pi}^{\pi}=2\pi a</em>{0}=\pi t_{0}<br>$$</p>
+<p>$$<br>t_{0}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)dx<br>$$</p>
+<p>所以我们只需要让最开始的$a_{0}变成\frac{1}{2}a_{0}$，就可以解得<br>$$<br>a_{0}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)dx<br>$$</p>
+<h3 id="求-a-n"><a href="#求-a-n" class="headerlink" title="求$a_{n}$"></a>求$a_{n}$</h3><ol>
+<li>在等式两边同时乘$cos(mx)$</li>
+<li>对等式的左右两边同时在$-\pi$ 到$\pi$取积分</li>
+</ol>
+<p>$$<br>\int_{-\pi}^{\pi}cos(mx)f(x)dx=\int_{-\pi}^{\pi}\frac{a_{n}}{2}cos(mx)dx+\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}a_{n}cos(nx)cos(mx)dx+\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}b_{n}sin(nx)cos(mx)dx<br>$$</p>
+<p>我们知道当$n=m$时，$\int_{-\pi}^{\pi}cos(nx)sim(mx)dx=\pi$</p>
+<p>对等式右边第三项分析，就算$n=m$的时候，它依然是为0，因为<br>$$<br>\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}b_{n}sin(nx)cos(mx)dx=\sum_{n=1}^{\infty}b_{n}\int_{-\pi}^{\pi}\frac{1}{2}sin(2nx)dx=0<br>$$<br>对等式右边第二项分析，就只有$n=m$的时候，它不为0，其他的时候求和都为0，所以<br>$$<br>\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}a_{n}cos(nx)cos(mx)dx=\int_{-\pi}^{\pi}a_{n}cos(nx)cos(nx)dx=a_{n}\int_{-\pi}^{\pi}cos(nx)^{2}dx=a_{n}\pi<br>$$<br>对等式右边第一项分析，由正交性可得，它为0<br>$$<br>\int_{-\pi}^{\pi}\frac{a_{n}}{2}cos(mx)dx=0<br>$$<br>综上可得<br>$$<br>\int_{-\pi}^{\pi}cos(nx)f(x)dx=a_{n}\int_{-\pi}^{\pi}cos(nx)^{2}dx=a_{n}\pi<br>$$</p>
+<p>$$<br>a_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)cos(nx)dx<br>$$</p>
+<h3 id="求-b-n"><a href="#求-b-n" class="headerlink" title="求$b_{n}$"></a>求$b_{n}$</h3><ol>
+<li>在等式两边同时乘$sin(mx)$</li>
+<li>对等式的左右两边同时在$-\pi$ 到$\pi$取积分</li>
+</ol>
+<p>$$<br>\int_{-\pi}^{\pi}sin(mx)f(x)dx=\int_{-\pi}^{\pi}\frac{a_{n}}{2}sin(mx)dx+\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}a_{n}cos(nx)sin(mx)dx+\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}b_{n}sin(nx)sin(mx)dx<br>$$</p>
+<p>我们知道当$n=m$时，$\int_{-\pi}^{\pi}cos(nx)sim(mx)dx=\pi$</p>
+<p>对等式右边第三项分析，就只有$n=m$的时候，它不为0，其他的时候求和都为0，所以<br>$$<br>\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}b_{n}sin(nx)sin(mx)dx=b_{n}\int_{-\pi}^{\pi}sin(nx)^2dx=b_{n}\pi<br>$$<br>对等式右边第二项分析，就算$n=m$的时候，它依然是为0，因为<br>$$<br>\int_{-\pi}^{\pi}\sum_{n=1}^{\infty}a_{n}cos(nx)sin(mx)dx=\int_{-\pi}^{\pi}a_{n}cos(nx)sin(nx)dx=a_{n}\int_{-\pi}^{\pi}\frac{1}{2}sin(2nx)dx=0<br>$$<br>对等式右边第一项分析，由正交性可得，它为0<br>$$<br>\int_{-\pi}^{\pi}\frac{a_{n}}{2}sin(mx)dx=0<br>$$<br>综上可得<br>$$<br>\int_{-\pi}^{\pi}sin(nx)f(x)dx=b_{n}\int_{-\pi}^{\pi}sin(nx)^{2}dx=b_{n}\pi<br>$$</p>
+<p>$$<br>b_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)sin(nx)dx<br>$$</p>
+<h3 id="至此可得"><a href="#至此可得" class="headerlink" title="至此可得"></a>至此可得</h3><p>$$<br>f(x)=f(x+2\pi)<br>$$</p>
+<p>$$<br>f(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}a_{n}cos(nx)+\sum_{n=1}^{\infty}b_{n}sin(nx)<br>$$</p>
+<p>$$<br>a_{0}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)dx<br>$$</p>
+<p>$$<br>a_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)cos(nx)dx<br>$$</p>
+<p>$$<br>b_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)sin(nx)dx<br>$$</p>
+<h2 id="周期为2L​的函数展开为傅里叶级数"><a href="#周期为2L​的函数展开为傅里叶级数" class="headerlink" title="周期为2L​的函数展开为傅里叶级数"></a>周期为2L​的函数展开为傅里叶级数</h2><h3 id="换元"><a href="#换元" class="headerlink" title="换元"></a>换元</h3><p>有周期$T=2L$，则$f(t)=f(t+2L)$，为了让其转换成我们熟悉的$2\pi$周期的傅里叶级数，我们对其进行换元，操作如下，我们令<br>$$<br>x=\frac{\pi}{L}t<br>$$<br>则<br>$$<br>t=\frac{L}{\pi}x<br>$$<br>为什么要这样？</p>
+<p>因为原本当$t=2L$时，我们需要换元变成$x=2\pi$（来形成我们熟悉的周期），所以有（M为待求参数）<br>$$<br>t=2L,x=2\pi,x=Mt<br>$$<br>则<br>$$<br>x=Mt=M2L=2\pi<br>$$</p>
+<p>$$<br>M=\frac{\pi}{L}<br>$$</p>
+<p>所以有<br>$$<br>x=\frac{\pi}{L}t,t=\frac{L}{\pi}x<br>$$</p>
+<h3 id="代入"><a href="#代入" class="headerlink" title="代入"></a>代入</h3><p>至此，我们可以将$x$代入函数$f(t)$<br>$$<br>f(t)=f(\frac{L}{\pi}x)<br>$$<br>将$f(\frac{L}{\pi}x)$定义为$g(x)$，因为当$t=2L$时，是$f(t)$的一个周期，当$t=2L$即$x=2\pi$是$g(x)$的一个周期，则<br>$$<br>g(x)=g(x+2\pi)<br>$$<br>这样就可以用最开始推导的，将$x=\frac{\pi}{L}t$代入等式<br>$$<br>g(x)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}[a_{n}cos(nx)+b_{n}sin(nx)]<br>$$</p>
+<p>$$<br>f(t)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}[a_{n}cos(\frac{n\pi}{L}t)+b_{n}sin(\frac{n\pi}{L}t)]<br>$$</p>
+<p>因为我们进行了换元，所以原等式积分的上下限也需要更新</p>
+<p>其中<br>$$<br>\int_{-\pi}^{\pi}dx=\int_{-L}^{L}d\frac{\pi}{L}t=\frac{\pi}{L}\int_{-L}^{L}dt<br>$$<br>更新$a_{0},a_{n},b_{n}$<br>$$<br>f(t)=\frac{a_{0}}{2}+\sum_{n=1}^{\infty}[a_{n}cos(\frac{n\pi}{L}t)+b_{n}sin(\frac{n\pi}{L}t)]<br>$$</p>
+<p>$$<br>a_{0}=\frac{1}{\pi}\int_{-\pi}^{\pi}g(x)dx=\frac{1}{\pi}\frac{\pi}{L}\int_{-L}^{L}f(t)dt=\frac{1}{L}\int_{-L}^{L}f(t)dt<br>$$</p>
+<p>$$<br>a_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}g(x)cos(nx)dx=\frac{1}{L}\int_{-L}^{L}f(t)cos(\frac{n\pi}{L}t)dt<br>$$</p>
+<p>$$<br>b_{n}=\frac{1}{\pi}\int_{-\pi}^{\pi}g(x)sin(nx)dx=\frac{1}{L}\int_{-L}^{L}f(t)sin(\frac{n\pi}{L}t)dt<br>$$</p>
+
         </div>
 
         

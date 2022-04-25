@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Nomination-NRB">
+
+
+
+
+
+<title>ReadShowImage | Nomination-NRB</title>
+
+
+
+    <link rel="icon" href="/image/Nomination-NRB.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Kyobo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Kyobo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">ReadShowImage</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Nomination-NRB</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 25, 2022&nbsp;&nbsp;14:16:04</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">数字图像处理</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="图像的基本灰度变换与显示"><a href="#图像的基本灰度变换与显示" class="headerlink" title="图像的基本灰度变换与显示"></a>图像的基本灰度变换与显示</h1><h2 id="定义灰度变化函数"><a href="#定义灰度变化函数" class="headerlink" title="定义灰度变化函数"></a>定义灰度变化函数</h2><ol>
+<li>基础操作<ol>
+<li>对图像进行灰度化处理</li>
+<li>对图像进行反转</li>
+<li>对图像进行对数变换</li>
+<li>对图像进行幂次变换</li>
+<li>对图像进行对比拉伸</li>
+<li>对图像进行归一化处理</li>
+<li>对图像进行均衡化处理</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行灰度化处理</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Gray</span>(<span class="params">img</span>):</span></span><br><span class="line">    temp=img</span><br><span class="line">    <span class="keyword">return</span> cv2.cvtColor(temp, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获得灰度直方图</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetHist</span>(<span class="params">img</span>):</span></span><br><span class="line">    temp=img</span><br><span class="line">    hist = cv2.calcHist(temp, [<span class="number">0</span>], <span class="literal">None</span>, [<span class="number">256</span>], [<span class="number">0</span>, <span class="number">256</span>])</span><br><span class="line">    <span class="keyword">return</span> hist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获得归一化后的灰度直方图</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetHistNomorlize</span>(<span class="params">img</span>):</span></span><br><span class="line">    temp=img</span><br><span class="line">    hist = cv2.calcHist(temp, [<span class="number">0</span>], <span class="literal">None</span>, [<span class="number">1</span>], [<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> hist</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行反转</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Reverse</span>(<span class="params">img</span>):</span></span><br><span class="line">    temp=img</span><br><span class="line">    <span class="keyword">return</span> <span class="number">255</span> - temp</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行对数变换</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Log</span>(<span class="params">img, c=<span class="number">1.0</span></span>):</span></span><br><span class="line">    temp=img</span><br><span class="line">    <span class="keyword">return</span> c * np.log(<span class="number">1.0</span> + temp)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行幂次变换</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Power</span>(<span class="params">img, gamma=<span class="number">2.0</span>, eps=<span class="number">0.</span></span>):</span></span><br><span class="line">    temp=img</span><br><span class="line">    <span class="keyword">return</span> <span class="number">255</span> * ((temp + eps) / <span class="number">255</span>) ** gamma</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行对比拉伸</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Contrast</span>(<span class="params">img, ax=<span class="number">100.0</span>, bx=<span class="number">200.0</span>, ay=<span class="number">50.0</span>, by=<span class="number">240.0</span></span>):</span></span><br><span class="line">    x,y=img.shape</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(x):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(y):</span><br><span class="line">            <span class="keyword">if</span> img[i][j]&lt;ax <span class="keyword">and</span> img[i][j]&gt;=<span class="number">0</span>:</span><br><span class="line">                img[i][j] = ay*img[i][j]/ax</span><br><span class="line">            <span class="keyword">elif</span> img[i][j]&gt;=ax <span class="keyword">and</span> img[i][j]&lt;bx:</span><br><span class="line">                img[i][j] = ((by-ay)*(img[i][j]-ax)/(bx-ax))+ay</span><br><span class="line">            <span class="keyword">elif</span> img[i][j]&gt;bx <span class="keyword">and</span> img[i][j]&lt;=<span class="number">255</span>:</span><br><span class="line">                img[i][j] = ((<span class="number">255</span>-ay)*(img[i][j]-bx)/(<span class="number">255</span>-ax))+by</span><br><span class="line">    <span class="keyword">return</span> img</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行归一化</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Normalize</span>(<span class="params">img</span>):</span></span><br><span class="line">    temp=img</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.</span>*(temp - np.<span class="built_in">min</span>(temp)) / (np.<span class="built_in">max</span>(temp) - np.<span class="built_in">min</span>(temp))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行直方图均衡化处理</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">HistEqual</span>(<span class="params">img</span>):</span></span><br><span class="line">    temp=img</span><br><span class="line">    <span class="keyword">return</span> cv2.equalizeHist(temp)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="读入图像并进行灰度化"><a href="#读入图像并进行灰度化" class="headerlink" title="读入图像并进行灰度化"></a>读入图像并进行灰度化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">filePath = <span class="string">&#x27;image/cameraman.tif&#x27;</span></span><br><span class="line">source = cv2.imread(filePath)</span><br><span class="line"></span><br><span class="line">gray=Gray(source)</span><br><span class="line">reverse=Reverse(gray)</span><br><span class="line">log=Log(gray)</span><br><span class="line">power=Power(gray)</span><br><span class="line">contrast=Contrast(gray)</span><br><span class="line"></span><br><span class="line">normalize=Normalize(gray)</span><br><span class="line">histequal=HistEqual(gray)</span><br><span class="line"></span><br><span class="line"><span class="comment">#contrast=Contrast(gray,ax=32,bx=192,ay=64,by=160)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="展示原图与基础灰度变换图片"><a href="#展示原图与基础灰度变换图片" class="headerlink" title="展示原图与基础灰度变换图片"></a>展示原图与基础灰度变换图片</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1</span></span><br><span class="line">name=[<span class="string">&#x27;source&#x27;</span>,<span class="string">&#x27;gray&#x27;</span>,<span class="string">&#x27;reverse&#x27;</span>,<span class="string">&#x27;log&#x27;</span>,<span class="string">&#x27;power&#x27;</span>,<span class="string">&#x27;contrast&#x27;</span>]</span><br><span class="line">fig,ax = plt.subplots(<span class="number">2</span>,<span class="number">3</span>,figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            ax[i,j].imshow(<span class="built_in">eval</span>(name[i*<span class="number">3</span>+j]),cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">            ax[i,j].set_title(name[i*<span class="number">3</span>+j])</span><br><span class="line">            ax[i,j].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="展示归一化后的灰度图"><a href="#展示归一化后的灰度图" class="headerlink" title="展示归一化后的灰度图"></a>展示归一化后的灰度图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2.1</span></span><br><span class="line">fig,ax=plt.subplots(<span class="number">2</span>,<span class="number">2</span>,figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">name=[<span class="string">&#x27;gray&#x27;</span>,<span class="string">&#x27;normalize&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">            ax[i][j].imshow(<span class="built_in">eval</span>(name[i]),cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">            ax[i][j].set_title(name[i])</span><br><span class="line">            ax[i][j].axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">            ax[i][j].imshow(<span class="built_in">eval</span>(name[i]),cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">            ax[i][j].set_title(name[i])</span><br><span class="line">            ax[i][j].axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">1</span>:</span><br><span class="line">            ax[i][j].hist(<span class="built_in">eval</span>(name[i]).ravel(),<span class="number">256</span>,[<span class="number">0</span>,<span class="number">256</span>])</span><br><span class="line">            ax[i][j].set_title(name[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ax[i][j].hist(<span class="built_in">eval</span>(name[i]).ravel(),<span class="number">256</span>,[<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">            ax[i][j].set_title(name[i])</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="展示均衡化后的灰度图"><a href="#展示均衡化后的灰度图" class="headerlink" title="展示均衡化后的灰度图"></a>展示均衡化后的灰度图</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2.2</span></span><br><span class="line">fig,ax=plt.subplots(<span class="number">2</span>,<span class="number">2</span>,figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">name=[<span class="string">&#x27;gray&#x27;</span>,<span class="string">&#x27;histequal&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">            ax[i][j].imshow(<span class="built_in">eval</span>(name[i]),cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">            ax[i][j].set_title(name[i])</span><br><span class="line">            ax[i][j].axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">            ax[i][j].imshow(<span class="built_in">eval</span>(name[i]),cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">            ax[i][j].set_title(name[i])</span><br><span class="line">            ax[i][j].axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">1</span>:</span><br><span class="line">            ax[i][j].hist(<span class="built_in">eval</span>(name[i]).ravel(),<span class="number">256</span>,[<span class="number">0</span>,<span class="number">256</span>])</span><br><span class="line">            ax[i][j].set_title(name[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ax[i][j].hist(<span class="built_in">eval</span>(name[i]).ravel(),<span class="number">256</span>,[<span class="number">0</span>,<span class="number">256</span>])</span><br><span class="line">            ax[i][j].set_title(name[i])</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="展示均衡化与对比拉伸的效果"><a href="#展示均衡化与对比拉伸的效果" class="headerlink" title="展示均衡化与对比拉伸的效果"></a>展示均衡化与对比拉伸的效果</h2><p>ax[i,j].hist展示灰度直方图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2.3</span></span><br><span class="line">fig,ax = plt.subplots(<span class="number">2</span>,<span class="number">2</span>,figsize=(<span class="number">12</span>,<span class="number">8</span>))</span><br><span class="line">name=[<span class="string">&#x27;histequal&#x27;</span>,<span class="string">&#x27;contrast&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">if</span> j!=<span class="number">1</span>:</span><br><span class="line">            ax[i,j].imshow(<span class="built_in">eval</span>(name[i]),cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">            ax[i,j].set_title(name[i])</span><br><span class="line">            ax[i,j].axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ax[i,j].hist(<span class="built_in">eval</span>(name[i]).ravel(),bins=<span class="number">256</span>,<span class="built_in">range</span>=(<span class="number">0</span>,<span class="number">256</span>))</span><br><span class="line">            ax[i,j].set_title(name[i])</span><br></pre></td></tr></table></figure>
+
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Nomination-NRB</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://nomination-nrb.github.io/2022/04/25/ReadShowImage/">https://nomination-nrb.github.io/2022/04/25/ReadShowImage/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"># 数字图像处理</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/04/11/JZ70/"></a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Nomination-NRB | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
