@@ -215,35 +215,32 @@
 
         <div class="post-content">
             <h1 id="图像的基本灰度变换与显示"><a href="#图像的基本灰度变换与显示" class="headerlink" title="图像的基本灰度变换与显示"></a>图像的基本灰度变换与显示</h1><h2 id="定义灰度变化函数"><a href="#定义灰度变化函数" class="headerlink" title="定义灰度变化函数"></a>定义灰度变化函数</h2><ol>
-<li>基础操作<ol>
-<li>对图像进行灰度化处理<ol start="2">
+<li>对图像进行灰度化处理<ol>
 <li>使用库函数cv2.cvtColor()，参数设置为cv2.COLOR_BGR2GRAY(读取并转换为灰度图)</li>
 </ol>
 </li>
-<li>对图像进行反转<ol start="2">
+<li>对图像进行反转<ol>
 <li>将像素值反转，即用最大255减去即可</li>
 </ol>
 </li>
-<li>对图像进行对数变换<ol start="2">
+<li>对图像进行对数变换<ol>
 <li>根据公式设置相应参数</li>
 </ol>
 </li>
-<li>对图像进行幂次变换<ol start="2">
+<li>对图像进行幂次变换<ol>
 <li>根据公式设置相应参数</li>
 </ol>
 </li>
-<li>对图像进行对比拉伸<ol start="2">
+<li>对图像进行对比拉伸<ol>
 <li>对图像的每一个像素进行判断赋值，需要二重循环</li>
 </ol>
 </li>
-<li>对图像进行归一化处理<ol start="2">
+<li>对图像进行归一化处理<ol>
 <li>让像素区间变为[0,1]</li>
 </ol>
 </li>
-<li>对图像进行均衡化处理<ol start="2">
+<li>对图像进行均衡化处理<ol>
 <li>cv2.equalizeHist(img)，img要求是灰度图像</li>
-</ol>
-</li>
 </ol>
 </li>
 </ol>
