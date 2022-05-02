@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Nomination-NRB">
+
+
+
+
+
+<title>图像傅里叶变换 | Nomination-NRB</title>
+
+
+
+    <link rel="icon" href="/image/Nomination-NRB.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Kyobo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Kyobo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">图像傅里叶变换</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Nomination-NRB</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 2, 2022&nbsp;&nbsp;13:03:13</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">数字图像处理</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h1 id="图像傅里叶变换"><a href="#图像傅里叶变换" class="headerlink" title="图像傅里叶变换"></a>图像傅里叶变换</h1><h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><ol>
+<li>定义好椒盐噪声与高斯噪声，以便后续使用</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取图像并转换为灰度图</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Gray</span>(<span class="params">img</span>):</span></span><br><span class="line">    <span class="keyword">return</span> cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 灰度图加入椒盐噪声</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_salt_pepper_noise</span>(<span class="params">imgSaltPepper, pa, pb</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        参数:</span></span><br><span class="line"><span class="string">            imgSaltPepper: 原图像</span></span><br><span class="line"><span class="string">            pa: 盐噪声比例</span></span><br><span class="line"><span class="string">            pb: 椒噪声比例</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    img = imgSaltPepper.copy()</span><br><span class="line">    rows, cols, = img.shape</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(cols):</span><br><span class="line">            <span class="keyword">if</span> np.random.random() &lt; pa:</span><br><span class="line">                img[i, j] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">elif</span> np.random.random() &lt; pb:</span><br><span class="line">                img[i, j] = <span class="number">255</span></span><br><span class="line">    <span class="keyword">return</span> img</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入高斯噪声</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_gaussian_noise</span>(<span class="params">imgGaussian, mean, var</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        参数:</span></span><br><span class="line"><span class="string">            imgGaussian: 原图像</span></span><br><span class="line"><span class="string">            mean: 噪声均值</span></span><br><span class="line"><span class="string">            var: 噪声方差</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    img = imgGaussian.copy()</span><br><span class="line">    rows, cols = img.shape</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(rows):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(cols):</span><br><span class="line">            img[i, j] = img[i, j] + np.random.normal(mean, var)</span><br><span class="line">    <span class="keyword">return</span> img</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="读入图像并加入噪声"><a href="#读入图像并加入噪声" class="headerlink" title="读入图像并加入噪声"></a>读入图像并加入噪声</h3><ol>
+<li><p>将原图读入并且转换为灰度图</p>
+</li>
+<li><p>对原图加入椒盐噪声</p>
+</li>
+<li><p>对图像加入高斯噪声</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filepath = <span class="string">&#x27;image_e2/Fig0222(b)(cameraman).tif&#x27;</span></span><br><span class="line">source_img = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)</span><br><span class="line"></span><br><span class="line">saltNoise = add_salt_pepper_noise(source_img, <span class="number">0.02</span>, <span class="number">0.02</span>)</span><br><span class="line">gaussianNoise = add_gaussian_noise(source_img, <span class="number">0</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="滤波"><a href="#滤波" class="headerlink" title="滤波"></a>滤波</h2><h3 id="平滑空域滤波"><a href="#平滑空域滤波" class="headerlink" title="平滑空域滤波"></a>平滑空域滤波</h3><p><strong>（1）</strong>读出一幅灰度图像，给这幅图像分别加入椒盐噪声和高斯噪声后并与前一张图显示在同一图像窗口</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.1</span></span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">name = [<span class="string">&#x27;source_img&#x27;</span>, <span class="string">&#x27;saltNoise&#x27;</span>, <span class="string">&#x27;gaussianNoise&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）</strong>对加入噪声图像选用不同的平滑（低通）模板做运算，对比不同模板所形成的效果</p>
+<ol>
+<li>在OpenCV中，cv2.blur可以进行均值滤波，cv2.medianBlur可以进行中值滤波</li>
+<li>通过使用双重for循环将其展示在画布上</li>
+<li>均值滤波对高斯噪声表现较好，对椒盐噪声表现较差</li>
+<li>中值滤波对椒盐噪声表现较好，对高斯噪声表现较差</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.2</span></span><br><span class="line">fig, ax = plt.subplots(<span class="number">2</span>, <span class="number">3</span>, figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 均值滤波</span></span><br><span class="line">saltNoise_Meanfilter = cv2.blur(saltNoise, (<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">gaussianNoise_Meanfilter = cv2.blur(gaussianNoise, (<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 中值滤波</span></span><br><span class="line">saltNoise_Medianfilter = cv2.medianBlur(saltNoise, <span class="number">3</span>)</span><br><span class="line">gaussianNoise_Medianfilter = cv2.medianBlur(gaussianNoise, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">name = [<span class="string">&#x27;saltNoise&#x27;</span>, <span class="string">&#x27;saltNoise_Meanfilter&#x27;</span>, <span class="string">&#x27;saltNoise_Medianfilter&#x27;</span>, <span class="string">&#x27;gaussianNoise&#x27;</span>, <span class="string">&#x27;gaussianNoise_Meanfilter&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;gaussianNoise_Medianfilter&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        ax[i][j].imshow(<span class="built_in">eval</span>(name[i * <span class="number">3</span> + j]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">        ax[i][j].set_title(name[i * <span class="number">3</span> + j])</span><br><span class="line">        ax[i][j].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）</strong>如果使用MATLAB，使用函数imfilter时，分别采用不同的填充方法（或边界选项，如零填充、’replicate’、’symmetric’、’circular’）进行低通滤波，显示处理后的图像。</p>
+<p>我们使用cv2.copyMakeBorder函数，它在填充（扩边）图像，在卷积运算或0填充时被用到</p>
+<ol>
+<li>零填充: 输入图像的边界通过用值value来填充扩展，其默认值为0，我们使用cv2.BORDER_CONSTANT, value=0</li>
+<li>replicate: 图像大小通过复制外边界的值来扩展，我们使用cv2.BORDER_REPLICATE</li>
+<li>symmetric: 图像大小通过镜像反射其边界来扩展，我们使用cv2.BORDER_REFLECT</li>
+<li>circular: 图像大小通过将图像看成是一个二维周期函数的一个周期来扩展，我们使用cv2.BORDER_WRAP</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.3</span></span><br><span class="line">salt_Zero = cv2.copyMakeBorder(saltNoise, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, cv2.BORDER_CONSTANT, value=<span class="number">0</span>)</span><br><span class="line">salt_Replicate = cv2.copyMakeBorder(saltNoise, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, cv2.BORDER_REPLICATE)</span><br><span class="line">salt_Symmetric = cv2.copyMakeBorder(saltNoise, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, cv2.BORDER_REFLECT)</span><br><span class="line">salt_Circular = cv2.copyMakeBorder(saltNoise, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, cv2.BORDER_WRAP)</span><br><span class="line"></span><br><span class="line">gaussian_Zero = cv2.copyMakeBorder(gaussianNoise, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, cv2.BORDER_CONSTANT, value=<span class="number">0</span>)</span><br><span class="line">gaussian_Replicate = cv2.copyMakeBorder(gaussianNoise, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, cv2.BORDER_REPLICATE)</span><br><span class="line">gaussian_Symmetric = cv2.copyMakeBorder(gaussianNoise, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, cv2.BORDER_REFLECT)</span><br><span class="line">gaussian_Circular = cv2.copyMakeBorder(gaussianNoise, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, <span class="number">50</span>, cv2.BORDER_WRAP)</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="number">2</span>, <span class="number">4</span>, figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">name = [<span class="string">&#x27;salt_Zero&#x27;</span>, <span class="string">&#x27;salt_Replicate&#x27;</span>, <span class="string">&#x27;salt_Symmetric&#x27;</span>, <span class="string">&#x27;salt_Circular&#x27;</span>, <span class="string">&#x27;gaussian_Zero&#x27;</span>, <span class="string">&#x27;gaussian_Replicate&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;gaussian_Symmetric&#x27;</span>, <span class="string">&#x27;gaussian_Circular&#x27;</span>]</span><br><span class="line">title = [<span class="string">&#x27;SaltNoise_Zero&#x27;</span>, <span class="string">&#x27;SaltNoise_Replicate&#x27;</span>, <span class="string">&#x27;SaltNoise_Symmetric&#x27;</span>, <span class="string">&#x27;SaltNoise_Circular&#x27;</span>, <span class="string">&#x27;GaussianNoise_Zero&#x27;</span>,</span><br><span class="line">         <span class="string">&#x27;GaussianNoise_Replicate&#x27;</span>, <span class="string">&#x27;GaussianNoise_Symmetric&#x27;</span>, <span class="string">&#x27;GaussianNoise_Circular&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        ax[i][j].imshow(<span class="built_in">eval</span>(name[i * <span class="number">4</span> + j]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">        ax[i][j].set_title(title[i * <span class="number">4</span> + j])</span><br><span class="line">        ax[i][j].axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">plt.tight_layout()</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）</strong>运用for循环，将加有椒盐噪声的图像进行10次、20次均值滤波，查看其特点，显示均值处理后的图像（提示:利用fspecial函数的’average’类型生成均值滤波器）</p>
+<ol>
+<li>使用for循环达到给图像重复均值滤波，并且展示原图与10次20次滤波后的效果，其中ax[i].axis(‘off’)是去除x,y轴</li>
+<li>可以发现在滤波之后噪声确实是降低了，但随之而来的就是图片变得模糊</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.4</span></span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">saltNoise = add_salt_pepper_noise(source_img, <span class="number">0.02</span>, <span class="number">0.02</span>)</span><br><span class="line">start = <span class="number">0</span></span><br><span class="line">end = <span class="number">30</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start + <span class="number">1</span>, end + <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">1</span>:</span><br><span class="line">        ax[<span class="number">0</span>].imshow(saltNoise, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">        ax[<span class="number">0</span>].set_title(<span class="string">&#x27;SaltNoise&#x27;</span>)</span><br><span class="line">        ax[<span class="number">0</span>].axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> i == <span class="number">10</span>:</span><br><span class="line">        ax[<span class="number">1</span>].imshow(saltNoise, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">        ax[<span class="number">1</span>].set_title(<span class="string">&#x27;SaltNoise_Blur_&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(i))</span><br><span class="line">        ax[<span class="number">1</span>].axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">    <span class="keyword">elif</span> i == <span class="number">30</span>:</span><br><span class="line">        ax[<span class="number">2</span>].imshow(saltNoise, cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">        ax[<span class="number">2</span>].set_title(<span class="string">&#x27;SaltNoise_Blur_&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(i))</span><br><span class="line">        ax[<span class="number">2</span>].axis(<span class="string">&#x27;off&#x27;</span>)</span><br><span class="line">    saltNoise = cv2.blur(saltNoise, (<span class="number">3</span>, <span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>（5）</strong>对加入椒盐噪声的图像分别采用均值滤波法和中值滤波法做处理</p>
+<ol>
+<li>中值滤波相对于均值滤波对椒盐噪声的处理效果更好</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.5</span></span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">saltNoise = add_salt_pepper_noise(source_img, <span class="number">0.02</span>, <span class="number">0.02</span>)</span><br><span class="line">saltNoise_Meanfilter = cv2.blur(saltNoise, (<span class="number">3</span>, <span class="number">3</span>))</span><br><span class="line">saltNoise_Medianfilter = cv2.medianBlur(saltNoise, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">name = [<span class="string">&#x27;saltNoise&#x27;</span>, <span class="string">&#x27;saltNoise_Meanfilter&#x27;</span>, <span class="string">&#x27;saltNoise_Medianfilter&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>（6）</strong>设计平滑空间滤波器，并将其对噪声图像进行处理</p>
+<ol>
+<li>在OpenCV中，我们可以用cv2.filter2D来实现，即我们可以使用自定义内核对图像进行卷积，并且该功能将任意线性滤波器应用于图像</li>
+<li>kernel就是我自定义的内核，让它对椒盐噪声和高斯噪声进行滤波</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.6</span></span><br><span class="line">kernel = np.array([[<span class="number">0</span>, -<span class="number">1</span>, <span class="number">0</span>], [-<span class="number">1</span>, <span class="number">5</span>, -<span class="number">1</span>], [<span class="number">0</span>, -<span class="number">1</span>, <span class="number">0</span>]])</span><br><span class="line">saltNoise = add_salt_pepper_noise(source_img, <span class="number">0.02</span>, <span class="number">0.02</span>)</span><br><span class="line">saltOfKernel = cv2.filter2D(saltNoise, -<span class="number">1</span>, kernel)</span><br><span class="line">gaussianOfKernel = cv2.filter2D(gaussianNoise, -<span class="number">1</span>, kernel)</span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">name = [<span class="string">&#x27;saltNoise&#x27;</span>, <span class="string">&#x27;saltOfKernel&#x27;</span>, <span class="string">&#x27;gaussianOfKernel&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="锐化空域滤波"><a href="#锐化空域滤波" class="headerlink" title="锐化空域滤波"></a>锐化空域滤波</h3><p><strong>（1）</strong>读出一幅灰度图像，采用$3 \times 3$的拉普拉斯算子$\omega =[1,1,1;1,-8,1;1,1,1]$对其进行滤波</p>
+<ol>
+<li>同样我们使用cv2.filter2D来实现自定义内核滤波处理</li>
+<li>将原始图像通过拉普拉斯变换后增强了图像中灰度突变处的对比度，使图像中小的细节部分得到增强并保留了图像的背景色调，使图像的细节比原始图像更加清晰</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2.1</span></span><br><span class="line"><span class="comment"># 拉普拉斯算子</span></span><br><span class="line">laplacian_kernel = np.array([[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], [<span class="number">1</span>, -<span class="number">8</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]])</span><br><span class="line">laplacian_img = cv2.filter2D(source_img, -<span class="number">1</span>, laplacian_kernel)</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">8</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">name = [<span class="string">&#x27;source_img&#x27;</span>, <span class="string">&#x27;laplacian_img&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）</strong>分别采用$5 \times 5$ 、$9 \times 9$ 、$15 \times 15$ 和$25 \times 25$大小的拉普拉斯算子对图像进行锐化滤波</p>
+<ol>
+<li>在OpenCV中，我们可以直接使用库函数cv2.Laplacian，并且可以自主设置其卷积核的大小ksize，分别设置并展示即可</li>
+<li>通过观察可以知道ksize越小，滤波效果越好，细节保留越明显</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2.2</span></span><br><span class="line"><span class="comment"># 锐化算子</span></span><br><span class="line">laplacian_5 = cv2.Laplacian(source_img, cv2.CV_64F, ksize=<span class="number">5</span>)</span><br><span class="line">laplacian_9 = cv2.Laplacian(source_img, cv2.CV_64F, ksize=<span class="number">9</span>)</span><br><span class="line">laplacian_15 = cv2.Laplacian(source_img, cv2.CV_64F, ksize=<span class="number">15</span>)</span><br><span class="line">laplacian_25 = cv2.Laplacian(source_img, cv2.CV_64F, ksize=<span class="number">25</span>)</span><br><span class="line"></span><br><span class="line">name = [<span class="string">&#x27;laplacian_5&#x27;</span>, <span class="string">&#x27;laplacian_9&#x27;</span>, <span class="string">&#x27;laplacian_15&#x27;</span>, <span class="string">&#x27;laplacian_25&#x27;</span>]</span><br><span class="line">fig, ax = plt.subplots(<span class="number">2</span>, <span class="number">2</span>, figsize=(<span class="number">6</span>, <span class="number">6</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        ax[i][j].imshow(<span class="built_in">eval</span>(name[i * <span class="number">2</span> + j]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">        ax[i][j].set_title(name[i * <span class="number">2</span> + j])</span><br><span class="line">        ax[i][j].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>（3）</strong>采用不同的梯度算子（Sobel、Prewitt、LoG 算子）对图像进行锐化滤波</p>
+<ol>
+<li>在OpenCV中，Sobel与LoG也有相应的库函数；因为Prewitt可以对x求导，对y求导，所以我们自定义函数分别返回即可</li>
+<li>Prewitt算子和Sobel算子都是一阶的微分算子，而前者是平均滤波，后者是加权平均滤波且检测的图像边缘可能大于2个像素。这两者对灰度渐变低噪声的图像有较好的检测效果，但是对于混合多复杂噪声的图像，处理效果就不理想了。</li>
+<li>LOG滤波器方法通过检测二阶导数过零点来判断边缘点。LOG滤波器中的a正比于低通滤波器的宽度，a越大，平滑作用越显著，去除噪声越好，但图像的细节也损失越大，边缘精度也就越低。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2.3</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LoG</span>(<span class="params">img, ksize=<span class="number">3</span></span>):</span></span><br><span class="line">    img_new = cv2.GaussianBlur(img, (ksize, ksize), <span class="number">0</span>)</span><br><span class="line">    img_new = cv2.convertScaleAbs(cv2.Laplacian(img_new, cv2.CV_64F, ksize))</span><br><span class="line">    <span class="keyword">return</span> img_new</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PreWitt</span>(<span class="params">img</span>):</span></span><br><span class="line">    result = img</span><br><span class="line">    oi = np.array([[-<span class="number">1</span>, -<span class="number">1</span>, -<span class="number">1</span>], [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]])</span><br><span class="line">    oj = np.array([[-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>], [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>], [-<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]])</span><br><span class="line">    x = cv2.filter2D(img, cv2.CV_64F, oi)</span><br><span class="line">    y = cv2.filter2D(img, cv2.CV_64F, oj)</span><br><span class="line">    <span class="comment"># 转uint8</span></span><br><span class="line">    absX = cv2.convertScaleAbs(x)</span><br><span class="line">    absY = cv2.convertScaleAbs(y)</span><br><span class="line">    result = cv2.addWeighted(absX, <span class="number">0.5</span>, absY, <span class="number">0.5</span>, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> absX, absY, result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 图像通过Sobel进行锐化处理</span></span><br><span class="line">sobel_img = cv2.Sobel(source_img, cv2.CV_64F, <span class="number">1</span>, <span class="number">0</span>, ksize=<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 图像通过LoG进行锐化处理</span></span><br><span class="line">log_img = LoG(source_img, ksize=<span class="number">5</span>)</span><br><span class="line"><span class="comment"># 图像通过Prewitt进行锐化处理</span></span><br><span class="line">prewitt_X, prewitt_Y, prewitt_img = PreWitt(source_img)</span><br><span class="line"></span><br><span class="line">name = [<span class="string">&#x27;sobel_img&#x27;</span>, <span class="string">&#x27;log_img&#x27;</span>, <span class="string">&#x27;prewitt_X&#x27;</span>, <span class="string">&#x27;prewitt_Y&#x27;</span>, <span class="string">&#x27;prewitt_img&#x27;</span>]</span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">5</span>, figsize=(<span class="number">16</span>, <span class="number">8</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="平滑频域滤波"><a href="#平滑频域滤波" class="headerlink" title="平滑频域滤波"></a>平滑频域滤波</h3><p><strong>（1）</strong>设计理想低通滤波器、巴特沃斯低通滤波器和高斯低通滤波器，截止频率自选。</p>
+<p><strong>（2）</strong>读出 cameraman.tif 这幅图像，加入椒盐躁声，分别采用理想低通滤波器、巴特沃斯低通滤波器和指数型低通滤波器对其进行滤波（截止频率自选），再做反变换得到低通滤波后的空域图像</p>
+<ol>
+<li>我们依据公式，使用双重for循环来实现滤波算子</li>
+<li>因为这些滤波都是在频率域上进行的，所以我们要将图像进行傅里叶变换到频率域上再运用此类算子</li>
+<li>然后再经过傅里叶逆变换返回到空间域，并展示出来（由于巴特沃斯算子多一个参数，所以再写了一个函数）</li>
+<li>观察图像可以看到，低通滤波可以有效过滤噪声，但图像也变得模糊起来</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 4.1,4.2</span></span><br><span class="line"><span class="comment"># 对图像进行理想低通滤波</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">idealLowPass</span>(<span class="params">img, d0</span>):</span></span><br><span class="line">    <span class="comment"># 创建一个和原图像一样大小的零矩阵</span></span><br><span class="line">    result = np.zeros(img.shape, dtype=np.float64)</span><br><span class="line">    <span class="comment"># 循环遍历图像</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">1</span>]):</span><br><span class="line">            <span class="comment"># 如果距离小于等于d0，则赋值为1</span></span><br><span class="line">            <span class="keyword">if</span> np.sqrt((i - img.shape[<span class="number">0</span>] / <span class="number">2</span>) ** <span class="number">2</span> + (j - img.shape[<span class="number">1</span>] / <span class="number">2</span>) ** <span class="number">2</span>) &lt;= d0:</span><br><span class="line">                result[i, j] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行巴特沃斯低通滤波</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">butterLowPass</span>(<span class="params">img, d0, n</span>):</span></span><br><span class="line">    <span class="comment"># 创建一个和原图像一样大小的零矩阵</span></span><br><span class="line">    result = np.zeros(img.shape, dtype=np.float64)</span><br><span class="line">    <span class="comment"># 循环遍历图像</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">1</span>]):</span><br><span class="line">            result[i, j] = <span class="number">1</span> / (</span><br><span class="line">                        <span class="number">1</span> + ((np.sqrt((i - img.shape[<span class="number">0</span>] / <span class="number">2</span>) ** <span class="number">2</span> + (j - img.shape[<span class="number">1</span>] / <span class="number">2</span>) ** <span class="number">2</span>) / d0) ** (<span class="number">2</span> * n)))</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行高斯低通滤波</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gaussLowPass</span>(<span class="params">img, d0</span>):</span></span><br><span class="line">    <span class="comment"># 创建一个和原图像一样大小的零矩阵</span></span><br><span class="line">    result = np.zeros(img.shape, dtype=np.float64)</span><br><span class="line">    <span class="comment"># 循环遍历图像</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">1</span>]):</span><br><span class="line">            result[i, j] = np.exp(-((np.sqrt((i - img.shape[<span class="number">0</span>] / <span class="number">2</span>) ** <span class="number">2</span> + (j - img.shape[<span class="number">1</span>] / <span class="number">2</span>) ** <span class="number">2</span>) / d0) ** <span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行理想低通滤波或者高斯低通滤波</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Mytransform1</span>(<span class="params">img, myoperator, d0</span>):</span></span><br><span class="line">    out = np.fft.fft2(img)</span><br><span class="line">    out = np.fft.fftshift(out)</span><br><span class="line">    out = out * myoperator(out, d0)</span><br><span class="line">    out = np.fft.ifftshift(out)</span><br><span class="line">    out = np.fft.ifft2(out)</span><br><span class="line">    out = np.<span class="built_in">abs</span>(out)</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行巴特沃斯低通滤波</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Mytransform2</span>(<span class="params">img, myoperator, d0, n</span>):</span></span><br><span class="line">    out = np.fft.fft2(img)</span><br><span class="line">    out = np.fft.fftshift(out)</span><br><span class="line">    out = out * myoperator(out, d0, n)</span><br><span class="line">    out = np.fft.ifftshift(out)</span><br><span class="line">    out = np.fft.ifft2(out)</span><br><span class="line">    <span class="keyword">return</span> np.<span class="built_in">abs</span>(out)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">salt_img = add_salt_pepper_noise(source_img, <span class="number">0.05</span>, <span class="number">0.05</span>)</span><br><span class="line">idealLowPass_img = Mytransform1(salt_img, idealLowPass, <span class="number">10</span>)</span><br><span class="line">butterLowPass_img = Mytransform2(salt_img, butterLowPass, <span class="number">1</span>, <span class="number">0.5</span>)</span><br><span class="line">gaussLowPass_img = Mytransform1(salt_img, gaussLowPass, <span class="number">15</span>)</span><br><span class="line">name = [<span class="string">&#x27;salt_img&#x27;</span>, <span class="string">&#x27;idealLowPass_img&#x27;</span>, <span class="string">&#x27;butterLowPass_img&#x27;</span>, <span class="string">&#x27;gaussLowPass_img&#x27;</span>]</span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">4</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="锐化频域滤波"><a href="#锐化频域滤波" class="headerlink" title="锐化频域滤波"></a>锐化频域滤波</h3><p><strong>（1）</strong>设计理想高通滤波器、巴特沃斯高通滤波器和高斯高通滤波器，截止频率自选。</p>
+<p><strong>（2）</strong>读出 cameraman.tif 这幅图像，分别采用理想高通滤波器、巴特沃斯高通滤波器和指数型高通滤波器对其进行滤波（截止频率分别为 15,20,80），再做反变换得到高通滤波后的空域图像</p>
+<ol>
+<li>同上面一样，按照公式定义高通滤波，再经过傅里叶变换与逆变换即可</li>
+<li>高通滤波依然保留了图像的细节，也就是进行锐化处理</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 5.1,5.2</span></span><br><span class="line"><span class="comment"># 对图像进行理想高通滤波</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">idealHighPass</span>(<span class="params">img, d0</span>):</span></span><br><span class="line">    <span class="comment"># 创建一个和原图像一样大小的零矩阵</span></span><br><span class="line">    result = np.zeros(img.shape, dtype=np.float64)</span><br><span class="line">    <span class="comment"># 循环遍历图像</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">1</span>]):</span><br><span class="line">            <span class="comment"># 如果距离大于d0，则赋值为1</span></span><br><span class="line">            <span class="keyword">if</span> np.sqrt((i - img.shape[<span class="number">0</span>] / <span class="number">2</span>) ** <span class="number">2</span> + (j - img.shape[<span class="number">1</span>] / <span class="number">2</span>) ** <span class="number">2</span>) &gt;= d0:</span><br><span class="line">                result[i, j] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行巴特沃斯高通滤波</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">butterHighPass</span>(<span class="params">img, d0, n</span>):</span></span><br><span class="line">    <span class="comment"># 创建一个和原图像一样大小的零矩阵</span></span><br><span class="line">    result = np.zeros(img.shape, dtype=np.float64)</span><br><span class="line">    <span class="comment"># 循环遍历图像</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">1</span>]):</span><br><span class="line">            result[i, j] = <span class="number">1</span> / (</span><br><span class="line">                        <span class="number">1</span> + (<span class="number">1.</span> * d0 / np.sqrt((i - img.shape[<span class="number">0</span>] / <span class="number">2</span>) ** <span class="number">2</span> + (j - img.shape[<span class="number">1</span>] / <span class="number">2</span>) ** <span class="number">2</span>)) ** (<span class="number">2</span> * n))</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对图像进行高斯高通滤波</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gaussHighPass</span>(<span class="params">img, d0</span>):</span></span><br><span class="line">    <span class="comment"># 创建一个和原图像一样大小的零矩阵</span></span><br><span class="line">    result = np.zeros(img.shape, dtype=np.float64)</span><br><span class="line">    <span class="comment"># 循环遍历图像</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(img.shape[<span class="number">1</span>]):</span><br><span class="line">            result[i, j] = <span class="number">1</span> - np.exp(-((np.sqrt((i - img.shape[<span class="number">0</span>] / <span class="number">2</span>) ** <span class="number">2</span> + (j - img.shape[<span class="number">1</span>] / <span class="number">2</span>) ** <span class="number">2</span>) / d0) ** <span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">salt_img = add_salt_pepper_noise(source_img, <span class="number">0.05</span>, <span class="number">0.05</span>)</span><br><span class="line">idealHighPass_img = Mytransform1(salt_img, idealHighPass, <span class="number">15</span>)</span><br><span class="line">butterHighPass_img = Mytransform2(salt_img, butterHighPass, <span class="number">20</span>, <span class="number">0.5</span>)</span><br><span class="line">gaussHighPass_img = Mytransform1(salt_img, gaussHighPass, <span class="number">80</span>)</span><br><span class="line">name = [<span class="string">&#x27;salt_img&#x27;</span>, <span class="string">&#x27;idealHighPass_img&#x27;</span>, <span class="string">&#x27;butterHighPass_img&#x27;</span>, <span class="string">&#x27;gaussHighPass_img&#x27;</span>]</span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">4</span>, figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h2><h3 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h3><p><strong>（1）</strong>读出一幅灰度图像，对其进行快速傅里叶变换，分别显示其幅度图像和相位图像</p>
+<ol>
+<li>在OpenCV中，我们可以使用np.fft.fft2来实现二维傅里叶变化，再使用np.fft.fftshift来将输出移动至频谱中间</li>
+<li>获得的img_fft再经过abs处理可以得到幅度谱，经过angle处理可以得到相位谱</li>
+<li>在这里，我们对幅度谱再使用log变化来让图像更加明显</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3.1</span></span><br><span class="line"><span class="comment"># 快速傅里叶变换</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fft</span>(<span class="params">img</span>):</span></span><br><span class="line">    <span class="comment"># 分离幅度谱与相位谱</span></span><br><span class="line">    dft = np.fft.fft2(img)</span><br><span class="line">    img_fft = np.fft.fftshift(dft)</span><br><span class="line">    <span class="comment"># 幅度谱</span></span><br><span class="line">    magnitude = np.log(np.<span class="built_in">abs</span>(img_fft))</span><br><span class="line">    <span class="comment"># 相位谱</span></span><br><span class="line">    phase = np.angle(img_fft)</span><br><span class="line">    <span class="keyword">return</span> magnitude, phase</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">magnitude, phase = fft(source_img)</span><br><span class="line">name = [<span class="string">&#x27;source_img&#x27;</span>, <span class="string">&#x27;magnitude&#x27;</span>, <span class="string">&#x27;phase&#x27;</span>]</span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>（2）</strong>仅对相位部分进行傅里叶逆变换后查看结果图像</p>
+<p><strong>（3）</strong>仅对幅度部分进行傅里叶逆变换后查看结果图像</p>
+<ol>
+<li>分别将幅度谱与相位谱进行傅里叶逆变换即可</li>
+<li>相位谱实际上就是保存的是像素的位置，所以逆变换回去之后还可以看的到图像的轮廓</li>
+<li>幅度谱保存的是频率，所以看起来依然杂乱无章</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3.2、3.3</span></span><br><span class="line"><span class="comment"># 对相位谱进行傅里叶逆变换</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ifftPhase</span>(<span class="params">phase</span>):</span></span><br><span class="line">    <span class="comment"># 对相位谱进行傅里叶变换</span></span><br><span class="line">    dft = np.fft.ifftshift(phase)</span><br><span class="line">    dft = np.fft.ifft2(dft)</span><br><span class="line">    <span class="comment"># 将复数转换为实数</span></span><br><span class="line">    dft = np.<span class="built_in">abs</span>(dft)</span><br><span class="line">    <span class="keyword">return</span> dft</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对幅度谱进行傅里叶逆变换</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ifftMagnitude</span>(<span class="params">magnitude</span>):</span></span><br><span class="line">    <span class="comment"># 对幅度谱进行傅里叶变换</span></span><br><span class="line">    dft = np.fft.ifftshift(magnitude)</span><br><span class="line">    dft = np.fft.ifft2(dft)</span><br><span class="line">    <span class="comment"># 将复数转换为实数</span></span><br><span class="line">    dft = np.<span class="built_in">abs</span>(dft)</span><br><span class="line">    <span class="keyword">return</span> np.log(dft)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ifftMagnitude = ifftMagnitude(magnitude)</span><br><span class="line">ifftPhase = ifftPhase(phase)</span><br><span class="line">name = [<span class="string">&#x27;source_img&#x27;</span>, <span class="string">&#x27;ifftMagnitude&#x27;</span>, <span class="string">&#x27;ifftPhase&#x27;</span>]</span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>（4）</strong>将图像的傅里叶变换$F$置为其共轭后进行逆变换</p>
+<ol>
+<li>根据公式，我们可以定义如下函数，在相位的系数取-1达到共轭的效果（实质上和共轭复数一样）</li>
+<li>与原图相比成垂直镜像，且是锐化后的图像</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3.4</span></span><br><span class="line"><span class="comment"># 对相位谱和幅度谱进行重构</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addMagPhase</span>(<span class="params">magnitude, phase</span>):</span></span><br><span class="line">    <span class="comment"># 对相位谱和幅度谱进行重构</span></span><br><span class="line">    dft = magnitude * np.exp(-<span class="number">1j</span> * phase)</span><br><span class="line">    dft = np.fft.ifftshift(dft)</span><br><span class="line">    dft = np.fft.ifft2(dft)</span><br><span class="line">    <span class="comment"># 将复数转换为实数</span></span><br><span class="line">    dft = np.<span class="built_in">abs</span>(dft)</span><br><span class="line">    <span class="keyword">return</span> dft</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ifft_img = addMagPhase(magnitude, phase)</span><br><span class="line">name = [<span class="string">&#x27;source_img&#x27;</span>, <span class="string">&#x27;ifft_img&#x27;</span>]</span><br><span class="line">fig, ax = plt.subplots(<span class="number">1</span>, <span class="number">2</span>, figsize=(<span class="number">8</span>, <span class="number">4</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    ax[i].imshow(<span class="built_in">eval</span>(name[i]), cmap=<span class="string">&#x27;gray&#x27;</span>)</span><br><span class="line">    ax[i].set_title(name[i])</span><br><span class="line">    ax[i].axis(<span class="string">&#x27;off&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Nomination-NRB</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://nomination-nrb.github.io/2022/05/02/ImageFourierTransform/">https://nomination-nrb.github.io/2022/05/02/ImageFourierTransform/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/05/02/ImageChange/">图像几何变换</a>
+            
+            
+            <a class="next" rel="next" href="/2022/05/02/DP/">动态规划</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Nomination-NRB | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
