@@ -44,7 +44,7 @@
     
 
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 <body>
     <script>
@@ -215,7 +215,7 @@
 
         <div class="post-content">
             <h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><p><strong>选择排序</strong>以第一个元素猜想为最小或最大，跟后续元素比较，记录最小或最大的下标<br>若猜想与记录相同，则继续循环，否则交换数据，实现排序<br>选择排序的时间的<strong>时间复杂度</strong>为O(n^2)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectsort</span><span class="params">(<span class="keyword">int</span> r[], <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++)<span class="comment">//len是数组长度，n-1是最后一个</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> min = i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; len; j++)<span class="comment">//j从i后面一个开始</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (r[min] &gt; r[j])<span class="comment">//记录最小数据的下标</span></span><br><span class="line">				min = j;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (min != i)<span class="comment">//如果猜想不对，就交换数值</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> t;</span><br><span class="line">			t = r[i];</span><br><span class="line">			r[i] = r[min];</span><br><span class="line">			r[min] = t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">selectsort</span><span class="params">(<span class="type">int</span> r[], <span class="type">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++)<span class="comment">//len是数组长度，n-1是最后一个</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> min = i;</span><br><span class="line">		<span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; len; j++)<span class="comment">//j从i后面一个开始</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (r[min] &gt; r[j])<span class="comment">//记录最小数据的下标</span></span><br><span class="line">				min = j;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (min != i)<span class="comment">//如果猜想不对，就交换数值</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> t;</span><br><span class="line">			t = r[i];</span><br><span class="line">			r[i] = r[min];</span><br><span class="line">			r[min] = t;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -300,8 +300,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
