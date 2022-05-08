@@ -228,7 +228,7 @@
 <h2 id="非递归前序"><a href="#非递归前序" class="headerlink" title="非递归前序"></a>非递归前序</h2><p>例如我们有这样的一棵二叉树：<br><img src="https://z3.ax1x.com/2021/10/30/5zwYQK.png" alt="img" style="zoom:50%;" /><br>输入字符数组：A B D # # E # # C # #<br>前序遍历：A B D E C</p>
 <p><strong>代码解释：</strong><br><strong>前序遍历：根左右，先访问当前这棵树的根节点</strong><br><strong>前序遍历：根左右，先访问当前这棵树的根节点</strong><br><strong>前序遍历：根左右，先访问当前这棵树的根节点</strong></p>
 <ol>
-<li>因为我们要遍历这棵树，所以要设置工作指针来保证根节点不变，即TreeNode* temp = T;</li>
+<li>因为我们要遍历这棵树，所以要设置工作指针来保证根节点不变，即TreeNode* temp &#x3D; T;</li>
 <li>我们利用栈来实现前序遍历，声明一个 TreeNode* 类型的栈<ol>
 <li>我们先给出执行的<em><strong>核心</strong></em>：<ol>
 <li><strong>先访问这棵树的根节点</strong>，然后入栈</li>
@@ -241,7 +241,7 @@
 <li>接下来我们来演示一遍：<ol>
 <li>首先传入根节点 A </li>
 <li>接着访问 A 节点（visit(temp)），入栈 A 节点</li>
-<li>寻找A节点的左孩子（<strong>temp=temp-&gt;Lchild</strong>），发现有左孩子 B</li>
+<li>寻找A节点的左孩子（<strong>temp&#x3D;temp-&gt;Lchild</strong>），发现有左孩子 B</li>
 <li>那就再执行 if 语句，访问且入栈的操作</li>
 <li>再寻找B的左孩子，<strong>发现有有左孩子 D</strong></li>
 <li>那就再执行 if 语句，访问加上入栈的操作</li>
@@ -287,7 +287,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -331,6 +331,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

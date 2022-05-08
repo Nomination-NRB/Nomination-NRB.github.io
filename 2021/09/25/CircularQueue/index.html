@@ -214,37 +214,37 @@
         </header>
 
         <div class="post-content">
-            <h1 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h1><p>关于循环队列需明白以下几点：<br>1、循环队列是队列的<strong>顺序</strong>存储结构<br>2、循环队列用判断是否为空利用 Q.front==Q.rear<br>3、循环队列头指针始终指向<strong>队列头</strong>元素，而尾指针始终指向队列尾元素的<strong>下一个位置</strong><br>4、按照队列的定义，队头删除，队尾插入</p>
-<h2 id="初始化队列"><a href="#初始化队列" class="headerlink" title="初始化队列"></a>初始化队列</h2><p><strong>具体操作：</strong><br>​    1.new一个头节点，方便返回得到值<br>​    2.初始化队头与队尾索引，同时赋值为0，表示队列为空</p>
+            <h1 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h1><p>关于循环队列需明白以下几点：<br>1、循环队列是队列的<strong>顺序</strong>存储结构<br>2、循环队列用判断是否为空利用 Q.front&#x3D;&#x3D;Q.rear<br>3、循环队列头指针始终指向<strong>队列头</strong>元素，而尾指针始终指向队列尾元素的<strong>下一个位置</strong><br>4、按照队列的定义，队头删除，队尾插入</p>
+<h2 id="初始化队列"><a href="#初始化队列" class="headerlink" title="初始化队列"></a>初始化队列</h2><p><strong>具体操作：</strong><br>​	1.new一个头节点，方便返回得到值<br>​	2.初始化队头与队尾索引，同时赋值为0，表示队列为空</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化队列</span></span><br><span class="line"><span class="function">Queue* <span class="title">initQueue</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//Queue* q = (Queue*)malloc(sizeof(Queue));</span></span><br><span class="line">    Queue* q = <span class="keyword">new</span> Queue;</span><br><span class="line">	q-&gt;front = q-&gt;rear = <span class="number">0</span>;<span class="comment">//初始化队头，队尾</span></span><br><span class="line">	<span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="队空"><a href="#队空" class="headerlink" title="队空"></a>队空</h2><img src="https://img-blog.csdnimg.cn/20191105144756962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dzand4aG4=,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°" style="zoom: 50%;" />
 **具体操作：**
-​    1.队列空：q->rear==q->front
+​	1.队列空：q->rear==q->front
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断队列空</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (q-&gt;front == q-&gt;rear)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
 <h2 id="队满"><a href="#队满" class="headerlink" title="队满"></a>队满</h2><p>我们要牺牲队列里面的一个空间来标识队列满，首先front指向<strong>队头</strong>，rear指向<strong>队尾的下一个</strong><br>如下图：<strong>刚开始front指向索引0，如果我们不牺牲一个空间的话，当队列满了，即填入数据5，rear索引指向5的下一个，即0，会发现front与rear相等，与队空的情况一样，无法区别队空与队满</strong>，所以索引5的位置是不能填入数据的（即牺牲这个空间），填入当填入数据4的时候，rear索引指向5<br><img src="https://z3.ax1x.com/2021/09/25/4yeTTx.png" style="zoom:67%;" /></p>
-<p>​    1.队列满：(q-&gt;rear + 1) % MAXSIZE == q-&gt;front<br>​        (q-&gt;rear + 1) % MAXSIZE == q-&gt;front来实现队列循环的下标—越界问题<br>​        <img src="https://z3.ax1x.com/2021/09/25/4yeqfO.png" style="zoom:50%;" /><br>​        当rear+1==front时就表示队列已满，<strong>但是索引回从5变到0</strong><br>​        为了让索引能够循环，我们利用<strong>取余运算</strong>，即（rear+1）%MAXSIZE，可以达到循环索引的目的<br>​        例如，（5+1）%6=0，即回到front的索引</p>
+<p>​	1.队列满：(q-&gt;rear + 1) % MAXSIZE &#x3D;&#x3D; q-&gt;front<br>​		(q-&gt;rear + 1) % MAXSIZE &#x3D;&#x3D; q-&gt;front来实现队列循环的下标—越界问题<br>​		<img src="https://z3.ax1x.com/2021/09/25/4yeqfO.png" style="zoom:50%;" /><br>​		当rear+1&#x3D;&#x3D;front时就表示队列已满，<strong>但是索引回从5变到0</strong><br>​		为了让索引能够循环，我们利用<strong>取余运算</strong>，即（rear+1）%MAXSIZE，可以达到循环索引的目的<br>​		例如，（5+1）%6&#x3D;0，即回到front的索引</p>
 <p><strong>ps:遇到索引越界问题，我们大都采用取余的方法</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//判断队列满</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;<span class="comment">//牺牲队列中的一个位置来做如下判断</span></span><br><span class="line">	<span class="keyword">if</span> ((q-&gt;rear + <span class="number">1</span>) % MAXSIZE == q-&gt;front)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h2><p>每次入队后，<strong>将队尾rear指向下一个位置</strong><br><strong>具体操作：</strong><br>​    1.入队需要判断队列是否<strong>已满</strong><br>​    2.将x入队，因为rear是指向队尾的下一个，所以直接用rear当数组的下标即可<br>​    3.入队后rear索引要往后面移动一位，所以还是要注意越界问题**(q-&gt;rear + 1) % MAXSIZE**</p>
+<h2 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h2><p>每次入队后，<strong>将队尾rear指向下一个位置</strong><br><strong>具体操作：</strong><br>​	1.入队需要判断队列是否<strong>已满</strong><br>​	2.将x入队，因为rear是指向队尾的下一个，所以直接用rear当数组的下标即可<br>​	3.入队后rear索引要往后面移动一位，所以还是要注意越界问题**(q-&gt;rear + 1) % MAXSIZE**</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//入队</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">enQueue</span><span class="params">(Queue* q, <span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isFull</span>(q))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		q-&gt;data[q-&gt;rear] = x;</span><br><span class="line">		q-&gt;rear = (q-&gt;rear + <span class="number">1</span>) % MAXSIZE;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h2><p>出队后，将front指向下一个位置<br><strong>具体操作：</strong><br>​    1.出队需要先判断队列是否<strong>已空</strong><br>​    2.因为front也会指向下一个位置，所以仍然要注意越界问题<strong>q-&gt;front = (q-&gt;front + 1) % MAXSIZE</strong></p>
+<h2 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h2><p>出队后，将front指向下一个位置<br><strong>具体操作：</strong><br>​	1.出队需要先判断队列是否<strong>已空</strong><br>​	2.因为front也会指向下一个位置，所以仍然要注意越界问题<strong>q-&gt;front &#x3D; (q-&gt;front + 1) % MAXSIZE</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//出队</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">deQueue</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">isEmpty</span>(q))</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x = q-&gt;data[q-&gt;front];</span><br><span class="line">		q-&gt;front = (q-&gt;front + <span class="number">1</span>) % MAXSIZE;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="队列的显示"><a href="#队列的显示" class="headerlink" title="队列的显示"></a>队列的显示</h2><p><strong>具体操作：</strong><br>​    1.队列的长度：<strong>队尾 - 队头 + MAXSIZE</strong>（加上MAXSIZE是为了防止出现<strong>负数</strong>的情况），再取余，不超过限制长度（ 队尾 - 队头 + MAXSIZE ) % MAXSIZE<br>​    例如下图：rear-front=1-4=-3，-3+MAXSIZE=3，3%6=3，<strong>所以3才是队列的长度</strong><br>​    <img src="https://z3.ax1x.com/2021/09/25/4ymCAP.png" style="zoom: 67%;" /><br>​    2.因为要遍历队列，所以我们要设置<strong>工作索引</strong>index，工作索引也会遇到越界问题，所以还是要**+1再取余**</p>
+<h2 id="队列的显示"><a href="#队列的显示" class="headerlink" title="队列的显示"></a>队列的显示</h2><p><strong>具体操作：</strong><br>​	1.队列的长度：<strong>队尾 - 队头 + MAXSIZE</strong>（加上MAXSIZE是为了防止出现<strong>负数</strong>的情况），再取余，不超过限制长度（ 队尾 - 队头 + MAXSIZE ) % MAXSIZE<br>​	例如下图：rear-front&#x3D;1-4&#x3D;-3，-3+MAXSIZE&#x3D;3，3%6&#x3D;3，<strong>所以3才是队列的长度</strong><br>​	<img src="https://z3.ax1x.com/2021/09/25/4ymCAP.png" style="zoom: 67%;" /><br>​	2.因为要遍历队列，所以我们要设置<strong>工作索引</strong>index，工作索引也会遇到越界问题，所以还是要**+1再取余**</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历队列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printQueue</span><span class="params">(Queue* q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> length = (q-&gt;rear - q-&gt;front + MAXSIZE) % MAXSIZE;</span><br><span class="line">	<span class="keyword">int</span> index = q-&gt;front;<span class="comment">//不能改变front与rear</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; q-&gt;data[index] &lt;&lt; <span class="string">&quot;-&gt;&quot;</span>;</span><br><span class="line">		index = (index + <span class="number">1</span>) % MAXSIZE;<span class="comment">//遍历时一样会遇到边界</span></span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;NULL&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -278,7 +278,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -322,6 +322,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

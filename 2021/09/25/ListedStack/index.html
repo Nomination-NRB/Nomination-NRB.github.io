@@ -220,32 +220,32 @@
 
 
 
-<h2 id="初始化栈"><a href="#初始化栈" class="headerlink" title="初始化栈"></a>初始化栈</h2><p>操作和初始化链表一样<br><strong>具体操作：</strong><br>​    1.语句第一行与第二行解释了typedef的命名</p>
+<h2 id="初始化栈"><a href="#初始化栈" class="headerlink" title="初始化栈"></a>初始化栈</h2><p>操作和初始化链表一样<br><strong>具体操作：</strong><br>​	1.语句第一行与第二行解释了typedef的命名</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">link <span class="title">initStack</span><span class="params">()</span><span class="comment">//初始化链栈，返回头指针</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	link head = <span class="keyword">new</span> struct DNode;<span class="comment">//创建一个头指针(结构体类型)</span></span><br><span class="line">	<span class="comment">//link head = new Jnode;效果和上一句一样</span></span><br><span class="line">	head-&gt;len = <span class="number">0</span>;<span class="comment">//初始化长度</span></span><br><span class="line">	head-&gt;next = <span class="literal">NULL</span>;<span class="comment">//头指针设置为空，防止野指针</span></span><br><span class="line">	<span class="keyword">return</span> head;<span class="comment">//返回头指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="入栈"><a href="#入栈" class="headerlink" title="入栈"></a>入栈</h2><p><strong>具体操作：</strong><br>​    1.入栈的操作就是链表的<strong>头插法</strong><br>​    2.利用结构体里面的<strong>len来计数</strong>栈的长度</p>
+<h2 id="入栈"><a href="#入栈" class="headerlink" title="入栈"></a>入栈</h2><p><strong>具体操作：</strong><br>​	1.入栈的操作就是链表的<strong>头插法</strong><br>​	2.利用结构体里面的<strong>len来计数</strong>栈的长度</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(link head, <span class="keyword">char</span> a)</span><span class="comment">//每次入栈相当于新创建一个结点</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	head-&gt;len++;</span><br><span class="line">	link node = <span class="keyword">new</span> Jnode;</span><br><span class="line">	node-&gt;next = head-&gt;next;<span class="comment">//让新创建的结点与头结点后面的第一个结点相联系</span></span><br><span class="line">	head-&gt;next = node;<span class="comment">//让头结点指向新结点，元素入栈</span></span><br><span class="line">	node-&gt;data = a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="出栈"><a href="#出栈" class="headerlink" title="出栈"></a>出栈</h2><p>只有在栈不为NULL时，才可以出栈<br>因为<strong>入栈</strong>时是采用<strong>头插法</strong>，所以<strong>出栈</strong>时就采用<strong>顺序删除</strong>，从而达到<strong>先进后出</strong>的效果<br><strong>具体操作：</strong><br>​    1.len–，栈的长度减1<br>​    2.获得第一个节点（head-&gt;next就是第一个节点）<br>​    3.设置变量Data记录出栈节点的数据域（node-&gt;data）<br>​    4.让头结点的next指向第二个节点（node-&gt;next就是第二个）<br>​    5.删除第一个节点</p>
+<h2 id="出栈"><a href="#出栈" class="headerlink" title="出栈"></a>出栈</h2><p>只有在栈不为NULL时，才可以出栈<br>因为<strong>入栈</strong>时是采用<strong>头插法</strong>，所以<strong>出栈</strong>时就采用<strong>顺序删除</strong>，从而达到<strong>先进后出</strong>的效果<br><strong>具体操作：</strong><br>​	1.len–，栈的长度减1	<br>​	2.获得第一个节点（head-&gt;next就是第一个节点）<br>​	3.设置变量Data记录出栈节点的数据域（node-&gt;data）<br>​	4.让头结点的next指向第二个节点（node-&gt;next就是第二个）<br>​	5.删除第一个节点</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">(link head)</span><span class="comment">//出栈相当于改变指针指向结点的顺序</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!<span class="built_in">isEmpty</span>(head))</span><br><span class="line">	&#123;</span><br><span class="line">		head-&gt;len--;<span class="comment">//链栈的结点个数减少</span></span><br><span class="line">		link node = head-&gt;next;<span class="comment">//从第一个结点开始</span></span><br><span class="line">		head-&gt;next = node-&gt;next;<span class="comment">//让头指针指向第二个结点，node(第一个结点)是要被删除的，</span></span><br><span class="line">		<span class="keyword">delete</span> node;<span class="comment">//删除第一个结点</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="获得栈顶元素"><a href="#获得栈顶元素" class="headerlink" title="获得栈顶元素"></a>获得栈顶元素</h2><p>方法与出栈基本一样，就多了一个<strong>返回值</strong><br><strong>具体操作：</strong><br>​    1.出栈<br>​    2.记录出栈节点的数据a（char a = node-&gt;data;）<br>​    3.返回数据</p>
+<h2 id="获得栈顶元素"><a href="#获得栈顶元素" class="headerlink" title="获得栈顶元素"></a>获得栈顶元素</h2><p>方法与出栈基本一样，就多了一个<strong>返回值</strong><br><strong>具体操作：</strong><br>​	1.出栈<br>​	2.记录出栈节点的数据a（char a &#x3D; node-&gt;data;）<br>​	3.返回数据</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> <span class="title">getpop</span><span class="params">(link head)</span><span class="comment">//出栈并获得出栈的元素</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!<span class="built_in">isEmpty</span>(head))</span><br><span class="line">	&#123;</span><br><span class="line">		head-&gt;len--;</span><br><span class="line">		link node = head-&gt;next;<span class="comment">//从第一个元素开始</span></span><br><span class="line">		head-&gt;next = node-&gt;next;<span class="comment">//让头指针指向第二个结点</span></span><br><span class="line">		<span class="keyword">char</span> a = node-&gt;data;</span><br><span class="line">		<span class="keyword">delete</span> node;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="判断栈空"><a href="#判断栈空" class="headerlink" title="判断栈空"></a>判断栈空</h2><p><strong>具体操作：</strong><br>​    1.因为有data来记录长度，若长度为0，则返回1<br>​      ///若头节点的next为NULL，也返回1<br>​    2.否则返回0</p>
+<h2 id="判断栈空"><a href="#判断栈空" class="headerlink" title="判断栈空"></a>判断栈空</h2><p><strong>具体操作：</strong><br>​	1.因为有data来记录长度，若长度为0，则返回1<br>​	  &#x2F;&#x2F;&#x2F;若头节点的next为NULL，也返回1<br>​	2.否则返回0</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(link head)</span><span class="comment">//传入头指针判断栈是否为空</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (head-&gt;len == <span class="number">0</span> || head-&gt;next == <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h2 id="显示链栈"><a href="#显示链栈" class="headerlink" title="显示链栈"></a>显示链栈</h2><p>方法与显示<strong>链表一样</strong><br><strong>具体操作：</strong><br>​    1.判断栈是否为NULL<br>​    2.打印链表的方法</p>
+<h2 id="显示链栈"><a href="#显示链栈" class="headerlink" title="显示链栈"></a>显示链栈</h2><p>方法与显示<strong>链表一样</strong><br><strong>具体操作：</strong><br>​	1.判断栈是否为NULL<br>​	2.打印链表的方法</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(link head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (head-&gt;next == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;栈已为空&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	link node = head-&gt;next;<span class="comment">//为了不改变头指针，将其赋值给行新的变量</span></span><br><span class="line">	<span class="keyword">while</span> (node != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; node-&gt;data &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">		node = node-&gt;next;<span class="comment">//指向下一个结点</span></span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;栈的长度：&quot;</span> &lt;&lt; head-&gt;len &lt;&lt; endl;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -279,7 +279,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -323,6 +323,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

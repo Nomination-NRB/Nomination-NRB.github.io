@@ -232,7 +232,7 @@
 <img src="https://z3.ax1x.com/2021/11/14/Ic2GBq.png" alt="image-20211102231809623" style="zoom:50%;" /></li>
 </ol>
 </li>
-<li>此时node依然为NULL（因为node=temp-&gt;Lchild，且此时的temp为F节点）</li>
+<li>此时node依然为NULL（因为node&#x3D;temp-&gt;Lchild，且此时的temp为F节点）</li>
 <li>再次进入外层 else，获取栈顶元素D，<strong>D有右孩子F，但是F已经标识访问过</strong>，所以继续出栈并访问，且设置出栈节点的flag为1（<strong>对于D子树来说，左右根的访问顺序已经完成</strong>）<img src="https://z3.ax1x.com/2021/11/14/Ic2U4U.png" alt="image-20211102232458921" style="zoom:50%;" /></li>
 <li>此时node依然为NULL（<strong>只有当前节点有左孩子且没有被访问过的时候才不会为NULL</strong>），再次进入外层 else，获得当前栈顶元素B，B有右孩子E，且E没有被访问过，则将E入栈后再次寻找它的左子树，与外层if一样<img src="https://z3.ax1x.com/2021/11/14/Ic20gJ.png" alt="image-20211102233051053" style="zoom:50%;" /></li>
 <li>E的操作和F一致，因为E没有左子树与右子树，所以<strong>内层if</strong>对node的赋值为NULL，则获取栈顶元素E，<strong>出栈并访问，并设置访问标识</strong><ol>
@@ -281,7 +281,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -325,6 +325,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

@@ -221,7 +221,7 @@
 </ol>
 <h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><ol>
 <li>因为我们使用顺序存储，所以直接传入一个权值列表，以及它的长度</li>
-<li>哈夫曼树的节点个数=叶子*2-1</li>
+<li>哈夫曼树的节点个数&#x3D;叶子*2-1</li>
 <li>先给已有节点的权值，父亲，左右孩子初始化<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">HFTree* <span class="title">initTree</span><span class="params">(<span class="keyword">int</span>* weight, <span class="keyword">int</span> len)</span><span class="comment">//一个权值列表weight</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	HFTree* T = <span class="keyword">new</span> HFTree;</span><br><span class="line">	<span class="keyword">int</span> newLength = len * <span class="number">2</span> - <span class="number">1</span>;</span><br><span class="line">	T-&gt;data = <span class="keyword">new</span> TreeNode[newLength];</span><br><span class="line">	T-&gt;length = len;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		T-&gt;data[i].weight = weight[i];</span><br><span class="line">		T-&gt;data[i].parent = <span class="number">0</span>;</span><br><span class="line">		T-&gt;data[i].Lchild = <span class="number">-1</span>;</span><br><span class="line">		T-&gt;data[i].Rchild = <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> T;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="选出两个最小值"><a href="#选出两个最小值" class="headerlink" title="选出两个最小值"></a>选出两个最小值</h2><ol>
@@ -264,7 +264,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -308,6 +308,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

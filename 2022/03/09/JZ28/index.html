@@ -215,7 +215,7 @@
 
         <div class="post-content">
             <h1 id="对称的二叉树"><a href="#对称的二叉树" class="headerlink" title="对称的二叉树"></a>对称的二叉树</h1><p>思路1：由于常规的遍历方式(前，中，后，层序遍历)都不能对空节点进行有效区分，所以我们不能使用这些遍历方式来判断是否对称；</p>
-<p>对称即为：对称节点1的左孩子=对称节点1的右孩子(比如2与2)，对称节点2的左孩子=对称节点2的右孩子(比如3与3)，对称节点2的右孩子=对称节点2的左孩子(比如4与4)<br>有三种情况：对称节点可以都为空，对称节点不可以一个为空，对称节点的值必须相同</p>
+<p>对称即为：对称节点1的左孩子&#x3D;对称节点1的右孩子(比如2与2)，对称节点2的左孩子&#x3D;对称节点2的右孩子(比如3与3)，对称节点2的右孩子&#x3D;对称节点2的左孩子(比如4与4)<br>有三种情况：对称节点可以都为空，对称节点不可以一个为空，对称节点的值必须相同</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	  <span class="number">1</span></span><br><span class="line">  <span class="number">2</span>	       <span class="number">2</span> </span><br><span class="line"><span class="number">3</span>	<span class="number">4</span>	<span class="number">4</span>	<span class="number">3</span></span><br></pre></td></tr></table></figure>
 
 
@@ -247,7 +247,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -291,6 +291,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

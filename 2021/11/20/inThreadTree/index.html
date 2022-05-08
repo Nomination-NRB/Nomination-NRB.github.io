@@ -217,7 +217,7 @@
             <h1 id="中序"><a href="#中序" class="headerlink" title="中序"></a>中序</h1><p>中序遍历：D B E A C</p>
 <h2 id="中序核心"><a href="#中序核心" class="headerlink" title="中序核心"></a>中序核心</h2><ol>
 <li>因为中序遍历是：左根右的顺序，所以先寻找当前节点的左孩子，直到为树的最左边为止</li>
-<li>找到最左边时，它如果没有左孩子，所以它的左孩子可以做前驱，设置它的Ltag=1表示有前驱，它的左孩子就保存前驱</li>
+<li>找到最左边时，它如果没有左孩子，所以它的左孩子可以做前驱，设置它的Ltag&#x3D;1表示有前驱，它的左孩子就保存前驱</li>
 <li>接下来处理前驱，如果前驱不为NULL且 前驱的右孩子为NULL，此时前驱的右孩子可以做后继，与之前的T节点相连，达到线索化的目的</li>
 <li>然后前驱指针*pre移动，处理下一个节点</li>
 <li>再递归处理右孩子<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inthreadTree</span><span class="params">(TreeNode* T, TreeNode** pre)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (T != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">inthreadTree</span>(T-&gt;Lchild, pre);</span><br><span class="line">		<span class="keyword">if</span> (T-&gt;Lchild == <span class="literal">NULL</span>)<span class="comment">//没有左孩子，可以有前驱</span></span><br><span class="line">		&#123;</span><br><span class="line">			T-&gt;Ltag = <span class="number">1</span>;<span class="comment">//标记为有前驱</span></span><br><span class="line">			T-&gt;Lchild = *pre;<span class="comment">//T根节点的左孩子保存为*pre前驱</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (*pre != <span class="literal">NULL</span>&amp;&amp;(*pre)-&gt;Rchild==<span class="literal">NULL</span>)<span class="comment">//自己不为NULL，且右孩子为NULL，可以做后继</span></span><br><span class="line">		&#123;</span><br><span class="line">			(*pre)-&gt;Rtag = <span class="number">1</span>;</span><br><span class="line">			(*pre)-&gt;Rchild = T;</span><br><span class="line">		&#125;</span><br><span class="line">		*pre = T;</span><br><span class="line">		<span class="built_in">inthreadTree</span>(T-&gt;Rchild, pre);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
@@ -257,7 +257,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -301,6 +301,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

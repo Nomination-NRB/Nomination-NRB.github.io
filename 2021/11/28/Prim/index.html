@@ -215,7 +215,7 @@
 
         <div class="post-content">
             <h1 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h1><p>最小生成树—-适用于<strong>点少边多</strong></p>
-<p>最小生成树的边=n-1（节点-1）</p>
+<p>最小生成树的边&#x3D;n-1（节点-1）</p>
 <h2 id="结点结构"><a href="#结点结构" class="headerlink" title="结点结构"></a>结点结构</h2><ol>
 <li>adjvex：lowcost数据来源于adjvex</li>
 <li>lowcost：adjvex点到顶点集的花费</li>
@@ -229,7 +229,7 @@
 </ol>
 <h2 id="寻找最小花费"><a href="#寻找最小花费" class="headerlink" title="寻找最小花费"></a>寻找最小花费</h2><ol>
 <li>从结构体数组中寻找U-V集合中的花费最小的</li>
-<li>总花费+=刚刚寻找出来的最小花费<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minEdge</span><span class="params">(spot* shortEdge, <span class="keyword">int</span> dianshu, Graph*G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> min = <span class="number">65535</span>;</span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dianshu; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (shortEdge[i].lowcost != <span class="number">0</span> &amp;&amp; shortEdge[i].lowcost &lt; min)<span class="comment">//从U-V集合中选择花费最小的</span></span><br><span class="line">		&#123;</span><br><span class="line">			min = shortEdge[i].lowcost;</span><br><span class="line">			k = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	G-&gt;minLength += shortEdge[k].lowcost;</span><br><span class="line">	<span class="keyword">return</span> k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>总花费+&#x3D;刚刚寻找出来的最小花费<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">minEdge</span><span class="params">(spot* shortEdge, <span class="keyword">int</span> dianshu, Graph*G)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> min = <span class="number">65535</span>;</span><br><span class="line">	<span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dianshu; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (shortEdge[i].lowcost != <span class="number">0</span> &amp;&amp; shortEdge[i].lowcost &lt; min)<span class="comment">//从U-V集合中选择花费最小的</span></span><br><span class="line">		&#123;</span><br><span class="line">			min = shortEdge[i].lowcost;</span><br><span class="line">			k = i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	G-&gt;minLength += shortEdge[k].lowcost;</span><br><span class="line">	<span class="keyword">return</span> k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="打印路径"><a href="#打印路径" class="headerlink" title="打印路径"></a>打印路径</h2><ol>
 <li>因为点集中的adjvex表示的是lowcost数据来源于adjvex，所以先打印from（adjvex），再打印to（k)，最后打印花费lowcost<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">outputSMT</span><span class="params">(<span class="keyword">int</span> k, spot* shortEdge)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;(&quot;</span> &lt;&lt; shortEdge[k].adjvex &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; k &lt;&lt; <span class="string">&quot;)&quot;</span> &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; shortEdge[k].lowcost &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
@@ -275,7 +275,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -319,6 +319,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

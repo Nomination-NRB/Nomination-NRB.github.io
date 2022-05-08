@@ -224,13 +224,13 @@
 <li>因为我们要从矩阵中获得边的数量才可以给边进行分配空间，所以在此不进行分配<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Graph* <span class="title">initGraph</span><span class="params">(<span class="keyword">int</span> dianshu)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Graph* G = <span class="keyword">new</span> Graph;</span><br><span class="line">	G-&gt;spotNum = dianshu;</span><br><span class="line">	G-&gt;lineNum = <span class="number">0</span>;</span><br><span class="line">	G-&gt;minLength = <span class="number">0</span>;</span><br><span class="line">	G-&gt;spot = <span class="keyword">new</span> <span class="keyword">int</span>[dianshu];</span><br><span class="line">	<span class="keyword">return</span> G;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="创建图"><a href="#创建图" class="headerlink" title="创建图"></a>创建图</h2><ol>
-<li>通过输入的点集与边集给点集赋值，在矩阵中获得有效边的数目（无向图记得/2）</li>
+<li>通过输入的点集与边集给点集赋值，在矩阵中获得有效边的数目（无向图记得&#x2F;2）</li>
 <li>有了边的数目，我们动态分配边集空间，再通过输入给边赋值，from，to，weight<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createGraph</span><span class="params">(Graph* G, <span class="keyword">int</span>* dian, <span class="keyword">int</span>* bian)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		G-&gt;spot[i] = dian[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; G-&gt;spotNum * G-&gt;spotNum; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (bian[j] &gt; <span class="number">0</span> &amp;&amp; bian[j] &lt; mymax)</span><br><span class="line">		&#123;</span><br><span class="line">			G-&gt;lineNum++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	G-&gt;lineNum /= <span class="number">2</span>;</span><br><span class="line">	G-&gt;line = <span class="keyword">new</span> Edge[G-&gt;lineNum];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;lineNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; G-&gt;line[i].from &gt;&gt; G-&gt;line[i].to &gt;&gt; G-&gt;line[i].weight;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="寻找根节点"><a href="#寻找根节点" class="headerlink" title="寻找根节点"></a>寻找根节点</h2><ol>
-<li>我们通过parent数组来存放各个顶点的父亲，<strong>比如parent[0]=0，代表节点0就是根节点（因为他的parent就是他自己），如果parent[0]=1，则节点0的根节点是1</strong></li>
-<li>也就是说，当parent[x]=x时，即x就是父亲<ol>
-<li>比如：parent[0]=1，parent[1]=2，parent[2]=2,</li>
+<li>我们通过parent数组来存放各个顶点的父亲，<strong>比如parent[0]&#x3D;0，代表节点0就是根节点（因为他的parent就是他自己），如果parent[0]&#x3D;1，则节点0的根节点是1</strong></li>
+<li>也就是说，当parent[x]&#x3D;x时，即x就是父亲<ol>
+<li>比如：parent[0]&#x3D;1，parent[1]&#x3D;2，parent[2]&#x3D;2,</li>
 <li>我们通过递归来寻找，比如想要知道0的父亲是谁：<ol>
 <li>发现0的上一个节点是1,1的上一个节点是2,2 的上一个节点就是自己（即找到了父亲）</li>
 <li>所以0的父亲就是2</li>
@@ -249,12 +249,12 @@
 <li>通过排序算法，将权值从小到大进行排序</li>
 <li>分别寻找一条边的<strong>from的根节点与to的根节点</strong><ol>
 <li>若根节点不相同，则表示两个节点不在同一个集合中，加入当前边之后不会构成环</li>
-<li>我们通过parent[vex2]=vex1来合并两棵树（我们之前把每一个节点都看成一棵树），<strong>vex1是from的根节点（下标）vex2是to的根节点（下标）</strong><ol>
+<li>我们通过parent[vex2]&#x3D;vex1来合并两棵树（我们之前把每一个节点都看成一棵树），<strong>vex1是from的根节点（下标）vex2是to的根节点（下标）</strong><ol>
 <li>为什么这样表示合并了两棵树呢？</li>
-<li>比如：<strong>原本parent[0]=0，parent[1]=1，是两棵独立的树，当parent[1]=0，就表示1的上一个节点是0,而parent[0]=0表示0就是父节点，所以1的父亲节点就变成了0</strong>，由此1与0的父亲节点都是0，所以相当于把1加入到了0这棵树之中</li>
+<li>比如：<strong>原本parent[0]&#x3D;0，parent[1]&#x3D;1，是两棵独立的树，当parent[1]&#x3D;0，就表示1的上一个节点是0,而parent[0]&#x3D;0表示0就是父节点，所以1的父亲节点就变成了0</strong>，由此1与0的父亲节点都是0，所以相当于把1加入到了0这棵树之中</li>
 </ol>
 </li>
-<li>其中有if (num == G-&gt;spotNum - 1)，因为<strong>最小生成树的边=点-1</strong>，num就是来记录当前加了多少条边，当边数=点-1，即可退出循环</li>
+<li>其中有if (num &#x3D;&#x3D; G-&gt;spotNum - 1)，因为<strong>最小生成树的边&#x3D;点-1</strong>，num就是来记录当前加了多少条边，当边数&#x3D;点-1，即可退出循环</li>
 </ol>
 </li>
 </ol>
@@ -289,7 +289,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -333,6 +333,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

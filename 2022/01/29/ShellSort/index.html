@@ -215,7 +215,7 @@
 
         <div class="post-content">
             <h1 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h1><p><strong>希尔排序</strong>属于插入类排序,是将整个有序序列分割成若干小的子序列分别进行<strong>插入排序</strong></p>
-<p>希尔排序的时间的<strong>时间复杂度</strong>为O(n^3/2)</p>
+<p>希尔排序的时间的<strong>时间复杂度</strong>为O(n^3&#x2F;2)</p>
 <p>主函数可沿用插入排序</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ShellSort</span><span class="params">(<span class="keyword">int</span> r[], <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> d, i, j;</span><br><span class="line">	<span class="keyword">for</span> (d = len / <span class="number">2</span>; d &gt;= <span class="number">1</span>; d = d / <span class="number">2</span>)<span class="comment">//d为增量，分成子数列 </span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (i = d + <span class="number">1</span>; i &lt; len; i++)<span class="comment">//一次跳d个距离 </span></span><br><span class="line">		&#123;</span><br><span class="line">			r[<span class="number">0</span>] = r[i];</span><br><span class="line">			j = i - d;<span class="comment">//指向前一个(间隔为d) </span></span><br><span class="line">			<span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; r[j] &gt; r[<span class="number">0</span>])<span class="comment">//j&gt;0防止数组越界 </span></span><br><span class="line">			&#123;</span><br><span class="line">				r[j + d] = r[j]; <span class="comment">//如果前一个大于当前的，那么就后移数据 </span></span><br><span class="line">				j = j - d;<span class="comment">//再跳到前一个，进入循环比较 </span></span><br><span class="line">			&#125;</span><br><span class="line">			r[j + d] = r[<span class="number">0</span>];<span class="comment">//直到跳出循环，找到插入点，将r[0]的数据写回移动者的位置 </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -244,7 +244,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -288,6 +288,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

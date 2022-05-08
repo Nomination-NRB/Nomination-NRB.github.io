@@ -248,7 +248,7 @@
 <p><strong>（3）</strong>如果使用MATLAB，使用函数imfilter时，分别采用不同的填充方法（或边界选项，如零填充、’replicate’、’symmetric’、’circular’）进行低通滤波，显示处理后的图像。</p>
 <p>我们使用cv2.copyMakeBorder函数，它在填充（扩边）图像，在卷积运算或0填充时被用到</p>
 <ol>
-<li>零填充: 输入图像的边界通过用值value来填充扩展，其默认值为0，我们使用cv2.BORDER_CONSTANT, value=0</li>
+<li>零填充: 输入图像的边界通过用值value来填充扩展，其默认值为0，我们使用cv2.BORDER_CONSTANT, value&#x3D;0</li>
 <li>replicate: 图像大小通过复制外边界的值来扩展，我们使用cv2.BORDER_REPLICATE</li>
 <li>symmetric: 图像大小通过镜像反射其边界来扩展，我们使用cv2.BORDER_REFLECT</li>
 <li>circular: 图像大小通过将图像看成是一个二维周期函数的一个周期来扩展，我们使用cv2.BORDER_WRAP</li>
@@ -277,7 +277,7 @@
 
 
 
-<h3 id="锐化空域滤波"><a href="#锐化空域滤波" class="headerlink" title="锐化空域滤波"></a>锐化空域滤波</h3><p><strong>（1）</strong>读出一幅灰度图像，采用$3 \times 3$的拉普拉斯算子$\omega =[1,1,1;1,-8,1;1,1,1]$对其进行滤波</p>
+<h3 id="锐化空域滤波"><a href="#锐化空域滤波" class="headerlink" title="锐化空域滤波"></a>锐化空域滤波</h3><p><strong>（1）</strong>读出一幅灰度图像，采用$3 \times 3$的拉普拉斯算子$\omega &#x3D;[1,1,1;1,-8,1;1,1,1]$对其进行滤波</p>
 <ol>
 <li>同样我们使用cv2.filter2D来实现自定义内核滤波处理</li>
 <li>将原始图像通过拉普拉斯变换后增强了图像中灰度突变处的对比度，使图像中小的细节部分得到增强并保留了图像的背景色调，使图像的细节比原始图像更加清晰</li>
@@ -379,7 +379,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -390,6 +390,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"># 数字图像处理</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -400,7 +404,7 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/05/02/ImageChange/">图像几何变换</a>
+                <a class="prev" rel="prev" href="/2022/05/08/ImageChange/">图像几何变换</a>
             
             
             <a class="next" rel="next" href="/2022/05/02/DP/">动态规划</a>
@@ -419,6 +423,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

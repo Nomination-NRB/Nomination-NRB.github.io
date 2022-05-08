@@ -229,7 +229,7 @@
 <li>如果距离是有效值，则将出发点下标赋给path数组，代表当前dist数组的距离来自start节点，否则置为-1</li>
 </ol>
 </li>
-<li>将初始节点设为已访问，并设置以及访问节点的个数为1，num = 1</li>
+<li>将初始节点设为已访问，并设置以及访问节点的个数为1，num &#x3D; 1</li>
 <li>进入循环（完成访问每一个节点）<ol>
 <li>在没有被访问过的结点中选出最小的下标赋给min</li>
 <li>将min设置为已访问</li>
@@ -251,7 +251,7 @@
 <li>dist数组里面记录了从start到其他节点的最短路径长度，直接打印即可<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">displayDistance</span><span class="params">(Graph* G, <span class="keyword">int</span> start, <span class="keyword">int</span> to)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;From &quot;</span> &lt;&lt; start &lt;&lt; <span class="string">&quot; to &quot;</span> &lt;&lt; to &lt;&lt; <span class="string">&quot; distance: &quot;</span> &lt;&lt; G-&gt;dist[to] &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">int</span>* road = <span class="keyword">new</span> <span class="keyword">int</span>[G-&gt;spotNum];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G-&gt;spotNum; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; <span class="string">&quot;From &quot;</span> &lt;&lt; start &lt;&lt; <span class="string">&quot; to &quot;</span> &lt;&lt; i &lt;&lt; <span class="string">&quot; distance: &quot;</span> &lt;&lt; G-&gt;dist[i] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="展示路径"><a href="#展示路径" class="headerlink" title="展示路径"></a>展示路径</h2><ol>
-<li>由path数组向上查找，直到找到初始节点为止，比如path[6]=4，path[4]=2，path[2]=0，则路径0 2 4 6</li>
+<li>由path数组向上查找，直到找到初始节点为止，比如path[6]&#x3D;4，path[4]&#x3D;2，path[2]&#x3D;0，则路径0 2 4 6</li>
 <li>将查出来的路径倒序存储在road中</li>
 <li>再将road倒序输出+to即可<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">displayRoad</span><span class="params">(Graph* G, <span class="keyword">int</span> from, <span class="keyword">int</span> to)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> To = to;</span><br><span class="line">	<span class="keyword">int</span>* road = <span class="keyword">new</span> <span class="keyword">int</span>[G-&gt;spotNum];</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (G-&gt;path[to] != from)</span><br><span class="line">	&#123;</span><br><span class="line">		road[i] = G-&gt;path[to];</span><br><span class="line">		i++;</span><br><span class="line">		to = G-&gt;path[to];</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;最短路径：&quot;</span>;</span><br><span class="line">	road[i] = from;</span><br><span class="line">	<span class="keyword">for</span> (; i &gt;= <span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; road[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; To;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
@@ -282,7 +282,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -326,6 +326,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

@@ -41,6 +41,45 @@
     
     
         
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
     
 
 
@@ -222,8 +261,8 @@
 </li>
 <li>状态计算：<ol>
 <li>可以分为第 i 个物品拿或者不拿</li>
-<li>不拿：$f[i][j]=f[i-1][j]$</li>
-<li>拿：$f[i][j]=f[i-1][j-v[i]]+w[i]$，当且仅当体积$j&gt;=v_{i}$</li>
+<li>不拿：$f[i][j]&#x3D;f[i-1][j]$</li>
+<li>拿：$f[i][j]&#x3D;f[i-1][j-v[i]]+w[i]$ ，当且仅当体积 $j&gt;&#x3D;v_{i}$</li>
 </ol>
 </li>
 </ol>
@@ -239,8 +278,8 @@
 </li>
 <li>状态计算：<ol>
 <li>可以分为第 i 个物品不拿或者拿 k 个</li>
-<li>不拿：$f[i][j]=f[i-1][j]$</li>
-<li>拿：$f[i][j]=f[i-1][j-v[i]*k]+w[i]<em>k$，当且仅当体积$j&gt;=k</em>v_{i}$</li>
+<li>不拿：$f[i][j]&#x3D;f[i-1][j]$</li>
+<li>拿：$f[i][j]&#x3D;f[i-1][j-v[i]·k]+k·w[i]$ (当且仅当体积$j&gt;&#x3D;k·v_{i}$)</li>
 <li>因为此时可以拿很多个，所以我们需要一个for循环来枚举同一个物品最多可以拿多少个</li>
 </ol>
 </li>
@@ -263,9 +302,9 @@
 </ol>
 </li>
 <li>状态计算：<ol>
-<li>可以分为：a数组前 i-1个数字与 b数组前 j 个数字；a数组前 i 个数字与 b数组前 j 个数字（因为$a[i]=b[j]$，所以我们可以从$f[i-1][k]$来进行状态转移） </li>
-<li>$f[i][j] = f[i - 1][j]$</li>
-<li>$f[i][j] = max(f[i][j], f[i - 1][k] + 1)$，在$b[j] &gt; b[k]$形成递增的情况才可以，最后加1是因为$a[i]=b[j]$</li>
+<li>可以分为：a数组前 i-1个数字与 b数组前 j 个数字；a数组前 i 个数字与 b数组前 j 个数字（因为$a[i]&#x3D;b[j]$，所以我们可以从$f[i-1][k]$来进行状态转移） </li>
+<li>$f[i][j] &#x3D; f[i - 1][j]$</li>
+<li>$f[i][j] &#x3D; max(f[i][j], f[i - 1][k] + 1)$，在$b[j] &gt; b[k]$形成递增的情况才可以，最后加1是因为$a[i]&#x3D;b[j]$</li>
 </ol>
 </li>
 </ol>
@@ -318,7 +357,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -358,6 +397,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

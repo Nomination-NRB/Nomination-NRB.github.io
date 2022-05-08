@@ -258,11 +258,11 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">filePath = <span class="string">&#x27;image/cameraman.tif&#x27;</span></span><br><span class="line">source = cv2.imread(filePath)</span><br><span class="line"></span><br><span class="line">gray=Gray(source)</span><br><span class="line">reverse=Reverse(gray)</span><br><span class="line">log=Log(gray)</span><br><span class="line">power=Power(gray)</span><br><span class="line">contrast=Contrast(gray)</span><br><span class="line"></span><br><span class="line">normalize=Normalize(gray)</span><br><span class="line">histequal=HistEqual(gray)</span><br><span class="line"></span><br><span class="line"><span class="comment">#contrast=Contrast(gray,ax=32,bx=192,ay=64,by=160)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h2 id="展示原图与基础灰度变换图片"><a href="#展示原图与基础灰度变换图片" class="headerlink" title="展示原图与基础灰度变换图片"></a>展示原图与基础灰度变换图片</h2><ol>
-<li>fig, ax = plt.subplots(2,3,figsize=(12,8))<ol>
+<li>fig, ax &#x3D; plt.subplots(2,3,figsize&#x3D;(12,8))<ol>
 <li>设置fig画布，多个ax对象，可用下标进行访问</li>
 </ol>
 </li>
-<li>a[i,j].imshow(img, cmap=’gray’)<ol>
+<li>a[i,j].imshow(img, cmap&#x3D;’gray’)<ol>
 <li>img为图片，cmap为颜色图谱</li>
 </ol>
 </li>
@@ -316,7 +316,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -360,6 +360,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

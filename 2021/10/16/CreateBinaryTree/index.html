@@ -223,7 +223,7 @@
 <h2 id="节点结构"><a href="#节点结构" class="headerlink" title="节点结构"></a>节点结构</h2><p><strong>代码解释：</strong></p>
 <ol>
 <li>Type（char）类型的数据，也就是节点的数据域</li>
-<li>指向下一个树节点（左/右）</li>
+<li>指向下一个树节点（左&#x2F;右）</li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> Type;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	Type Tdata;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Lchild</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Rchild</span>;</span></span><br><span class="line">&#125;TreeNode;</span><br></pre></td></tr></table></figure>
 
@@ -232,8 +232,8 @@
 <h2 id="创建一棵树"><a href="#创建一棵树" class="headerlink" title="创建一棵树"></a>创建一棵树</h2><p>树的创建是需要递归来实现的，因为<strong>每个节点可以看成是一棵树</strong>，而它的<strong>左孩子右孩子也可以看成是另外一颗树</strong>，所以我们通过递归来创建每一个节点<br><strong>变量说明：</strong></p>
 <ol>
 <li>TreeNode** T，我们使用指针，因为我们要改变<strong>函数外面这个指针指向的值</strong>，我们使用<strong>二级指针</strong>是因为要<strong>递归</strong>执行，为了在递归中改变外部变量的值，我们需要使用二级指针</li>
-<li>Type* x，是Type类型的一个数组，这里我们使用char类型的数组，有数组就一定有数组的长度index，这里相当于是数组的下标，因为函数要递归，所以为了改变下标的值，不能仅仅index+=1，需要用到<strong>指针来保证每次递归，index的值都会自增</strong></li>
-<li>ch == ‘#’，因为二叉树有叶子节点，为了<strong>辨别叶子节点</strong>，我们将叶子节点的左右孩子<strong>赋值为#</strong><ol>
+<li>Type* x，是Type类型的一个数组，这里我们使用char类型的数组，有数组就一定有数组的长度index，这里相当于是数组的下标，因为函数要递归，所以为了改变下标的值，不能仅仅index+&#x3D;1，需要用到<strong>指针来保证每次递归，index的值都会自增</strong></li>
+<li>ch &#x3D;&#x3D; ‘#’，因为二叉树有叶子节点，为了<strong>辨别叶子节点</strong>，我们将叶子节点的左右孩子<strong>赋值为#</strong><ol>
 <li>比如H节点是叶子节点，则它的左右孩子的数据域都标识为#<img src="https://z3.ax1x.com/2021/10/16/5JIoNj.png" alt="img" style="zoom: 67%;" /></li>
 </ol>
 </li>
@@ -326,7 +326,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -370,6 +370,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

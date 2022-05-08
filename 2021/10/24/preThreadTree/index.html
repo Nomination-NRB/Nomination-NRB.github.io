@@ -220,18 +220,15 @@
 <ol>
 <li>节点数据域，char类型的Tdata</li>
 <li>左右孩子</li>
-<li>左右标记，<strong>0表示 Lchild/Rchild 有左右孩子</strong>，1表示 Lchild/Rchild 的<strong>前驱后继</strong>指针<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> Tdata;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Lchild</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Rchild</span>;</span></span><br><span class="line">	<span class="keyword">bool</span> Ltag;</span><br><span class="line">	<span class="keyword">bool</span> Rtag;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>左右标记，<strong>0表示 Lchild&#x2F;Rchild 有左右孩子</strong>，1表示 Lchild&#x2F;Rchild 的<strong>前驱后继</strong>指针<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> Tdata;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Lchild</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span>* <span class="title">Rchild</span>;</span></span><br><span class="line">	<span class="keyword">bool</span> Ltag;</span><br><span class="line">	<span class="keyword">bool</span> Rtag;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="创建树"><a href="#创建树" class="headerlink" title="创建树"></a>创建树</h2><p><strong>变量说明：</strong></p>
 <ol>
 <li>我们的数据是*T，这是个一级指针，但是需要递归创建树来改变它的值，所以我们需要使用二级指针**T</li>
 <li>一个char类型的字符数组</li>
-<li>一个下标index，因为要递归调用，所以我们<strong>采用引用的方式在函数外也可以更改index的值</strong></li>
-</ol>
-<p><strong>代码解释：</strong></p>
-<ol>
+<li>一个下标index，因为要递归调用，所以我们<strong>采用引用的方式在函数外也可以更改index的值</strong><br><strong>代码解释：</strong></li>
 <li>设置临时变量ch保存字符数组的数据，index就是字符数组的下标</li>
-<li>每取出一个数据，index就要+=1</li>
+<li>每取出一个数据，index就要+&#x3D;1</li>
 <li>递归出口，当数据为 # ，将这个指针数据*T 赋值为NULL</li>
 <li>还没到递归出口的话<ol>
 <li>new一个节点给*T</li>
@@ -245,10 +242,7 @@
 <ol>
 <li>建立当前节点 T 与前驱节点 pre 的线索</li>
 <li>左子树线索化</li>
-<li>右子树线索化</li>
-</ol>
-<p><strong>变量说明：</strong></p>
-<ol>
+<li>右子树线索化<br><strong>变量说明：</strong></li>
 <li>*T为当前节点</li>
 <li>**pre为 *T的前驱节点</li>
 <li>每处理完成后，** pre要移动到下一个节点上，并且递归遍历，所以需要<strong>二级指针</strong></li>
@@ -263,13 +257,13 @@
 </ol>
 </li>
 <li>我们处理完当前节点*T，接下来处理它的前驱 *pre<ol>
-<li>如果前驱*pre不为空（ *pre != NULL），并且前驱的<strong>右孩子为空NULL</strong>，则指向当前节点的后继，（ *pre 的右孩子就可以连接我们之前处理的 *T节点，从而达到<strong>线索化</strong>）</li>
+<li>如果前驱*pre不为空（ *pre !&#x3D; NULL），并且前驱的<strong>右孩子为空NULL</strong>，则指向当前节点的后继，（ *pre 的右孩子就可以连接我们之前处理的 *T节点，从而达到<strong>线索化</strong>）</li>
 </ol>
 </li>
 <li>处理完 *T与 *pre之后， *pre就往下移动，继续处理后续的节点，而 *T通过它的左孩子递归来移动到下一个节点<img src="https://z3.ax1x.com/2021/10/24/5W0fzD.png" alt="img" style="zoom:50%;" /></li>
-<li>如果左孩子标签为0（Ltag==0），即表示有左孩子，且没有线索化，就递归调用函数，将左子树全部线索化完成，进而线索化右子树</li>
+<li>如果左孩子标签为0（Ltag&#x3D;&#x3D;0），即表示有左孩子，且没有线索化，就递归调用函数，将左子树全部线索化完成，进而线索化右子树</li>
 <li><strong>因为线索化是将当前节点与前驱建立联系的，所以最后一个节点无法在函数中线索化</strong><ol>
-<li>如果要线索化C节点，就需要*T移动到最后的NULL节点上，但是不符合if语句的判断，所以我们无法再函数中将其线索化，只能在函数外面手动将C的右孩子赋值为NULL达到线索化的目的，C-&gt;Rtag=1，C-&gt;Right=NULL<img src="https://z3.ax1x.com/2021/10/24/5Wwhbn.png" alt="img" style="zoom:50%;" />
+<li>如果要线索化C节点，就需要*T移动到最后的NULL节点上，但是不符合if语句的判断，所以我们无法再函数中将其线索化，只能在函数外面手动将C的右孩子赋值为NULL达到线索化的目的，C-&gt;Rtag&#x3D;1，C-&gt;Right&#x3D;NULL<img src="https://z3.ax1x.com/2021/10/24/5Wwhbn.png" alt="img" style="zoom:50%;" />
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preThreadTree</span><span class="params">(TreeNode* T, TreeNode** pre)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (T)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (T-&gt;Lchild == <span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			T-&gt;Ltag = <span class="number">1</span>;</span><br><span class="line">			T-&gt;Lchild = *pre;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (*pre != <span class="literal">NULL</span> &amp;&amp; (*pre)-&gt;Rchild==<span class="literal">NULL</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			(*pre)-&gt;Rtag = <span class="number">1</span>;</span><br><span class="line">			(*pre)-&gt;Rchild = T;</span><br><span class="line">		&#125;</span><br><span class="line">		*pre = T;</span><br><span class="line">		<span class="keyword">if</span>(T-&gt;Ltag==<span class="number">0</span>)</span><br><span class="line">			<span class="built_in">preThreadTree</span>(T-&gt;Lchild,pre);</span><br><span class="line">		<span class="built_in">preThreadTree</span>(T-&gt;Rchild,pre);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
@@ -308,7 +302,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -352,6 +346,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

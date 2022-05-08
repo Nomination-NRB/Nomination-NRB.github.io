@@ -218,7 +218,7 @@
 <li>首先通过两个for循环初始化dist数组，即矩阵的值</li>
 <li>再初始化path数组，如果路径为有效值，则记录路径的前驱i，否则记录为-1</li>
 <li>通过三个for循环实现每次加入节点的迭代过程<ol>
-<li>外层k就是加入节点的下标，比如我们有v1,v2,v4,那加入v3节点后，即k=2(下标从0开始)，判断v1-&gt;v3-&gt;v2是否有更短的路径，有的话就更新dist数组，并记录路径的前驱节点k，所以外层k循环就是尝试加入每一个节点</li>
+<li>外层k就是加入节点的下标，比如我们有v1,v2,v4,那加入v3节点后，即k&#x3D;2(下标从0开始)，判断v1-&gt;v3-&gt;v2是否有更短的路径，有的话就更新dist数组，并记录路径的前驱节点k，所以外层k循环就是尝试加入每一个节点</li>
 </ol>
 </li>
 </ol>
@@ -227,7 +227,7 @@
 
 
 <h2 id="展示路径"><a href="#展示路径" class="headerlink" title="展示路径"></a>展示路径</h2><ol>
-<li>方法与Dijkstra一样，都是通过path数组向上查找，直到找到初始节点为止，比如path[6]=4，path[4]=2，path[2]=0，则路径0 2 4 6</li>
+<li>方法与Dijkstra一样，都是通过path数组向上查找，直到找到初始节点为止，比如path[6]&#x3D;4，path[4]&#x3D;2，path[2]&#x3D;0，则路径0 2 4 6</li>
 <li>将查出来的路径倒序存储在road中</li>
 <li>再将road倒序输出即可<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">findRoad</span><span class="params">(Graph* G, <span class="keyword">int</span> from, <span class="keyword">int</span> to)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* road = <span class="keyword">new</span> <span class="keyword">int</span>[G-&gt;spotNum];</span><br><span class="line">	<span class="keyword">int</span> end = to;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">	road[<span class="number">0</span>] = to;</span><br><span class="line">	<span class="keyword">while</span> (from != to)</span><br><span class="line">	&#123;</span><br><span class="line">		road[i] = G-&gt;path[from][to];</span><br><span class="line">		i++;</span><br><span class="line">		to = G-&gt;path[from][to];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (; i &gt; <span class="number">0</span>; i--)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; road[i - <span class="number">1</span>] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
@@ -259,7 +259,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -303,6 +303,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

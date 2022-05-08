@@ -226,7 +226,7 @@
 <p>hexo s  #部署到本地4000端口 </p>
 <p>hexo d  #部署到远程Github仓库</p>
 <p>hexo new paper #创建在_post文件夹下，与hello world同目录</p>
-<p>hexo new page categories #增加页面导航，并在项目目录/source/categories/index.md加上 type: categories</p>
+<p>hexo new page categories #增加页面导航，并在项目目录&#x2F;source&#x2F;categories&#x2F;index.md加上 type: categories</p>
 
         </div>
 
@@ -253,7 +253,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -295,6 +295,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>

@@ -214,7 +214,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="二叉树中两个节点的最近公共祖先"><a href="#二叉树中两个节点的最近公共祖先" class="headerlink" title="二叉树中两个节点的最近公共祖先"></a>二叉树中两个节点的最近公共祖先</h1><p>思路1：我们使用DFS遍历整棵树，并且记录每一个结点，如果遍历到根也没找到目标o1，则进行删除处理(我们使用&amp;vector对数组进行实时记录)；因为需要手动删除，使用需要设置flag来标识，以免删除o1，o2；最后的路径的大小有三种情况，size1 = size2(直接取前一个数值即可)，size1 &lt; size2，size1 &gt; szie2，大于小于这两类取长度小的最后一个数据即可</p>
+            <h1 id="二叉树中两个节点的最近公共祖先"><a href="#二叉树中两个节点的最近公共祖先" class="headerlink" title="二叉树中两个节点的最近公共祖先"></a>二叉树中两个节点的最近公共祖先</h1><p>思路1：我们使用DFS遍历整棵树，并且记录每一个结点，如果遍历到根也没找到目标o1，则进行删除处理(我们使用&amp;vector对数组进行实时记录)；因为需要手动删除，使用需要设置flag来标识，以免删除o1，o2；最后的路径的大小有三种情况，size1 &#x3D; size2(直接取前一个数值即可)，size1 &lt; size2，size1 &gt; szie2，大于小于这两类取长度小的最后一个数据即可</p>
 <p>注意：此处需要用引用；我自己不想手动删除，所以就新开一个引用的数组，当找到o1或者o2时直接将路径复制到新开的数组中，然后内存超限qvq</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *	int val;</span></span><br><span class="line"><span class="comment"> *	struct TreeNode *left;</span></span><br><span class="line"><span class="comment"> *	struct TreeNode *right;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(TreeNode* root, vector&lt;<span class="keyword">int</span>&gt;&amp; myvector, <span class="keyword">int</span> o1, <span class="keyword">bool</span>&amp; flag)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root)</span><br><span class="line">        &#123;</span><br><span class="line">            myvector.<span class="built_in">push_back</span>(root-&gt;val);</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;val==o1)</span><br><span class="line">            &#123;</span><br><span class="line">                flag=<span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">DFS</span>(root-&gt;left, myvector, o1, flag);</span><br><span class="line">            <span class="built_in">DFS</span>(root-&gt;right, myvector, o1, flag);</span><br><span class="line">            <span class="keyword">if</span>(flag)</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            myvector.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, <span class="keyword">int</span> o1, <span class="keyword">int</span> o2)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; myvector1, myvector2;</span><br><span class="line">        <span class="keyword">bool</span> flag1=<span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">bool</span> flag2=<span class="literal">false</span>;</span><br><span class="line">        <span class="built_in">DFS</span>(root, myvector1, o1, flag1);</span><br><span class="line">        <span class="built_in">DFS</span>(root, myvector2, o2, flag2);</span><br><span class="line">        <span class="keyword">int</span> size1=myvector1.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> size2=myvector2.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> len=<span class="built_in">min</span>(size1, size2);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(myvector1[i]!=myvector2[i])</span><br><span class="line">                <span class="keyword">return</span> myvector1[i<span class="number">-1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(size1&gt;size2)</span><br><span class="line">            <span class="keyword">return</span> myvector2[size2<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> myvector1[size1<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -244,7 +244,7 @@
                 
                      <p class="copyright-item">
                          <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                         <span>Trust <strong>Yourself</strong></span>
                      </p>
                 
 
@@ -288,6 +288,22 @@
 </footer>
 
     </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 
 </html>
