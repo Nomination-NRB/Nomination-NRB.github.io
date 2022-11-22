@@ -13,7 +13,7 @@
 
 
 
-<title>Basic Blog | Hexo</title>
+<title>Anaconda | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Basic Blog</h1>
+            <h1 class="post-title">Anaconda</h1>
             
                 <div class="post-meta">
                     
@@ -221,19 +221,31 @@
         </header>
 
         <div class="post-content">
-            <h2 id="博客文件"><a href="#博客文件" class="headerlink" title="博客文件"></a>博客文件</h2><p>node_modules: 依赖包</p>
-<p>public：存放生成的页面</p>
-<p>scaffolds：模版文件。当创建一篇新的文章时，hexo会依据模版文件进行创建</p>
-<p>source：用来存放你的文章，图片等资源</p>
-<p>themes：主题文件夹</p>
-<p>_config.yml 站点配置文件。很多全局配置都在这个文件中</p>
-<p>package.json 应用数据，版本信息等</p>
-<h2 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h2><p>hexo c  #清理一下 </p>
-<p>hexo g  #生成 </p>
-<p>hexo s  #部署到本地4000端口 </p>
-<p>hexo d  #部署到远程Github仓库</p>
-<p>hexo new paper #创建在_post文件夹下，与hello world同目录</p>
-<p>hexo new page category #增加页面导航，并在项目目录&#x2F;source&#x2F;category&#x2F;index.md加上 type: category</p>
+            <h1 id="Anaconda配置说明"><a href="#Anaconda配置说明" class="headerlink" title="Anaconda配置说明"></a>Anaconda配置说明</h1><h2 id="基本指令"><a href="#基本指令" class="headerlink" title="基本指令"></a>基本指令</h2><p>查看已有的虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
+
+<p>退出当前虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+
+<p>创建虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n &lt;env_name&gt; python=x.x</span><br></pre></td></tr></table></figure>
+
+<p>删除虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n &lt;env_name&gt; --all</span><br><span class="line">conda remove --name &lt;env_name&gt; --all</span><br></pre></td></tr></table></figure>
+
+<p>查看当前使用源，添加指定源，删除指定源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config --show-sources</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --remove channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br></pre></td></tr></table></figure>
+
+
+
+<p>requirement.txt的生成与执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install pipreqs</span><br><span class="line">pipreqs ./</span><br></pre></td></tr></table></figure>
+
+<p>当项目所在文件夹中已有requirement.txt时，即可更新已经存在的requirement.txt文件了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipreqs --force ./</span><br></pre></td></tr></table></figure>
+
+<p>若编码错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipreqs ./ --encoding=utf-8</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -248,7 +260,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://example.com/2022/11/22/BasicBlog/">http://example.com/2022/11/22/BasicBlog/</a></span>
+                        <span><a href="http://example.com/2022/11/22/Anaconda/">http://example.com/2022/11/22/Anaconda/</a></span>
                     </p>
                 
                 
@@ -272,7 +284,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E5%8D%9A%E5%AE%A2/"># 博客</a>
+                        <a href="/tags/%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83/"># 配置环境</a>
                     
                         
                 </span>
@@ -285,8 +297,8 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2022/11/22/BasicBlog/">Basic Blog</a>
             
-            <a class="next" rel="next" href="/2022/11/22/Anaconda/">Anaconda</a>
             
         </section>
 
