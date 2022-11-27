@@ -13,7 +13,7 @@
 
 
 
-<title>Basic Blog | Hexo</title>
+<title>Basic Blog | Kyobo&#39;s blog</title>
 
 
 
@@ -234,6 +234,10 @@
 <p>hexo d  #部署到远程Github仓库</p>
 <p>hexo new paper #创建在_post文件夹下，与hello world同目录</p>
 <p>hexo new page category #增加页面导航，并在项目目录&#x2F;source&#x2F;category&#x2F;index.md加上 type: category</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ol>
+<li>若出现以下报错，则去修改全局配置文件_config.yml</li>
+<li>将deploy下的repo的值修改为ssh的链接<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access  &#x27;https://github.com/Candlelight-XYJ/Candlelight-XYJ.github.io.git/&#x27;: OpenSSL  SSL_read: Connection was reset, errno 10054</span><br><span class="line">FATAL Something&#x27;s wrong. Maybe you can find the solution here:  https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: Spawn failed</span><br><span class="line">    at ChildProcess.&lt;anonymous&gt;  (D:\StudyMaterials\8_FileManagement\testBlog\blog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">    at ChildProcess.emit (events.js:314:20)</span><br><span class="line">    at ChildProcess.cp.emit  (D:\StudyMaterials\8_FileManagement\testBlog\blog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">    at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12)</span><br></pre></td></tr></table></figure></li>
+</ol>
 
         </div>
 
@@ -274,6 +278,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/11/27/proxyPool/">proxyPool</a>
             
             
             <a class="next" rel="next" href="/2022/11/22/Anaconda/">Anaconda</a>
