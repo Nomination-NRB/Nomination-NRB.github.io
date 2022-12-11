@@ -221,7 +221,7 @@
         </header>
 
         <div class="post-content">
-            <h1 id="爬虫ip池"><a href="#爬虫ip池" class="headerlink" title="爬虫ip池"></a>爬虫ip池</h1><p>[项目地址](<a target="_blank" rel="noopener" href="https://github.com/jhao104/proxy_pool">jhao104&#x2F;proxy_pool: Python爬虫代理IP池(proxy pool) (github.com)</a>)</p>
+            <h1 id="爬虫ip池"><a href="#爬虫ip池" class="headerlink" title="爬虫ip池"></a>爬虫ip池</h1><p><a href="%5BPython%E7%88%AC%E8%99%AB%E4%BB%A3%E7%90%86IP%E6%B1%A0%5D(https://github.com/jhao104/proxy_pool)">项目地址</a></p>
 <h2 id="下载项目"><a href="#下载项目" class="headerlink" title="下载项目"></a>下载项目</h2><ul>
 <li>git clone</li>
 </ul>
@@ -259,14 +259,39 @@
 <ol>
 <li><p>设置redis服务的密码，查找到requirepass foobared这一行，在下一行添加requirepass 123456，如下</p>
 </li>
-<li><p>&#96;&#96;&#96;bash</p>
-<h1 id="requirepass-foobared"><a href="#requirepass-foobared" class="headerlink" title="requirepass foobared"></a>requirepass foobared</h1><p>requirepass 123456</p>
-<h1 id="Command-renaming"><a href="#Command-renaming" class="headerlink" title="Command renaming."></a>Command renaming.</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   2. redis-server.exe</span><br><span class="line"></span><br><span class="line">      1. redis数据库的服务端，每次使用ip池都需要先双击启动它</span><br><span class="line"></span><br><span class="line">   3. redis-cli.exe</span><br><span class="line"></span><br><span class="line">      1. redis客户端，双击启动</span><br><span class="line">      2. 输入ping，回车后显示PONG，则表示redis服务器启动成功</span><br><span class="line">      3. 设置密码为123456：config set requirepass 123456</span><br><span class="line">      4. 若没有设置，在运行项目的时候可能会报错：redis.exceptions.AuthenticationError: Client sent AUTH, but no password is set</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 更新setting.py配置文件</span><br><span class="line"></span><br><span class="line">- 配置redis数据库</span><br><span class="line">  - 123456：是redis数据库密码（稍后会配置密码）</span><br><span class="line">  - 127.0.0.1:6379：是redis数据库ip与端口</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">DB_CONN = &#x27;redis://:123456@127.0.0.1:6379&#x27;</span><br></pre></td></tr></table></figure></li>
+<li><p>requirepass 123456</p>
+</li>
+</ol>
+</li>
+<li><p>redis-server.exe</p>
+<ol>
+<li>redis数据库的服务端，每次使用ip池都需要先双击启动它</li>
+</ol>
+</li>
+<li><p>redis-cli.exe</p>
+<ol>
+<li>redis客户端，双击启动</li>
+<li>输入ping，回车后显示PONG，则表示redis服务器启动成功</li>
+<li>设置密码为123456：config set requirepass 123456</li>
+<li>若没有设置，在运行项目的时候可能会报错：redis.exceptions.AuthenticationError: Client sent AUTH, but no password is set</li>
 </ol>
 </li>
 </ol>
 </li>
 </ol>
+<h2 id="更新setting-py配置文件"><a href="#更新setting-py配置文件" class="headerlink" title="更新setting.py配置文件"></a>更新setting.py配置文件</h2><ul>
+<li>配置redis数据库<ul>
+<li>123456：是redis数据库密码（稍后会配置密码）</li>
+<li>127.0.0.1:6379：是redis数据库ip与端口</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DB_CONN = <span class="string">&#x27;redis://:123456@127.0.0.1:6379&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
 <h2 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h2><p><strong>每次都需要</strong></p>
 <p><strong>每次都需要</strong></p>
 <ol>
@@ -376,8 +401,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2022/12/11/Django/">Django</a>
             
-            <a class="next" rel="next" href="/2022/11/22/BasicBlog/">Basic Blog</a>
+            
+            <a class="next" rel="next" href="/2022/11/22/Anaconda/">Anaconda</a>
             
         </section>
 
